@@ -1,0 +1,194 @@
+@import "../base/global";
+
+.position-absolute {
+	position: absolute;
+}
+
+.login {
+	left: 40%;
+}
+
+.padding-5 {
+	padding: 5px;
+}
+
+.padding-10 {
+	padding: 10px;
+}
+
+.padding-15 {
+	padding: 15px;
+}
+
+.color-white {
+	color: $white;
+}
+
+.background-color-white {
+	background-color: $white;
+}
+
+.margin-0-auto {
+	margin: 0 auto;
+}
+
+.margin-15 {
+	margin: rem-calc(15px);
+}
+
+.margin-left-30 {
+	margin-left: 30%;
+}
+
+.margin-top-0 {
+	margin-top: rem-calc(0px);
+}
+
+.width-30 {
+	width: 30%;
+}
+
+.width-170-height-180 {
+	width: 170px;
+	height: 180px;
+}
+
+.test{
+	width: 30%;
+}
+
+.list-style-type-none {
+	list-style-type: none;
+}
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.padding-0 {
+	padding: 0px;
+}
+
+.padding-0-10-10 {
+	padding: rem-calc(0px 10px 10px);
+}
+
+.margin-0 {
+	margin: 0px;
+}
+
+.padding-10-0-10-30 {
+	padding: 10 0 10px 30px;
+}
+
+.font-size-11 {
+	font-size: 11px;
+}
+
+.font-size-13 {
+	font-size: 13px;
+}
+
+.font-size-15 {
+	font-size: 15px;
+}
+
+.border-bottom-37 {
+	border-bottom: 1px solid rgb(37,37,37);
+}
+
+.sidebar-content:hover {
+	background: rgb(28, 28, 28);
+}
+
+.font-family-verdana {
+	font-family: verdana,sans-serif;
+}
+
+.font-family-arial {
+	font-family: arial,sans-serif;
+}
+
+.border-radius-2{
+	border-radius: 2px;
+}
+
+.color-ccc{
+	color: #ccc;
+}
+
+.color-gray{
+	color:rgb(102, 102, 102);
+}
+
+.padding-0-30{
+	padding:0px 30px;
+}
+
+// @function test(){
+	
+// }
+
+.padding-5-0-5-10{
+	padding: 5px 0px 5px 10px;
+}
+
+.padding-0-10-10{
+	padding:0px 10px 10px;
+}
+
+.text-align-center{
+	text-align: center;
+}
+
+.text-decoration-none{ 
+	text-decoration: none;
+}
+
+.float-left {
+	float: left;
+}
+
+.font-weight-bold {
+	font-weight: bold;
+}
+
+.width-auto {
+	width: auto;
+}
+
+.border-radius-2 {
+	border-radius: 2px;
+}
+
+.font-size-11 {
+	font-size: 11px;
+}
+
+.font-size-19 {
+	font-size: rem-calc(19px);
+}
+
+.bg-color-17-17-17 {
+	background-color: rgb(17, 17, 17);
+}
+
+.bg-color-48-48-48 {
+	background-color:rgb(48, 48, 48);
+}
+
+.padding-top-5 {
+	padding-top: 5px;
+}
+
+.border-bottom-gray {
+	border-bottom: 1px solid rgb(102, 102, 102);
+}
+
+.display-inline-flex {
+	display: inline-flex;
+}
+
+.background-green {
+	background: #82ca9c;
+}

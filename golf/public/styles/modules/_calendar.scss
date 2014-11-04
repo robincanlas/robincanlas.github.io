@@ -1,0 +1,53 @@
+@mixin center {
+	text-align: center;
+	font-family: helvetica;
+}
+
+.date-body {
+	width: 250px;
+}
+.date-span {
+	font-size: 11px;
+}
+.day-span {
+	font-size: 11px;
+	margin: 0px 9px 0px 0px;
+	text-align: center;
+}
+.calendar-td {
+	width: 35px;
+	height: 35px;
+	background-color: #E6E6E6;
+	cursor: pointer;
+	@include center;
+}
+.calendar-indent {
+	width: 35px;
+	height: 35px;
+	cursor: pointer;
+	@include center;
+}
+.calendar-arrow {
+	padding-right: 20px;
+	cursor: pointer;
+	color: #A4A4A4;
+	@include center;
+}
+.calendar-head {
+	font-size: 14px;
+	font-weight: 800;
+	color: #585858;
+	@include center;
+	width: 200px;
+}
+.picked-date {
+	color: whitesmoke;
+	background-color: black;
+	cursor: pointer;
+	@include center;
+}
+.calendar-postion {
+	position: absolute;
+	right: 0;
+	top: 10%;
+}

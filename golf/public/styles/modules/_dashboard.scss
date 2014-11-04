@@ -1,0 +1,98 @@
+@mixin module {
+	border:1px solid #ccc;
+	background-color:#ffffff;
+	color:#999;
+	margin:10px 0;
+	padding:20px 20px 0px 20px;
+}
+
+@mixin inline {
+	display: inline-block;
+}
+
+@mixin large {
+	font-size: 20px;
+	&.lighter {
+		color:#ccc;
+
+	}
+}
+
+.dashboard-first {
+	width: 30%;
+	margin: 0px 0px 0px 30px;
+}
+
+.dashboard-second {
+	width: 45%;
+	margin: 50px 0px 0px 60px;
+}
+
+.dashboard-third {
+	width: 20%;
+	position: absolute;
+	right: 0;
+	top: 10%;
+}
+
+.day-module {
+	padding-top: 40px;
+	padding-bottom: 20px;
+	font-size: 20px;
+	color: #999999;
+	margin: auto;
+	text-align: center;
+}
+
+.schedule-module {
+	text-align: center;
+	margin: 0px 0px 0px 0px;
+	border: 1px solid #ccc;
+	background-color: #ffffff;
+	color: #999;
+	margin: 10px 0;
+	padding: 20px;
+	
+	span {
+		font-size: 20px;
+		font-weight: 600;
+	}
+	.count-module {
+		.strong {
+			font-size:96px;
+			@include inline;
+			padding: 15px 0px 0px 0px;
+		}
+
+		.large-number {
+			@include large;
+			@include inline;
+		}
+	}
+}
+
+.next-module {
+	@include module;
+
+	strong {
+		font-size: 20px;
+	}
+
+	.large-number {
+		font-size: 32px;
+		color: #606060;
+	}
+	.reservation {
+		margin-top:20px;
+		line-height:32px;
+	}
+
+	.btn {
+		background-color: #81BEF7;
+		border-color: #81BEF7;
+		font-family: Helvetica;
+		font-size: 12px;
+		color: white;
+		float: right;
+	}
+}
