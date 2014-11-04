@@ -1,0 +1,1 @@
+var year = Backbone.Model.extend();

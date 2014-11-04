@@ -1,5 +1,6 @@
 var Genre = Backbone.Marionette.ItemView.extend({
 	template: '#genre',
+	className: 'large-3 columns',
 	events:{
 		'click': 'filter'
 	},
@@ -9,5 +10,6 @@ var Genre = Backbone.Marionette.ItemView.extend({
 });
 
 var Genres = Backbone.Marionette.CollectionView.extend({
-	childView: Genre
+	childView: Genre,
+	className: 'row',
 });
