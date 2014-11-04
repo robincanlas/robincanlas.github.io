@@ -1,0 +1,66 @@
+<html lang="en" class="no-js">
+	<head>
+		<title>Movies</title>
+		<link rel="stylesheet" href="public/css/style.css">
+		<link rel="stylesheet" href="public/css/grid.css">
+	    <link href='http://fonts.googleapis.com/css?family=Muli:300|Montserrat' rel='stylesheet' type='text/css'>
+		<script type="text/javascript" src="public/scripts/libs/parse.js"></script>
+		<script>
+			Parse.initialize("5VMu5iwjKlkhaoUuWvmvn3sSjuAohhztpn644moR", "6uPDHCh47MuUmeNm0m20u0P5sItEyLb9Z5eNvKxr");
+		</script>
+	</head>
+	<body>
+	<div class="wrapper">	
+		<header>
+			<div id="header-region"></div>		
+		</header>
+		<div id="sidebar-region" class="sidebar color-white border-radius-2"></div>
+		<div id="main-region" class="main-content" style="clear:both;"></div>
+	 </div> 
+	  <script src="public/bower_components/jquery/dist/jquery.js"></script>
+	  <script src="public/bower_components/underscore/underscore.js"></script>
+	  <script src="public/bower_components/backbone/backbone.js"></script>
+	  <script src="public/bower_components/marionette/lib/backbone.marionette.js"></script>
+	<!-- GENRE -->
+	<script src="public/scripts/models/genre.js"></script>
+	<script src="public/scripts/collections/genres.js"></script>
+	<script src="public/scripts/views/genre_list.js"></script>	
+	<script type="text/template" id="genre">
+		<div class="color-white float-left padding-5 cursor-pointer"><%=type%></div>
+	</script>
+	<!-- MOVIES -->
+ 	  <script src="public/scripts/models/movie.js"></script>
+	  <script src="public/scripts/collections/movies.js"></script>
+	  <script src="public/scripts/views/movie_list.js"></script>
+	  <script src="public/scripts/controllers/movie_list.js"></script>
+ 	  <script type="text/template" id="movies">
+ 	  	<div class="box padding-0-10-70 float-left">
+  			<div class="video-thumbnail text-align-center font-size-13" style="">
+	  			<a href="#">
+					<img src="<%=image%>" alt="" class="width-150-height-230">
+				</a>
+		  	  	<a href="#" class="color-ccc text-decoration-none"><%= name %></a>
+  			</div>
+ 	  	</div>	
+  	  </script>
+	<!-- HEADER -->
+  	  <script src="public/scripts/views/search.js"></script>	
+ 	  <script type="text/template" id="search">
+			<input type="text" placeholder="Search...">
+			<select>
+				<option value="">Title</option>
+				<option value="">Actor</option>
+				<option value="">Director</option>	
+			</select>
+  	  </script>
+  	  <!-- SIDEBAR -->
+	  <script src="public/scripts/models/sidebar.js"></script>
+	  <script src="public/scripts/collections/sidebars.js"></script>
+	  <script src="public/scripts/views/sidebar_list.js"></script>
+	  <script src="public/scripts/controllers/sidebar_list.js"></script>
+ 	  <script type="text/template" id="sidebar">
+		<div <%=data%>><%=name%></div>
+  	  </script>
+  	  <script src="public/scripts/app.js"></script>		
+	</body>
+</html>
