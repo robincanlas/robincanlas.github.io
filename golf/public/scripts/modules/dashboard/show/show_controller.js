@@ -3,7 +3,7 @@
 	'modules/dashboard/show/show_view',
 	'entities/date',
 	'entities/reservation',
-	'entities/reservation_parse'
+	'entities/reservation_parse',
 ], function(App, View){
 
 		App.module('DashBoardApp.Show', function(Show, App, Backbone, Marionette, $, _){
@@ -11,10 +11,12 @@
 			Show.Controller = Marionette.Controller.extend({
 	
 				initialize: function(options){
+					
 					var data = {
 						date: new Date(),
 					}
 
+					this.id = options.id;
 					this.dates = App.request('dates:entities:date');
 					this.day = App.request('date:entity', data);
 					this.reservations = App.request('reservation:entities', {date:this.day.get('date')});
@@ -57,9 +59,6 @@
 						this.nextRegion();
 						this.resetReservation();	
 					}, this));
-					// this.listenTo(App.vent, 'change:reservation:date', function(options){
-
-					// });
 				},
 
 				fetchCollection: function(time){
@@ -99,10 +98,6 @@
 						new Count.Controller(options);
 					});
 				},
-
-				// countRegion: function(){
-				// 	App.execute("count:load:region", { region: this.layout.countRegion, collection: this.reservations} );
-				// },
 
 				nextRegion: function(){
 					var options = {};

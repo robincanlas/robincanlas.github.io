@@ -92,27 +92,27 @@ define([
 
 		Modal.Header = Marionette.ItemView.extend({
 			getTemplate: function(){
-				return _.template('header <span data-close class="right">x</span>')
+				return _.template('header <span data-close class="cursor-pointer right">x</span>')
 			},
-
 		});
 
 		Modal.Footer = Marionette.ItemView.extend({
-			template: _.template('<button data-close>Cancel</button><%=reserved()%><%=paid()%>'),
+			className: 'padding-10',
+			template: _.template('<%=reserved()%><%=paid()%><button data-close class="padding-10">Cancel</button>'),
 			templateHelpers: {
 				paid: function(){
 					if(this.isReserved){
 						if(this.isPaid){
-							return '<button data-refund>Refund!</button>'
+							return '<button data-refund class="padding-10 margin-0-20">Refund!</button>'
 						}else{
-							return '<button data-pay>Pay now!</button>'
+							return '<button data-pay class="padding-10 margin-0-20">Pay now!</button>'
 						}
 					}else{
 						return ''
 					}
 				},
 				reserved: function(){
-					return this.isReserved ? '<button data-remove>Remove</button>' : '<button data-save>Reserve now!</button>';
+					return this.isReserved ? '<button class="padding-10" data-remove>Remove</button>' : '<button data-save class="padding-10 margin-0-20">Reserve now!</button>';
 				}
 			},
 			modelEvents: {

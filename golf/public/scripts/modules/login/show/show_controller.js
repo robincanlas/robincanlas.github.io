@@ -14,20 +14,24 @@ define([
 				
 				App.mainRegion.show(this.layout);
 
+				this.collection = App.request("login:test")
+
 				this.listenTo(this.layout, 'user:login', this.userLogIn);
 			},
 			
 			userLogIn: function(){
 				var username = this.layout.ui.username.val();
+				var password = this.layout.ui.password.val();
+				var that = this;
 
-				this.test = App.request('username:entities', {username: username});
-
-				this.test.done(function(data){
-					if ( data.length !== 0 ) { data.map(function(model){ App.vent.trigger('show:home:page', model); }); }
+				var logIn = this.collection.logIn(username, password);
+				
+				logIn.done(function(data){
+					App.vent.trigger('show:home:page', data);
+					that.layout.destroy();
 				});
-				this.layout.destroy();
 			},
-
+			
 			getLayoutView: function(){
 				return new View.Layout();
 			}

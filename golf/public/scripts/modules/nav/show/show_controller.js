@@ -10,9 +10,11 @@ define([
 				this.user = App.user;
 
 				this.layout = this.getLayout();
-		
-				App.navRegion.show(this.layout);
 
+				this.listenTo(this.user, 'change', function(){
+					App.navRegion.show(this.layout);
+				});
+				
 				this.listenTo(App, "nav:active:change", this.changeActive);
 				this.listenTo(this.layout, 'data:dashboard', this.dashboard);
 				this.listenTo(this.layout, 'data:schedule', this.schedule);

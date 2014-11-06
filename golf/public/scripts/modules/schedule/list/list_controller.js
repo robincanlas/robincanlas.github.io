@@ -4,7 +4,8 @@ define([
 	'components/modal/modal_controller',
 	'entities/course',
 	'entities/date',
-	'entities/reservation_parse'
+	'entities/reservation_parse',
+	'entities/user'
 ], function(App, View, Modal){
 
 	App.module('ScheduleApp.List', function(List, App, Backbone, Marionette, $, _){
@@ -48,9 +49,6 @@ define([
 				App.commands.setHandler('change:reservation:date', _.bind(function(options){
 					this.changeReservationDate(options.model);
 				}, this));
-				// App.vent.on('change:reservation:date', _.bind(function(options){
-				// 	this.changeReservationDate(options.model);
-				// }, this));
 			},
 
 			// TODO: Set date when user selects a date on the calendar first
@@ -105,7 +103,7 @@ define([
 				return new View.Courses({collection: this.courses});
 			},
 
-			getModalTemplate: function(){
+			getModalTemplate: function(model){
 				return new View.ModalTemplate();
 			},	
 
@@ -117,7 +115,7 @@ define([
 				var that = this,
 					options = {};
 				if(iv.model.get('courseId') !== '') { 
-					var modalTemplate = this.getModalTemplate();
+					var modalTemplate = this.getModalTemplate(iv.model);
 						options.header = true;
 						options.footer = true;
 				}else{	 

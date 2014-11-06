@@ -14,7 +14,8 @@ define([
 
 	App.on('before:start', function(){
 		require([
-			'entities/user'
+			'entities/user',
+			'modules/login/login_app'
 		], function(){
 			App.user = App.request('username:static');
 		});
@@ -23,7 +24,7 @@ define([
 	App.addInitializer(function(){
 		require([
 			'modules/header/header_app',
-			'modules/nav/nav_app'
+			// 'modules/nav/nav_app',
 			],  function(){	
 			App.module("NavApp").start();
 			App.module("HeaderApp").start();
@@ -35,7 +36,6 @@ define([
 			'modules/schedule/schedule_app',
 			'modules/nav/nav_app',
 			'modules/dashboard/dashboard_app',
-			// 'modules/calendar/calendar_app'
 		], function(){
 			Backbone.history.start();
 

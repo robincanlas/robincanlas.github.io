@@ -18,12 +18,19 @@ define([
 			className: 'window-height',
 			templateHelpers: {
 				uri: function(){
-					return this.username + '-' + this.id;
+					if ( _.isUndefined(this.id)) {
+						return ' '
+					} else {
+						return this.username + '-' + this.id;
+					}
 				}
 			},
 			triggers: {
 				'click [data-dashboard]' : 'data:dashboard',
 				'click [data-schedule]' : 'data:schedule'
+			},
+			modelEvents: {
+				'change' : 'render'
 			}
 		});
 

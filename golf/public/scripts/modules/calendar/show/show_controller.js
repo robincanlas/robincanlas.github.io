@@ -83,8 +83,8 @@ define([
 				if ( data.date ) {
 					this.day.changeDayCalendar(options.model)
 				}
-					App.execute('change:reservation:date', {model: this.dates} );
-				// App.vent.trigger('change:reservation:date', {model: this.dates});
+		
+				App.execute('change:reservation:date', {model: this.dates} );
 			},
 
 			//changing of months

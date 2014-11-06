@@ -35,7 +35,7 @@ define([
 					no_of_day: month.get('date')[date.getMonth()],
 					no_of_indent: no_of_indent
 				});
-				App.vent.trigger('change:reservation:date', {model: this.model});
+				App.execute('change:reservation:date', {model: this.dates} );
 			}
 		});
 	});

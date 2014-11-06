@@ -19,11 +19,13 @@ define([
 		});
 
 		List.ModalTemplate = Marionette.ItemView.extend({
-			template: ModalTemplate,
+			className: 'padding-10',
+			template: ModalTemplate
 		});
 
 		List.NoCourseSelectedTemplate = Marionette.ItemView.extend({
-			template: _.template('<button data-close class="text-align-center">Please select a Golf Course first</button>'),
+			className: 'padding-10 text-align-center',
+			template: _.template('<button data-close class="">Please select a Golf Course first</button>'),
 		});
 
 		List.Course = Marionette.ItemView.extend({
@@ -35,7 +37,9 @@ define([
 			showSchedules: function(){
 				$('.reservation-time').removeClass('background-green');
 				this.$('.reservation-time').addClass('background-green');
-				this.trigger('show:schedules', this);	
+				$('.main-content').fadeOut(1000, _.bind(function(){
+					this.trigger('show:schedules', this);						
+				},this));
 			},
 			modelEvents: {
 				'change:isSelected': 'render',
@@ -50,7 +54,7 @@ define([
 
 		List.ReservationsItemView = Marionette.ItemView.extend({
 			template: ReservationTemplate,
-			className: 'text-align-center padding-0-10-10',
+			className: 'large-8 columns text-align-center padding-0-10-10',
 			templateHelpers: {
 				timeOfReservation: function(){
 					var parseDate = new Date(this.time.iso);	
@@ -60,12 +64,24 @@ define([
 					return newTime;
 				},
 				changeBgColor: function(){
-					if ( this.isReserved === true ) {
-						return 'background-color: yellow;';						
-					} else {
-						return 'background: #82ca9c;';
-					}
-				},						
+					return this.isReserved ? 'background-color: yellow;' : 'background: #82ca9c;';
+				},
+				changeText: function(){
+					return this.isReserved ? 'Reserved' : 'Book';
+				},
+				month: function(){
+					var mos = ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May.', 'Jun.', 'Jul.', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.'],
+						parseDate = new Date(this.time.iso);
+					return mos[parseDate.getMonth()] + ' ' + parseDate.getDate();
+				},
+				day: function(){
+					var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+						parseDate = new Date(this.time.iso);
+					return days[parseDate.getDay()];
+				},
+				holes: function(){
+					return this.courseId === 'fMQIT0ix52' ? '18' : '9'
+				}						
 			},
 			events: {
 				'click [data-button]': 'showDialog'
@@ -81,10 +97,10 @@ define([
 		List.ReservationsCollection = Marionette.CollectionView.extend({
 			childView: List.ReservationsItemView,
 			className: 'padding-15 margin-15 background-color-white main-content',
-			onDomRefresh: function(){
-				var pageHeight = $(document).height();
-				$('.sidebar').css('height', pageHeight);
-			},
+			// onRender: function(){
+			// 	var pageHeight = $(document).height();
+			// 	$('.sidebar').css('height', pageHeight);
+			// },
 			collectionEvents: {
 				'change': 'render'
 			}						
