@@ -24,7 +24,7 @@ define([
 
 				this.id = options.id;
 
-				this.courseId = '';
+				this.courseId = 'fMQIT0ix52';
 
 				this.day = App.request('date:entity', data);
 
@@ -59,12 +59,11 @@ define([
 					day = model.get('exact_date') 
 					year = model.get('year');
 				this.date = new Date(month + ' ' + day + ' ' + year);
-				this.schedules = App.request('reservations:entities:full', {courseId:'fMQIT0ix52', date:this.date});
+				this.schedules = App.request('reservations:entities:full', {courseId:this.courseId, date:this.date});
 				this.reservationsRegion();
 			},
 
 			openSchedulePage: function(iv){
-				var that = this;
 				this.courseId = iv.model.id;
 				this.schedules = App.request('reservations:entities:full', {courseId:this.courseId, date:this.date});
 				this.reservationsRegion();
