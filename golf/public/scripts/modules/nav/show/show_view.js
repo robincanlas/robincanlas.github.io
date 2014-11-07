@@ -25,12 +25,22 @@ define([
 					}
 				}
 			},
+			events:{
+				'click [data-logout]' : 'logout'
+			},
 			triggers: {
 				'click [data-dashboard]' : 'data:dashboard',
-				'click [data-schedule]' : 'data:schedule'
+				'click [data-schedule]' : 'data:schedule',
 			},
 			modelEvents: {
 				'change' : 'render'
+			},
+			onRender: function(){
+				var pageHeight = $(document).height();
+				$('.sidebar').css('height', pageHeight);
+			},
+			logout: function(){
+				this.trigger('data:logout')
 			}
 		});
 

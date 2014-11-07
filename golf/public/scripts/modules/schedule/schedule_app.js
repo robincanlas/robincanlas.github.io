@@ -21,6 +21,7 @@ define([
 				this.user = App.request('login:test').checkId(controllerOptions.id);
 				this.user.done(function(data){
 					App.user.set(data.models[0].toJSON());
+					App.user.trigger('show:nav');
 				})
 
 				require(['modules/schedule/list/list_controller'], function(){

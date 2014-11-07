@@ -6,76 +6,82 @@ define([
 	'entities/course'
 ], function(App, View){
 
-		App.module('ScheduleApp.Schedule', function(Schedule, App, Backbone, Marionette, $, _){
-	
-			Schedule.Controller = Marionette.Controller.extend({
-	
-				initialize: function(options){
-					var fetchedCourses = App.request('courses:entities');
+	App.module('ScheduleApp.Schedule', function(Schedule, App, Backbone, Marionette, $, _){
 
-					this.region = options.region;
+		Schedule.Controller = Marionette.Controller.extend({
 
-					this.optionCollection = options.collection;
+			initialize: function(options){
+				var fetchedCourses = App.request('courses:entities');
 
-					var d = new Date();
+				this.region = options.region;
 
-					var time = ('0'+d.getHours()).slice(-2)+('0'+d.getMinutes()).slice(-2);
-					
-					var filteredCollection = _.first(options.collection.getReservationsByTime(d), 10);
+				this.optionCollection = options.collection;
 
-					this.collection = App.request('reservation:entities:recreate:parse', {data:filteredCollection});
+				var d = new Date();
 
-					this.collectionFilter();
+				var time = ('0'+d.getHours()).slice(-2)+('0'+d.getMinutes()).slice(-2);
+				
+				var filteredCollection = _.first(options.collection.getReservationsByTime(d), 10);
 
-					this.layout = this.getLayoutView();
+				this.collection = App.request('reservation:entities:recreate:parse', {data:filteredCollection});
 
-					this.listenTo(this.layout, 'show', function(){
-						this.reservationsRegion();							
-					});
+				this.collectionFilter();
 
-					this.region.show(this.layout);
+				this.layout = this.getLayoutView();
 
-					fetchedCourses.done(_.bind(function(courses){
-						this.coursesCollection = courses;
-						this.coursesRegion();
-					}, this));
+				this.listenTo(this.layout, 'show', function(){
+					this.reservationsRegion();							
+				});
 
-					this.listenTo(this.layout, 'childview:reserve:schedule', this.reserveSchedule)
-				},
+				this.region.show(this.layout);
 
-				reservationsRegion: function(){
-					this.reservationsView = this.getReservationsView();
-					// this.listenTo(this.reservationsView, 'childview:show:dialog', this.showDialog);
-					this.layout.reservationsRegion.show(this.reservationsView);	
-				},
+				fetchedCourses.done(_.bind(function(courses){
+					this.coursesCollection = courses;
+					this.coursesRegion();
+				}, this));
 
-				coursesRegion: function(){
-					this.courses = this.getCourses();
+				this.listenTo(this.layout, 'childview:reserve:schedule', this.reserveSchedule)
+			},
 
-					// this.listenTo(this.courses, 'childview:show:schedules', this.openSchedulePage);
-					this.layout.coursesRegion.show(this.courses);
-				},
+			reservationsRegion: function(){
+				this.reservationsView = this.getReservationsView();
+				this.layout.reservationsRegion.show(this.reservationsView);	
+			},
 
-				getLayoutView: function(){
-					return new View.Layout();					
-				},
+			coursesRegion: function(){
+				this.courses = this.getCourses();
+				this.listenTo(this.courses, 'childview:show:schedules', this.openSchedulePage);
+				this.layout.coursesRegion.show(this.courses);
+			},
 
-				getReservationsView: function(){
-					return new View.Reservations({collection: this.collection});					
-				},
+			openSchedulePage: function(iv){
+				this.optionCollection.trigger('change:course', {model: iv.model});
+				// var that = this;
+				// this.courseId = iv.model.id;
+				// this.schedules = App.request('reservations:entities:full', {courseId:this.courseId, date:this.date});
+				// this.reservationsRegion();
+			},
 
-				getCourses: function(){
-					return new View.Courses({collection: this.coursesCollection});
-				},
+			getLayoutView: function(){
+				return new View.Layout();					
+			},
 
-				collectionFilter: function(){
-					var collection = this.collection.scheduleFilter();
-					// this.collection.reset(collection);
-				},
+			getReservationsView: function(){
+				return new View.Reservations({collection: this.collection});					
+			},
 
-			});
-		
+			getCourses: function(){
+				return new View.Courses({collection: this.coursesCollection});
+			},
+
+			collectionFilter: function(){
+				var collection = this.collection.scheduleFilter();
+				// this.collection.reset(collection);
+			},
+
 		});
 	
-		return App.ScheduleApp.Schedule;
+	});
+	
+	return App.ScheduleApp.Schedule;
 });

@@ -10,9 +10,17 @@ define([
 				username: 'input#username',
 				password: 'input#password'
 			},
+			events: {
+				'keyup' : 'loginEnter'
+			},
 			template: LayoutTemplate,
 			triggers: {
 				'click [data-login]': 'user:login'
+			},
+			loginEnter: function(e){
+				if ( e.keyCode == 13) {
+					this.trigger('user:login')
+				};
 			}
 		});
 		

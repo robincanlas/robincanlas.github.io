@@ -15,12 +15,13 @@
 					var data = {
 						date: new Date(),
 					}
-
+					this.date = new Date();
+					this.courseId = 'fMQIT0ix52';
 					this.id = options.id;
 					this.dates = App.request('dates:entities:date');
 					this.day = App.request('date:entity', data);
 					this.reservations = App.request('reservation:entities', {date:this.day.get('date')});
-					this.fetchCollection(this.day.get('date'));
+					this.fetchCollection(this.day.get('date'), 'fMQIT0ix52');
 					this.resetReservation();
 
 					var currMonth = this.day.get('date').getMonth(),
@@ -44,7 +45,6 @@
 						this.resetReservation();
 					});
 
-					// // TODO: Change time pass in next region according to date selected calendar
 					App.commands.setHandler('change:reservation:date', _.bind(function(options){
 						var month = options.model.get('month_name') || options.model.get('month') 
 							day = options.model.get('exact_date') || options.model.get('day') 
@@ -52,22 +52,31 @@
 						this.date = new Date(month + ' ' + day + ' ' + year);
 						this.currDate = new Date((currMonth + 1) + ' ' + currDay + ' ' + currYear);
 						if(+this.currDate === +this.date){ this.day.set('date', data.date); }
-						this.fetchCollection(this.date);
-						this.reservations.reset(this.mapCollection());
-						this.scheduleRegion();
-						this.countRegion();
-						this.nextRegion();
-						this.resetReservation();	
+						this.renderDashboardPage(this.date, this.courseId)
 					}, this));
+
 				},
 
-				fetchCollection: function(time){
-					this.parseReservation = App.request('reservations:entities:full', {date:time, courseId:'fMQIT0ix52'});
+				renderDashboardPage: function(date, courseId){
+					this.fetchCollection(date, courseId);
+					this.reservations.reset(this.mapCollection());
+					this.countRegion();
+					this.nextRegion();
+					this.resetReservation();						
+				},
+
+				fetchCollection: function(time, id){
+					this.parseReservation = App.request('reservations:entities:full', {date:time, courseId:id});
+					this.listenTo(this.parseReservation, 'change:course', this.changeCourse);
+				},
+
+				changeCourse: function(iv){
+					this.courseId = iv.model.id;
+					this.renderDashboardPage(this.date, this.courseId);
 				},
 
 				resetReservation: function(){
 					this.listenTo(this.parseReservation, 'change', function(){
-
 						this.reservations.reset(this.mapCollection());
 						this.countRegion();
 						this.nextRegion();

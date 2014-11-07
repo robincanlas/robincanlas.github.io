@@ -17,6 +17,7 @@ define([
 					data = {
 						date: new Date(),
 					}
+
 				var fetchedCourses = App.request('courses:entities');
 
 				this.date = new Date();
@@ -58,7 +59,7 @@ define([
 					day = model.get('exact_date') 
 					year = model.get('year');
 				this.date = new Date(month + ' ' + day + ' ' + year);
-				this.schedules = App.request('reservations:entities:full', {courseId:this.courseId, date:this.date});
+				this.schedules = App.request('reservations:entities:full', {courseId:'fMQIT0ix52', date:this.date});
 				this.reservationsRegion();
 			},
 
@@ -96,7 +97,7 @@ define([
 			},
 
 			getReservationsView: function(){
-				return new View.ReservationsCollection({collection: this.schedules});
+				return new View.Reservations({collection: this.schedules});
 			},	
 
 			getCourses: function(){
@@ -104,22 +105,23 @@ define([
 			},
 
 			getModalTemplate: function(model){
-				return new View.ModalTemplate();
+				return new View.ModalTemplate({model: model});
 			},	
 
-			getNoCourseSelected: function(){
-				return new View.NoCourseSelectedTemplate();
+			getAlreadyReservedView: function(){
+				return new View.AlreadyReservedTemplate();
 			},
 
 			showDialog: function(iv){
 				var that = this,
 					options = {};
-				if(iv.model.get('courseId') !== '') { 
+
+				if(iv.model.get('memberId') === App.user.id || typeof iv.model.get('memberId') === 'undefined' ) { 
 					var modalTemplate = this.getModalTemplate(iv.model);
 						options.header = true;
 						options.footer = true;
 				}else{	 
-					var modalTemplate = this.getNoCourseSelected();
+					var modalTemplate = this.getAlreadyReservedView();
 						options.header = false;
 						options.footer = false;
 				}	
@@ -131,7 +133,7 @@ define([
 
 					this.emptyReservation.save({
 						  courseId: {'__type':'Pointer','className':'Course','objectId':course},
-						  memberId: {'__type':'Pointer','className':'User','objectId': 'gK63TY0vdZ'},
+						  memberId: {'__type':'Pointer','className':'User','objectId': App.user.id},
 						  time: time
 						}, {
 						wait: true,

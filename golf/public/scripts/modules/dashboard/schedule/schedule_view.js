@@ -17,12 +17,12 @@ define([
 		});
 
 		Schedule.Course = Marionette.ItemView.extend({
-			initialize: function(){
-				if (this.model.get('holes') === 18) {
-					$('.reservation-time').addClass('background-green');
-				}
+			template: _.template('<div data-reservation class="<%= defaultSelected()%> reservation-time cursor-pointer margin-0-auto border-radius-2"><%=holes%> holes</div>'),
+			templateHelpers: {
+				defaultSelected: function(){
+					if(this.holes === 18) return 'background-green';
+				}	
 			},
-			template: _.template('<div data-reservation class="reservation-time cursor-pointer margin-0-auto border-radius-2"><%=holes%> holes</div>'),
 			className: 'padding-10 cursor-pointer text-align-center',
 			events: {
 				'click [data-reservation]': 'showSchedules'
@@ -64,10 +64,10 @@ define([
 			collectionEvents: {
 				'change' : 'render'
 			},
-			// onDOMRefresh: function(){
-			// 	var pageHeight = $(document).height();
-			// 	$('.sidebar').css('height', pageHeight);
-			// }
+			onRender: function(){
+				var pageHeight = $(document).height();
+				$('.sidebar').css('height', pageHeight);
+			}
 		});
 
 	});

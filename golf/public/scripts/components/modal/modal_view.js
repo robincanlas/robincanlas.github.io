@@ -91,8 +91,9 @@ define([
 		});
 
 		Modal.Header = Marionette.ItemView.extend({
+			className: 'padding-10',
 			getTemplate: function(){
-				return _.template('header <span data-close class="cursor-pointer right">x</span>')
+				return _.template('<span>Reserve Now!</span><span data-close class="cursor-pointer right">x</span>')
 			},
 		});
 

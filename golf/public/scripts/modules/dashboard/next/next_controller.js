@@ -46,8 +46,8 @@ define([
 					that = this;
 
 				this.emptyReservation.save({
-					  courseId: {'__type':'Pointer','className':'Course','objectId':'fMQIT0ix52'},
-					  memberId: {'__type':'Pointer','className':'User','objectId': 'gK63TY0vdZ'},
+					  courseId: {'__type':'Pointer','className':'Course','objectId':course},
+					  memberId: {'__type':'Pointer','className':'User','objectId': App.user.id},
 					  time: time
 					}, {
 					wait: true,
