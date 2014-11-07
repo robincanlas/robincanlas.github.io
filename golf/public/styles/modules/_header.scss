@@ -8,9 +8,16 @@ and (min-width : 1024px){
 		height:55px;
 		padding:0 20px;
 		
-		ul {
-			// @include horizontal-list-container;
-		}
+		nav {
+			ul {
+				// @include horizontal-list-container;
+				li.title {
+					color: white;
+					font-size: 16px;
+					margin: 5px 0px 0px 0px;
+				}
+				}
+		}		
 		img {
 			vertical-align: middle;
 		}

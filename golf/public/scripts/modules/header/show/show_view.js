@@ -7,7 +7,7 @@ define([
 	
 		Show.Layout = Marionette.LayoutView.extend({
 			template: LayoutTemplate,
-			className: ""
+			className: "header"
 		});
 
 	});
