@@ -70,9 +70,10 @@ define([
 			numberOfDays: function(options) {
 				var data = options || {};
 				var exact_date =  data.date || this.dates.get('exact_date');
+				var no_of_day = data.no_of_day || this.dates.get('date')[this.date.getMonth()];
 
 				var no_of_indent = new Date(this.dates.get('year'), this.dates.get('number_of_month'),1).getDay();
-				var no_of_day = this.dates.get('date')[this.date.getMonth()];
+				
 
 				this.dates.set({
 					no_of_day: no_of_day,
@@ -93,6 +94,8 @@ define([
 				var date = this.day.get('date')
 					newMonth = date.getMonth() + integer
 					year = date.getFullYear();
+
+					console.log(newMonth);
 				//if month is Max or Min reset
 				switch ( newMonth )	{
 					case 12:
@@ -115,25 +118,34 @@ define([
 
 				this.dates.set({
 					month_name: this.dates.get("month")[newMonth],
-					year: this.day.get('date').getFullYear(),
 					number_of_month: newMonth,
 					exact_date: exact_date,
+					no_of_day: this.dates.get('date')[newMonth]
 				});
-
+				
 				// if Dec or Jan was hit change year
 				switch ( model.get('month_name') ) {
 					case 'Dec':
 						var number = model.get('number_of_month') + integer;
-						var month = date.setMonth(number);
+						date.setMonth(number);
+
+						this.dates.set({
+							year: date.getFullYear()-1
+						});
+
 					break;
 					case 'Jan':
 						var number = model.get('number_of_month') + integer;
-						var month = date.setMonth(number);
+						date.setMonth(number);
+						console.log(number);
+						this.dates.set({
+							year: date.getFullYear()
+						});
 					break;
 				}
 
 				date.setMonth(newMonth);
-				this.numberOfDays({integer: integer});
+				this.numberOfDays({integer: integer, no_of_day: this.dates.get('no_of_day')});
 			},
 
 		});

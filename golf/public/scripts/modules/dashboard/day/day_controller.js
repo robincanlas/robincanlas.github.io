@@ -26,15 +26,17 @@ define([
 				var date = this.model.get('date')
 					month = this.dates;
 					no_of_indent = new Date(date.getFullYear(), date.getMonth(),1).getDay();
-
+					
 				month.set({
 					exact_date: date.getDate(),
 					number_of_month: date.getMonth(),
 					exact_month: date.getMonth(),
 					month_name: month.get('month')[date.getMonth()],
 					no_of_day: month.get('date')[date.getMonth()],
-					no_of_indent: no_of_indent
+					no_of_indent: no_of_indent,
+					year: date.getFullYear(),
 				});
+
 				App.execute('change:reservation:date', {model: this.dates} );
 			}
 		});

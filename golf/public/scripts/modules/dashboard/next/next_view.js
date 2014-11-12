@@ -22,7 +22,6 @@ define([
 					if ( Number(time)+15 > this.nextAvailableReservation ) {
 						return 'NOW';
 					} else {
-						// console.log( this.nextAvailableReservation.slice(0,2) - dHours ) * 60 + ( this.nextAvailableReservation.slice(3) - dMinutes );
 						var x = ( this.nextAvailableReservation.slice(0,2) - dHours ) * 60 + ( this.nextAvailableReservation.slice(3) - dMinutes );
 						if (x < 1){
 							return 'N/A';

@@ -4,6 +4,24 @@ define(["app"], function(App){
 
 		Entities.User = Parse.Object.extend({
 			className: 'User',
+			signingUp: function(options){
+				this.set('firstName', options.view.ui.fname.val());
+				this.set('lastName', options.view.ui.lname.val());	
+				this.set('username', options.view.ui.uname.val());	
+				this.set('password', options.view.ui.pword.val());	
+				this.set('phone', options.view.ui.phone.val());	
+				this.set('email', options.view.ui.email.val());
+
+				this.signUp(null, {
+					success: function(user) {
+					  // Hooray! Let them use the app now.
+					},
+					error: function(user, error) {
+					  // Show the error message somewhere and let the user try again.
+					  alert("Error: " + error.code + " " + error.message);
+					}
+				});
+			}
 		});
 
 		Entities.UsersCollection = Parse.Collection.extend({
@@ -68,7 +86,7 @@ define(["app"], function(App){
 				return users;
 			},
 
-			staticUser: function(data){
+			userApp: function(data){
 				return new Entities.User();
 			},
 
@@ -81,7 +99,7 @@ define(["app"], function(App){
 		});
 
 		App.reqres.setHandler("username:static", function(options){
-			return API.staticUser(options);
+			return API.userApp(options);
 		});
 
 		App.reqres.setHandler('get:user', function(options){

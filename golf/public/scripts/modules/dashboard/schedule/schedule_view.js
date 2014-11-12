@@ -32,10 +32,10 @@ define([
 				this.$('.reservation-time').addClass('background-green');
 				this.trigger('show:schedules', this);	
 			},
-			modelEvents: {
-				'change:isSelected': 'render',
-				'change:isPaid': 'render'
-			}
+			// modelEvents: {
+			// 	'change:isSelected': 'render',
+			// 	'change:isPaid': 'render'
+			// }
 		});
 
 		Schedule.Courses = Marionette.CollectionView.extend({

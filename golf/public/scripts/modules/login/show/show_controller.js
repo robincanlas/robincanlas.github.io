@@ -17,6 +17,7 @@ define([
 				this.collection = App.request("login:test")
 
 				this.listenTo(this.layout, 'user:login', this.userLogIn);
+				this.listenTo(this.layout, 'user:sign:up', this.signUp)
 			},
 			
 			userLogIn: function(){
@@ -34,6 +35,46 @@ define([
 			
 			getLayoutView: function(){
 				return new View.Layout();
+			},
+
+			getModalView: function(){
+				return new View.ModalLayout();
+			},
+
+			getSuccessView: function(){
+				return new View.Success();
+			},
+
+			signUp: function(){
+				var modalTemplate = this.getModalView()
+					options = {}
+					options.header = false
+					options.footer = false
+					// model = {};
+
+				require(['components/modal/modal_controller'], function(Modal){
+					new Modal.Controller({contentView:modalTemplate , options: options});
+				});
+
+				this.listenTo(modalTemplate, 'data:sign:up', function(iv){
+					//if verify password is correct
+					if ( iv.view.ui.pword.val() == iv.view.ui.vpword.val() ) {
+						App.request('username:static').signingUp(iv);
+
+						var modalTemplate = this.getSuccessView();
+						require(['components/modal/modal_controller'], function(Modal){
+							new Modal.Controller({contentView:modalTemplate , options: options});
+						});
+
+						this.listenTo(modalTemplate, 'data:close', function(){
+							_.delay(function(){
+								modalTemplate.trigger('layout:destroy');
+							}, 1500);
+						});
+					} else {
+						console.log("wrong");
+					}
+				})
 			}
 
 		});

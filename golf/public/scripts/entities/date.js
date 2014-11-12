@@ -70,7 +70,7 @@ define(["app"], function(App){
 
 			getComponent: function(){
 				var date = new Entities.Date({
-					date: [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31,],
+					date: [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
 					day: ["Sun", "Mon", "Tue" , "Wed", "Thu", "Fri", "Sat"],
 					month: ["Jan" , "Feb" , "Mar" , "Apr" , "May" , "Jun" , "Jul" , "Aug" , "Sep" , "Oct" , "Nov" , "Dec"]
 				});

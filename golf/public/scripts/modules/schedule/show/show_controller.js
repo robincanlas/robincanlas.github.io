@@ -58,8 +58,7 @@ define([
 				},
 
 				modalRegion: function(options){
-					console.log(options.model.get("guestCount"));
-					console.log("modal region working");			
+					console.log(options);
 					this.modalView = this.getModalView(options);
 					this.layout.modalRegion.show(this.modalView);
 					var booked = options.model.get("isBooked");
@@ -93,12 +92,10 @@ define([
 				},
 
 				getLayoutView: function(){
-					console.log("show dialog layout");
 					return new View.Layout();					
 				},
 
-				getModalView: function(){
-					console.log("getmodalview working");					
+				getModalView: function(){				
 					return new View.DialogItemView();
 				},
 

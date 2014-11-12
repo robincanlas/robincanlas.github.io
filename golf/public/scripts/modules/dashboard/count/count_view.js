@@ -9,11 +9,6 @@ define([
 			collectionEvents: {
 				'change:isReserved' : 'render'
 			},
-			initialize: function(){
-				this.collection.map(function(model){
-					// console.log(model.get('isReserved'));
-				});
-			},
 			className: 'row schedule-module',
 			template: LayoutTemplate,
 			serializeData: function(){
