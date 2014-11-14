@@ -114,7 +114,6 @@ define([
 			showDialog: function(iv){
 				var that = this,
 					options = {};
-				console.log(iv.model.get('memberId'), App.user.id);
 				if(iv.model.get('memberId') === App.user.id || typeof iv.model.get('memberId') === 'undefined' ) { 
 					var modalTemplate = this.getModalTemplate(iv.model);
 						options.header = true;

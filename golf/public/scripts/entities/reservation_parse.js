@@ -81,7 +81,12 @@ define(['app'], function(App){
 					reservationsCollection.map(function(model){
 						for(var i = 0; i < data.length; ++i){
 							if (+model.get('time') === +data[i].get('time')) {
-								model.set({'isReserved': true, 'isPaid': data[i].get('isPaid'), 'objectId': data[i].id, 'memberId': data[i].get('memberId').id});
+								model.set({
+									'isReserved': true, 
+									'isPaid': data[i].get('isPaid'), 
+									'objectId': data[i].id, 
+									'memberId': data[i].get('memberId').id
+								});
 							}							
 						}
 					});

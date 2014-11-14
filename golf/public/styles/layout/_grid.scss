@@ -13,8 +13,8 @@ $include-xl-html-grid-classes: false !default;
 $row-width: rem-calc(1000) !default;
 $total-columns: 12 !default;
 
-$last-child-float: $opposite-direction !default;
-
+// $last-child-float: $opposite-direction !default;
+$last-child-float: $default-float !default;
 //
 // Grid Functions
 //
