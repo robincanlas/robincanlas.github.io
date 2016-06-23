@@ -1,4 +1,21 @@
 /* CSS */
-body{
-	background: red;
+body{ background: maroon; }
+h1, h2, h3, h4, h5, h6, p, strong{
+	margin: 0;
+	padding: 0;
+}
+.text-center{ text-align: center; }
+.text-right{ text-align: right; }
+.text-left{ text-align: left; }
+.img-wrapper{
+    height: 400px;
+    width: 55%;
+    position: relative;
+    display: block;
+    border: 1px solid yellow;
+    margin: 0 auto;
+}
+.img-wrapper > img{
+    width: 100%;
+    height: 100%;
 }
