@@ -1,5 +1,3 @@
-/* JS FILE '= =""*/
-
 (function(){
 	var app = angular.module('main', [])
 
@@ -45,7 +43,7 @@
 
 		$timeout(function(){
 		},1000);
-			mainFact.loadFinish = true;
+			// mainFact.loadFinish = true;
 	});
 
 
