@@ -8,7 +8,7 @@
 
 	})
 
-	.factory('mainFact', function(){
+	.factory('mainFact',['$q' , function($q){
 		var self = {
 			init: function(){
 				self.nav = [
@@ -27,23 +27,35 @@
 				]);
 
 				self.loadQ.on('error', function(){
-					console.log('error');
+					self.loadComplete(false);
 				});				
 
 				self.loadQ.on('complete', function(){
-					self.loadFinish = true;
+					var promise = self.loadComplete(true);
+
+					promise.then(function(){
+						self.loadFinish = true;
+					}, function(reason){
+						self.loadFinish = false;
+					});
 				});
 			},
+			loadComplete: function(param){
+				return $q(function(resolve, reject){
+					if(param){
+						resolve('load finish');
+					}else{
+						reject('error loading');
+					}
+				});
+			}
 		};
 		return self;
-	})
+	}])
 
 	.run(function(mainFact, $timeout){
 		mainFact.init();
 
-		$timeout(function(){
-		},1000);
-			// mainFact.loadFinish = true;
 	});
 
 
