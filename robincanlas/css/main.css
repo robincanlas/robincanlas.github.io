@@ -4,15 +4,15 @@
 }
 @font-face {
     font-family: 'roboto-light';
-    src: local('roboto-light'), url('./fonts/roboto-light.ttf') format('truetype');
+    src: local('roboto-light'), url('../fonts/Roboto-Light.ttf') format('truetype');
 }
 @font-face {
     font-family: 'roboto-medium';
-    src: local('roboto-medium'), url('./fonts/roboto-medium.ttf') format('truetype');
+    src: local('roboto-medium'), url('../fonts/Roboto-Medium.ttf') format('truetype');
 }
 @font-face {
     font-family: 'roboto-regular';
-    src: local('roboto-regular'), url('./fonts/roboto-regular.ttf') format('truetype');
+    src: local('roboto-regular'), url('../fonts/Roboto-Regular.ttf') format('truetype');
 }
 
 body{ font-family: roboto-regular;}
