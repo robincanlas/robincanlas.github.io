@@ -1,0 +1,22 @@
+body{
+	background: teal;
+	transform: scale(1);
+}
+table, tbody, tr, th, td{
+	border: 1px solid black;
+    width: 700px;
+    text-align: center;
+    word-wrap: break-word;
+}
+.bgImg{
+	width: 500px;
+	height: 500px;
+	display: block;
+	background-image: url('/build/default.png');
+}
+
+.metaImage{
+	width: 330px;
+	height: 400px;
+	float: left;	
+}

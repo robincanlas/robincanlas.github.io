@@ -1,0 +1,37 @@
+{
+  "name": "qwpoiewqpoie",
+  "version": "1.0.0",
+  "description": "React application",
+  "main": "app.js",
+  "scripts": {
+    "barry-run-dev": "SET NODE_ENV=DEV&&webpack --watch",
+    "barry-run-prod": "rimraf public/build&&SET NODE_ENV=PROD&& webpack",
+    "delete": "rimraf public/build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "core-js": "^2.5.1",
+    "express": "^4.15.2",
+    "jade": "^1.11.0",
+    "react": "^15.6.2",
+    "react-custom-scrollbars": "^4.2.1",
+    "react-dom": "^15.6.2",
+    "react-scrollbar-js": "^1.0.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.7.7",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.0",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.11.1",
+    "postcss-loader": "^1.3.3",
+    "rimraf": "^2.6.2",
+    "style-loader": "^0.16.1",
+    "uglifyjs-webpack-plugin": "^1.1.0",
+    "webpack": "^2.7.0"
+  }
+}
