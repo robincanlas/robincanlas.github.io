@@ -11,7 +11,7 @@ module.exports = function(grunt) {
         },
         uglify: {
             "options": { 
-                mangle: true,
+                // mangle: true,
                 compress: {
                     drop_console: true
                 },
@@ -40,5 +40,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
 
     // Task definitions
-    grunt.registerTask('dev', ['ngAnnotate','uglify', 'cssmin']);
+    grunt.registerTask('default', ['ngAnnotate','uglify', 'cssmin']);
 };

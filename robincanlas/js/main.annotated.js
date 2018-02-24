@@ -1,14 +1,14 @@
 (function(){
 	var app = angular.module('main', [])
 
-	.controller('mainController', function(mainFact){
+	.controller('mainController', ["mainFact", function(mainFact){
 		var self = this;
 		self.mainFact = mainFact;
 
 		window.onresize = function(){
 			mainFact.createCube();
 		};
-	})
+	}])
 
 	.factory('mainFact',['$q' , function($q){
 		var self = {
@@ -91,10 +91,10 @@
 		return self;
 	}])
 
-	.run(function(mainFact, $timeout){
+	.run(["mainFact", "$timeout", function(mainFact, $timeout){
 		mainFact.init();
 
-	});
+	}]);
 
 
 })();
