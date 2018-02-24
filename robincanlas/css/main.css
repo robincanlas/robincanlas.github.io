@@ -53,6 +53,12 @@ h1, h2, h3, h4, h5, h6, p, strong{
     transition: transform 1000ms Ease-in;
 }
 
+#canvas{
+    position: absolute;
+    display: block;
+    z-index: 2;
+}
+
 .loading-remove{
     -webkit-transform: translate(200%,50%);
     -ms-transform: translate(200%,50%);
@@ -104,9 +110,10 @@ h1, h2, h3, h4, h5, h6, p, strong{
     width: 100%;
     height: 100%;
     display: block;
-    position: relative;
+    position: absolute;
     margin: 0 auto;
     opacity: .8;
+    z-index: 3;
 }
 .main-bg{
     position: absolute;
@@ -158,14 +165,14 @@ h1, h2, h3, h4, h5, h6, p, strong{
 .robins-content{
     width: 100%;
     height: 350px;
-    top: 30%;
+    top: 75%;
     right: 50%;
     position: relative;
     display: block;
-    -webkit-transform: translate(50%, 30%);
-    -ms-transform: translate(50%, 30%);
-    -o-transform: translate(50%, 30%);
-    transform: translate(50%, 30%);
+    -webkit-transform: translate(50%, 75%);
+    -ms-transform: translate(50%, 75%);
+    -o-transform: translate(50%, 75%);
+    transform: translate(50%, 75%);
     color: white;
     font-size: 140px;
 }
