@@ -15,7 +15,14 @@
     src: local('roboto-regular'), url('../fonts/Roboto-Regular.ttf') format('truetype');
 }
 
-body{ font-family: roboto-regular;}
+html, body {
+    height: 100%;
+    margin: 0;
+}
+body {
+    position: relative;
+    font-family: roboto-regular;
+}
 
 h1, h2, h3, h4, h5, h6, p, strong{
 	margin: 0;
@@ -94,19 +101,28 @@ h1, h2, h3, h4, h5, h6, p, strong{
     display: block;
 }
 .main-wrapper{
-    width: 80%;
-    height: 1000px;
+    width: 100%;
+    height: 100%;
     display: block;
     position: relative;
     margin: 0 auto;
+    opacity: .8;
+}
+.main-bg{
+    position: absolute;
+    display: block;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    color: white;
 }
 .header{
-    background: -o-linear-gradient(to bottom left, rgba(255, 0, 0, 0.85), rgba(255, 0, 0, 0.74), rgba(45, 34, 68, 0.78), rgba(9, 7, 12, 0.96));
-    background: -moz-linear-gradient(to bottom left, rgba(255, 0, 0, 0.85), rgba(255, 0, 0, 0.74), rgba(45, 34, 68, 0.78), rgba(9, 7, 12, 0.96));
-    background: -webkit-linear-gradient(to bottom left, rgba(255, 0, 0, 0.85), rgba(255, 0, 0, 0.74), rgba(45, 34, 68, 0.78), rgba(9, 7, 12, 0.96));
-    background: linear-gradient(to bottom left, rgba(255, 0, 0, 0.85), rgba(255, 0, 0, 0.74), rgba(45, 34, 68, 0.78), rgba(9, 7, 12, 0.96));
-    height: 600px;
+    background: #101010;
+    height: 100%;
+    width: 100%;
     z-index: 2;
+    display: block;
+    position: relative;
 }
 .header-img{
     z-index: 1;
@@ -129,7 +145,7 @@ h1, h2, h3, h4, h5, h6, p, strong{
     position: relative;
     display: block;
     line-height: 30px;
-    color: gold;
+    color: #c1c1c1;
 }
 .header-content{
     height: 0;
@@ -188,67 +204,6 @@ h1, h2, h3, h4, h5, h6, p, strong{
     position: relative;
     display: block;
     line-height: 25px;
-    color: gold;
+    color: #c1c1c1;
 }
-.header-c-btn{
-    width: 30px;
-    height: 30px;
-    position: relative;
-    display: block;
-    border: 2px solid white;
-    border-radius: 50%;
-    margin: 0 auto;
-    top: 100px;
-    color: white;
-    font-family: roboto-light;
-    text-align: center;
-    font-size: 20px;
-    line-height: 30px;
-}
-.profile-content{
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 600px;
-}
-.profile-pic{
-    width: 45%;
-    max-width: 500px;
-    height: 100%;
-    position: relative;
-    display: block;
-    background: yellow;
-}
-.profile-info{
-    width: 55%;
-    height: 100%;
-    position: relative;
-    display: block;
-    background: rgb(36,36,36);
-    color: white;
-}
-.profile-soc{
-    height: 10%;
-}
-.profile-soc-txt{
-    width: 50%;
-    position: relative;
-    height: calc(100% - 20px);
-    display: block;
-    text-align: center;
-    font-size: 22px;
-    top: 20px;
-    padding-top: 10px;
-    border-right: 1px solid white;
-}
-.profile-main{
-    padding: 30px;
-    padding: 50px;
-    width: calc(100% - 50px);
-    height: calc(100% - 50px);
-}
-.bin-title{
-    font-size: 25px;
-    font-family: 'roboto-medium';
-    color: yellow;
-}
+
