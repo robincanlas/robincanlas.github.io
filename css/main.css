@@ -156,11 +156,15 @@ h1, h2, h3, h4, h5, h6, p, strong{
 }
 .header-content{
     height: 95%;
-    width: 80%;
-    position: relative;
+    width: 0%;
+    -webkit-transition: width 300ms ease-in-out;
+    -o-transition: width 300ms ease-in-out;
+    transition: width 300ms ease-in-out;
+    position: absolute;
     display: block;
-    margin: 0 auto;
+    overflow: hidden;
     z-index: 2;
+    background-position: right top;
 }
 .robins-content{
     width: 100%;
@@ -177,18 +181,16 @@ h1, h2, h3, h4, h5, h6, p, strong{
     /* transform: translate(50%,0%); */
 }
 
-/*.name-letters:nth-child(1){
-    text-align: right;
-}
-.name-letters:nth-child(3){
-    text-align: left;
-}*/
 .name-letters{
     width: 100%;
     height: 40%;
     position: relative;
     display: block;
     font-family: roboto-light;
+    opacity: 0;
+    -webkit-transition: opacity 100ms ease-in-out;
+    -o-transition: opacity 100ms ease-in-out;
+    transition: opacity 100ms ease-in-out;
 }
 .name-letters2{
     width: 100%;
@@ -197,6 +199,10 @@ h1, h2, h3, h4, h5, h6, p, strong{
     display: block;
     font-size: 20px;
     line-height: 17px;
+    opacity: 0;
+    -webkit-transition: opacity 100ms ease-in-out;
+    -o-transition: opacity 100ms ease-in-out;
+    transition: opacity 100ms ease-in-out;
 }
 .header-desc-wrap{
     height: 100px;
@@ -212,5 +218,19 @@ h1, h2, h3, h4, h5, h6, p, strong{
     display: block;
     line-height: 25px;
     color: #c1c1c1;
+    opacity: 0;
+    -webkit-transition: opacity 100ms ease-in-out;
+    -o-transition: opacity 100ms ease-in-out;
+    transition: opacity 100ms ease-in-out;
 }
 
+.active-content{
+    width: 100%;
+}
+
+.name-letters-active{
+    opacity: 1;
+    -webkit-transition: opacity 400ms ease-in-out;
+    -o-transition: opacity 400ms ease-in-out;
+    transition: opacity 400ms ease-in-out;
+}

@@ -5,9 +5,6 @@
 		var self = this;
 		self.mainFact = mainFact;
 
-		window.onresize = function(){
-			mainFact.createCube();
-		};
 	})
 
 	.factory('mainFact',['$q' , function($q){
@@ -19,10 +16,11 @@
 					{title: 'WORK',link:'',state: false},
 					{title: 'PHOTOGRAPHY',link:'',state: false},
 				];
-				self.canvasWidth = 500;
-				self.canvasHeight = 400;
 
 				self.createCube();
+				window.onresize = function(){
+					self.createCube();
+				};
 
 				//set to true for development
 				self.loadFinish = true;
@@ -51,6 +49,15 @@
 				// });
 
 			},
+			loadComplete: function(param){
+				return $q(function(resolve, reject){
+					if(param){
+						resolve('load finish');
+					}else{
+						reject('error loading');
+					}
+				});
+			},
 			createCube: function(){
 				var scene = new THREE.Scene();
 				var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
@@ -78,15 +85,11 @@
 
 				animate();
 			},
-			loadComplete: function(param){
-				return $q(function(resolve, reject){
-					if(param){
-						resolve('load finish');
-					}else{
-						reject('error loading');
-					}
-				});
-			}
+			goTo: function(index){
+				for(var i = 0; i < self.nav.length; i++){
+					self.nav[i].state = i === index ? true : false;
+				}
+			},
 		};
 		return self;
 	}])
