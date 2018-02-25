@@ -1,0 +1,6 @@
+TASK
+-loading page
+-home page
+-information page
+-work page
+-photography page
