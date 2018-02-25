@@ -234,3 +234,23 @@ h1, h2, h3, h4, h5, h6, p, strong{
     -o-transition: opacity 400ms ease-in-out;
     transition: opacity 400ms ease-in-out;
 }
+
+.information-desc{
+    width: 50%;
+    margin: 0 auto;
+    height: auto;
+}
+
+.information-title{
+    font-size: 90px;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .robins-content{
+        top: 10%;
+    }
+    .information-title {
+        font-size: 55px;
+    }
+}

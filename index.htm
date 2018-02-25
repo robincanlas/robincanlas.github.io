@@ -5,12 +5,12 @@
 		<meta charset ="utf-8">
 		<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1">
 		<title>Kristoffer Robin Canlas</title>
-		<!-- <link rel="stylesheet" href="css/style.min.css" type="text/css"/> -->
+		<!-- <link rel="stylesheet" href="css/main.min.css" type="text/css"/> -->
 		<link rel="stylesheet" href="css/main.css" type="text/css"/>
 		<link rel="shortcut icon" href="https://img09.deviantart.net/eebe/i/2016/100/4/c/the_flash_logo_by_phiaann23-d9yhsaa.png">
 		<link rel="apple-touch-icon image_src" href="https://img09.deviantart.net/eebe/i/2016/100/4/c/the_flash_logo_by_phiaann23-d9yhsaa.png">
 	<script>
-		console.log('Robin Canlas v1.0');
+		console.log('%c FLASH ', 'background: #800000; color: yellow; font-size: 12pt; font-family: "Comic Sans MS", cursive, sans-serif', 'Robin Canlas v1.0');		
 	</script>
 	</head>
 	<body data-ng-controller="mainController as self" class="gray-bg" >
@@ -42,8 +42,14 @@
 				</span>
 				<span class="header-content information" data-ng-class='{"active-content": self.mainFact.nav[1].state === true}'>
 					<span class="robins-content">
-						<span class="name-letters text-center" data-ng-class='{"name-letters-active": self.mainFact.nav[1].state === true}'>Hero for hire.</span>	
-						<span class="header-desc text-center" data-ng-class='{"name-letters-active": self.mainFact.nav[1].state === true}'>Hello, my name is Kristoffer Robin Canlas, and I'm the fastest Web Developer alive! I started Web Development about 4 years ago and have enjoyed working in the internet industry. You can get in touch with me using my email below.</span>
+						<span class="name-letters information-title text-center" data-ng-class='{"name-letters-active": self.mainFact.nav[1].state === true}'>Hero for hire.</span>	
+						<span class="header-desc information-desc text-center" data-ng-class='{"name-letters-active": self.mainFact.nav[1].state === true}'>Hello, my name is Kristoffer Robin Canlas, and I'm the fastest Web Developer alive! I started Web Development about 4 years ago and have enjoyed working in the internet industry. You can get in touch with me using my email address below. 
+
+						<br>
+						<br>
+						<br>
+						kristofferrobincanlas@gmail.com
+						</span>
 					</span>
 				</span>
 				<span class="header-content information" data-ng-class='{"active-content": self.mainFact.nav[2].state === true}'>

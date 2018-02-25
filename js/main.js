@@ -1,5 +1,5 @@
 (function(){
-	var app = angular.module('main', [])
+	var app = angular.module('main', ['professorNoZoom'])
 
 	.controller('mainController', function(mainFact){
 		var self = this;
@@ -96,8 +96,30 @@
 
 	.run(function(mainFact, $timeout){
 		mainFact.init();
-
 	});
 
 
 })();
+
+
+(function() {
+	angular.module('professorNoZoom', [])
+		.run(function($document, $window) {	
+			document.addEventListener('keydown', function(e){
+				if (event.ctrlKey == true && (event.which == '61' || event.which == '107' || event.which == '173' || event.which == '109' || event.which == '187' || event.which == '189')) {
+					event.preventDefault();
+					// 107 Num Key  +
+					//109 Num Key  -
+					//173 Min Key  hyphen/underscor Hey
+					// 61 Plus key  +/=
+				}
+			});
+
+			angular.element($window).bind('mousewheel DOMMouseScroll', function(event) {
+				if (event.ctrlKey == true) {
+					event.preventDefault();
+				}
+			});
+
+		});
+}());
