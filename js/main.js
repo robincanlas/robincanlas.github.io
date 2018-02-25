@@ -14,10 +14,10 @@
 		var self = {
 			init: function(){
 				self.nav = [
-					{title: 'HOME',link:''},
-					{title: 'INFORMATION',link:''},
-					{title: 'WORK',link:''},
-					{title: 'CONTACTS',link:''},
+					{title: 'HOME',link:'',state: true},
+					{title: 'INFORMATION',link:'',state: false},
+					{title: 'WORK',link:'',state: false},
+					{title: 'PHOTOGRAPHY',link:'',state: false},
 				];
 				self.canvasWidth = 500;
 				self.canvasHeight = 400;

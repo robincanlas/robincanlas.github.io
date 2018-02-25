@@ -139,8 +139,8 @@ h1, h2, h3, h4, h5, h6, p, strong{
 }
 .header-nav{
     width: 80%;
-    height: 30px;
-    position: absolute;
+    height: 5%;
+    position: relative;
     display: block;
     z-index: 2;
     left: 10%;
@@ -155,7 +155,7 @@ h1, h2, h3, h4, h5, h6, p, strong{
     color: #c1c1c1;
 }
 .header-content{
-    height: 0;
+    height: 95%;
     width: 80%;
     position: relative;
     display: block;
@@ -165,16 +165,16 @@ h1, h2, h3, h4, h5, h6, p, strong{
 .robins-content{
     width: 100%;
     height: 350px;
-    top: 75%;
-    right: 50%;
+    top: 20%;
     position: relative;
     display: block;
-    -webkit-transform: translate(50%, 75%);
-    -ms-transform: translate(50%, 75%);
-    -o-transform: translate(50%, 75%);
-    transform: translate(50%, 75%);
-    color: white;
-    font-size: 140px;
+    color: #fff;
+    font-size: 145px;
+    /* right: 50%; */
+    /* -webkit-transform: translate(50%,-10%); */
+/*    -ms-transform: translate(50%,75%);
+    -o-transform: translate(50%,75%);*/
+    /* transform: translate(50%,0%); */
 }
 
 /*.name-letters:nth-child(1){
@@ -195,7 +195,7 @@ h1, h2, h3, h4, h5, h6, p, strong{
     height: 5%;
     position: relative;
     display: block;
-    font-size: 16px;
+    font-size: 20px;
     line-height: 17px;
 }
 .header-desc-wrap{
@@ -205,7 +205,7 @@ h1, h2, h3, h4, h5, h6, p, strong{
     margin: 0 auto;
 }
 .header-desc{
-    font-size: 14px;
+    font-size: 18px;
     height: 100%;
     width: 100%;
     position: relative;
