@@ -54,12 +54,14 @@
 				</span>
 				<span class="header-content information" data-ng-class='{"active-content": self.mainFact.nav[2].state === true}'>
 					<span class="robins-content">
-						<span class="name-letters" data-ng-class='{"name-letters-active": self.mainFact.nav[2].state === true}'>TEST</span>					
+						<span class="name-letters" data-ng-class='{"name-letters-active": self.mainFact.nav[2].state === true}'>TEST</span>	
 					</span>
 				</span>
 				<span class="header-content information" data-ng-class='{"active-content": self.mainFact.nav[3].state === true}'>
-					<span class="robins-content">
-						<span class="name-letters" data-ng-class='{"name-letters-active": self.mainFact.nav[3].state === true}'>TEST</span>					
+					<span class="robins-photography-content">
+						<span class="robins-photo-wrapper" data-ng-repeat='photo in self.mainFact.photos track by $index'>
+							<img class='robins-photo bin-relative-block-wh-100' data-ng-src="{{photo.src}}" alt="">
+						</span>
 					</span>
 				</span>
 			</span> 

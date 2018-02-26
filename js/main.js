@@ -10,11 +10,20 @@
 	.factory('mainFact',['$q' , function($q){
 		var self = {
 			init: function(){
+				self.photos = [
+					{src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},
+					{src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},
+					{src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},
+					{src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},
+					{src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},
+					{src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},
+				];
+
 				self.nav = [
-					{title: 'HOME',link:'',state: true},
+					{title: 'HOME',link:'',state: false},
 					{title: 'INFORMATION',link:'',state: false},
 					{title: 'WORK',link:'',state: false},
-					{title: 'PHOTOGRAPHY',link:'',state: false},
+					{title: 'PHOTOGRAPHY',link:'',state: true},
 				];
 
 				self.createCube();
