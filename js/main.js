@@ -1,16 +1,22 @@
 (function(){
-	var app = angular.module('main', ['professorNoZoom'])
-
-	.controller('mainController', function(mainFact){
+	var mainController = function(mainFact){
 		var self = this;
 		self.mainFact = mainFact;
 
-	})
+	}	
 
-	.factory('mainFact',['$q' , function($q){
+	var mainFact = function($q){
 		var self = {
 			init: function(){
 				self.photos = [
+					{loaded: false, src: 'https://c1.staticflickr.com/5/4541/38349824082_e81d2147d8_k.jpg'},
+					{loaded: false, src: 'https://c1.staticflickr.com/5/4475/37620786480_f7abd431fc_k.jpg'},
+					{loaded: false, src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},
+					{loaded: false, src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},
+					{loaded: false, src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},
+					{loaded: false, src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},					{loaded: false, src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},
+					{loaded: false, src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},
+					{loaded: false, src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},					{loaded: false, src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},
 					{loaded: false, src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},
 					{loaded: false, src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},
 					{loaded: false, src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},
@@ -31,6 +37,8 @@
 				window.onresize = function(){
 					self.createCube();
 				};
+
+				self.createPhotoPagination();
 
 				//set to true for development
 				self.loadFinish = true;
@@ -100,17 +108,23 @@
 					self.nav[i].state = i === index ? true : false;
 				}
 			},
+			createPhotoPagination: function(){
+				self.maxPage = Math.round(self.photos.length/6);
+				self.currentPage = 1;
+				self.photosPerPage = self.photos.splice(0,6);
+
+			},
 		};
 		return self;
-	}])
+	}
 
-	.directive('binLazyLoading', function(mainFact, $timeout){
+	var binLazyLoading = function(mainFact, $timeout){
 		return{
 			restrict: 'A',
 			link: function(scope, elem, attr){
 				elem.bind('load', function(){
 					$timeout(function(){
-						mainFact.photos[attr.index].loaded = true;					
+						mainFact.photosPerPage[attr.index].loaded = true;					
 					});
 				});
 
@@ -119,8 +133,12 @@
 				})
 			}
 		}
-	})
+	}
 
+	var app = angular.module('main', ['professorNoZoom'])
+	.controller('mainController', mainController)
+	.factory('mainFact', mainFact)
+	.directive('binLazyLoading', binLazyLoading)
 	.run(function(mainFact, $timeout){
 		mainFact.init();
 	});

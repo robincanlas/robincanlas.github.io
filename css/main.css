@@ -307,6 +307,14 @@ h1, h2, h3, h4, h5, h6, p, strong{
     transform: scale(1.1,1.1);
 }
 
+.robins-photography-pagination{
+    border: 1px solid gray;
+    width: 25%;
+    height: 30px;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+}
 
 /* SPINNER [S] */
 .spinner-wrapper{

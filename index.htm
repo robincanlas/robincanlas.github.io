@@ -59,7 +59,7 @@
 				</span>
 				<span class="header-content information" data-ng-class='{"active-content": self.mainFact.nav[3].state === true}'>
 					<span class="robins-photography-content">
-						<span class="robins-photo-wrapper" data-ng-repeat='photo in self.mainFact.photos track by $index'>
+						<span class="robins-photo-wrapper" data-ng-repeat='photo in self.mainFact.photosPerPage track by $index'>
 							<span data-ng-hide='photo.loaded' class="spinner-wrapper">
 								<div class="spinner">
 									<div class="double-bounce1"></div>
@@ -69,6 +69,7 @@
 							<img bin-lazy-loading index='{{$index}}' data-ng-show='photo.loaded' class='robins-photo bin-relative-block-wh-100' data-ng-src="{{photo.src}}" alt="">
 						</span>
 					</span>
+					<span class="robins-photography-pagination"></span>
 				</span>
 			</span> 
 		</span>
