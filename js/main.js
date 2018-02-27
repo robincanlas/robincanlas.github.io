@@ -11,22 +11,23 @@
 		var self = {
 			init: function(){
 				self.photos = [
-					{src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},
-					{src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},
-					{src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},
-					{src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},
-					{src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},
-					{src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},
+					{loaded: false, src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},
+					{loaded: false, src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},
+					{loaded: false, src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},
+					{loaded: false, src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},
+					{loaded: false, src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},
+					{loaded: false, src: 'https://digital-photography-school.com/wp-content/uploads/2015/07/how-to-do-milky-way-photography-tutorial.jpg'},
 				];
 
 				self.nav = [
-					{title: 'HOME',link:'',state: false},
+					{title: 'HOME',link:'',state: true},
 					{title: 'INFORMATION',link:'',state: false},
 					{title: 'WORK',link:'',state: false},
-					{title: 'PHOTOGRAPHY',link:'',state: true},
+					{title: 'PHOTOGRAPHY',link:'',state: false},
 				];
 
 				self.createCube();
+
 				window.onresize = function(){
 					self.createCube();
 				};
@@ -102,6 +103,23 @@
 		};
 		return self;
 	}])
+
+	.directive('binLazyLoading', function(mainFact, $timeout){
+		return{
+			restrict: 'A',
+			link: function(scope, elem, attr){
+				elem.bind('load', function(){
+					$timeout(function(){
+						mainFact.photos[attr.index].loaded = true;					
+					});
+				});
+
+				elem.bind('error', function(){
+					console.log('ERROR LOADING IMAGE');
+				})
+			}
+		}
+	})
 
 	.run(function(mainFact, $timeout){
 		mainFact.init();
