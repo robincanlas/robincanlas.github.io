@@ -1,11 +1,11 @@
 (function(){
-	var mainController = function(mainFact){
+	var mainController = function(mainFactory){
 		var self = this;
-		self.mainFact = mainFact;
+		self.mainFactory = mainFactory;
 
 	}	
 
-	var mainFact = function($q){
+	var mainFactory = function($q){
 		var self = {
 			init: function(){
 				self.photos = [
@@ -81,7 +81,6 @@
 				var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
 				var renderer = new THREE.WebGLRenderer({canvas: document.getElementById('canvas')});
 
-
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				document.body.appendChild( renderer.domElement );
 
@@ -112,19 +111,28 @@
 				self.maxPage = Math.round(self.photos.length/6);
 				self.currentPage = 1;
 				self.photosPerPage = self.photos.splice(0,6);
-
+				self.pages = [];
+				for(i = 1; i <= self.maxPage; i++){
+					self.pages.push(i);
+				}
 			},
+			prevPhotos: function(){
+				console.log('%c FLASH ', 'background: #800000; color: yellow; font-size: 12pt; font-family: "Comic Sans MS", cursive, sans-serif', 'prev');		
+			},
+			nextPhotos: function(){
+				console.log('%c FLASH ', 'background: #800000; color: yellow; font-size: 12pt; font-family: "Comic Sans MS", cursive, sans-serif', 'next');		
+			}
 		};
 		return self;
 	}
 
-	var binLazyLoading = function(mainFact, $timeout){
+	var binLazyLoading = function(mainFactory, $timeout){
 		return{
 			restrict: 'A',
 			link: function(scope, elem, attr){
 				elem.bind('load', function(){
 					$timeout(function(){
-						mainFact.photosPerPage[attr.index].loaded = true;					
+						mainFactory.photosPerPage[attr.index].loaded = true;					
 					});
 				});
 
@@ -137,10 +145,10 @@
 
 	var app = angular.module('main', ['professorNoZoom'])
 	.controller('mainController', mainController)
-	.factory('mainFact', mainFact)
+	.factory('mainFactory', mainFactory)
 	.directive('binLazyLoading', binLazyLoading)
-	.run(function(mainFact, $timeout){
-		mainFact.init();
+	.run(function(mainFactory, $timeout){
+		mainFactory.init();
 	});
 
 
