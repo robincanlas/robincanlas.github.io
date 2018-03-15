@@ -66,6 +66,22 @@
 				// 	});
 				// });
 
+				self.promisePo = new Promise((resolve, reject) => {
+					setTimeout(function() {
+						resolve('boom success');
+					}, 5000);
+
+					setTimeout(function() {
+						reject('boom error');
+					}, 7000);
+				});
+
+				self.promisePo.then( (success) => {
+					console.log('%c FLASH ', 'background: #800000; color: yellow; font-size: 12pt; font-family: "Comic Sans MS", cursive, sans-serif', success);		
+				}, (error) => {
+					console.log('%c FLASH ', 'background: #800000; color: yellow; font-size: 12pt; font-family: "Comic Sans MS", cursive, sans-serif', error);		
+				});
+
 			},
 			loadComplete: function(param){
 				return $q(function(resolve, reject){
