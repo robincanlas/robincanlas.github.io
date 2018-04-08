@@ -1,5 +1,6 @@
 const path = require('path');
-const webpack = require('webpack')
+const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 
 console.log(
@@ -11,7 +12,31 @@ console.log(
 	##      ###### ##      ##  #####   ##   ##
 	`
 );
+
+
 let plugins = [];
+
+// if(process.env.NODE_ENV === 'production'){
+if(process.env.NODE_ENV === 'development'){
+	plugins.push(
+		new UglifyJsPlugin({
+			cache: true,
+			parallel: true,
+			uglifyOptions: {
+				compress: {
+					warnings: false,
+					drop_console: true
+				},
+				ecma: 6,
+				mangle: true,
+				output: {
+					comments: false
+				}
+			},
+			sourceMap: true
+		})
+	)
+}
 
 module.exports = {
 	mode: process.env.NODE_ENV, //development or production mode, set in package.json
