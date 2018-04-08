@@ -5,7 +5,15 @@
 class MainTemplate extends React.Component{
 	constructor(props){
 		super(props);
-		console.log('MainTemplate')
+		this.goToPage = this.goToPage.bind(this);
+		this.state = {
+			menu : [
+				{title: 'HOME',link:'',state: true},
+				{title: 'INFORMATION',link:'',state: false},
+				{title: 'WORK',link:'',state: false},
+				{title: 'PHOTOGRAPHY',link:'',state: false},
+			]
+		}
 	}
 
 	componentDidMount(){
@@ -35,11 +43,35 @@ class MainTemplate extends React.Component{
 		animate();
 	}
 
+	goToPage(index){
+		const menu = this.state.menu;
+		for(var i = 0;i < menu.length;i++){
+			menu[i].state = false;
+			if(i === index) menu[i].state = true;
+		}
+
+		this.setState({menu: menu})
+	}
+
 	render(){
+		const title = this.state.menu.map((value, index) => {
+			return <span onClick={() => this.goToPage(index)} key={index} className='header-btns left text-center c-pointer'>{value.title}</span>
+
+		});
 
 		return(
 			<span>
-				<canvas id='canvas' width='500' height='400'></canvas>	
+				<span className='main-bg'>
+					<canvas id='canvas' width='500' height='400'></canvas>	
+					
+				</span>
+				<span className='main-wrapper'>
+					<span className='header bin-relative-block-wh-100'>
+						<span className='header-nav'>
+							{title}
+						</span>
+					</span>
+				</span>
 			</span>
 		)
 	}

@@ -1,2 +1,195 @@
-!function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{configurable:!1,enumerable:!0,get:r})},n.r=function(e){Object.defineProperty(e,"__esModule",{value:!0})},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s="./public/scripts/script.jsx")}({"./public/scripts/script.jsx":function(e,t){var n=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}();var r=function(e){function t(e){return function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t),function(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e))}return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(t,React.Component),n(t,[{key:"componentDidMount",value:function(){var e=new THREE.Scene,t=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,.1,1e3),n=new THREE.WebGLRenderer({canvas:document.getElementById("canvas")});n.setSize(window.innerWidth,window.innerHeight),document.body.appendChild(n.domElement);var r=new THREE.BoxGeometry(1.8,1.8,1.8),o=new THREE.MeshNormalMaterial,i=new THREE.Mesh(r,o);e.add(i),t.position.z=5;!function r(){requestAnimationFrame(r),i.rotation.x+=.01,i.rotation.y+=.01,n.render(e,t)}()}},{key:"render",value:function(){return React.createElement("span",null,React.createElement("canvas",{id:"canvas",width:"500",height:"400"}))}}]),t}();ReactDOM.render(React.createElement(r,null),document.getElementById("root"))}});
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./public/scripts/script.jsx");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./public/scripts/script.jsx":
+/*!***********************************!*\
+  !*** ./public/scripts/script.jsx ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+
+
+var MainTemplate = function (_React$Component) {
+	_inherits(MainTemplate, _React$Component);
+
+	function MainTemplate(props) {
+		_classCallCheck(this, MainTemplate);
+
+		var _this = _possibleConstructorReturn(this, (MainTemplate.__proto__ || Object.getPrototypeOf(MainTemplate)).call(this, props));
+
+		_this.goToPage = _this.goToPage.bind(_this);
+		_this.state = {
+			menu: [{ title: 'HOME', link: '', state: true }, { title: 'INFORMATION', link: '', state: false }, { title: 'WORK', link: '', state: false }, { title: 'PHOTOGRAPHY', link: '', state: false }]
+		};
+		return _this;
+	}
+
+	_createClass(MainTemplate, [{
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			var scene = new THREE.Scene();
+			var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+			var renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas') });
+
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			document.body.appendChild(renderer.domElement);
+
+			var geometry = new THREE.BoxGeometry(1.8, 1.8, 1.8);
+			var material = new THREE.MeshNormalMaterial();
+			var cube = new THREE.Mesh(geometry, material);
+			scene.add(cube);
+
+			camera.position.z = 5;
+
+			var animate = function animate() {
+				requestAnimationFrame(animate);
+
+				cube.rotation.x += 0.01;
+				cube.rotation.y += 0.01;
+
+				renderer.render(scene, camera);
+			};
+
+			animate();
+		}
+	}, {
+		key: 'goToPage',
+		value: function goToPage(index) {
+			var menu = this.state.menu;
+			for (var i = 0; i < menu.length; i++) {
+				menu[i].state = false;
+				if (i === index) menu[i].state = true;
+			}
+
+			this.setState({ menu: menu });
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			var _this2 = this;
+
+			var title = this.state.menu.map(function (value, index) {
+				return React.createElement(
+					'span',
+					{ onClick: function onClick() {
+							return _this2.goToPage(index);
+						}, key: index, className: 'header-btns left text-center c-pointer' },
+					value.title
+				);
+			});
+
+			return React.createElement(
+				'span',
+				null,
+				React.createElement(
+					'span',
+					{ className: 'main-bg' },
+					React.createElement('canvas', { id: 'canvas', width: '500', height: '400' })
+				),
+				React.createElement(
+					'span',
+					{ className: 'main-wrapper' },
+					React.createElement(
+						'span',
+						{ className: 'header bin-relative-block-wh-100' },
+						React.createElement(
+							'span',
+							{ className: 'header-nav' },
+							title
+						)
+					)
+				)
+			);
+		}
+	}]);
+
+	return MainTemplate;
+}(React.Component);
+
+ReactDOM.render(React.createElement(MainTemplate, null), document.getElementById("root"));
+
+/***/ })
+
+/******/ });
 //# sourceMappingURL=build.js.map
