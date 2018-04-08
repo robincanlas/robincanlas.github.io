@@ -1,5 +1,6 @@
 // import React from 'react';
 // import ReactDOM from 'react-dom';
+import classNames from 'classnames';
 
 
 class MainTemplate extends React.Component{
@@ -55,7 +56,12 @@ class MainTemplate extends React.Component{
 
 	render(){
 		const title = this.state.menu.map((value, index) => {
-			return <span onClick={() => this.goToPage(index)} key={index} className='header-btns left text-center c-pointer'>{value.title}</span>
+			let menuClassNames = classNames({
+				'header-btns left text-center c-pointer': true,
+				'color-white': value.state
+			})
+
+			return <span onClick={() => this.goToPage(index)} key={index} className={menuClassNames}>{value.title}</span>
 
 		});
 

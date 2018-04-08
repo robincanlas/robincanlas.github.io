@@ -64,7 +64,8 @@ module.exports = {
 	},
 	plugins: plugins,
 	// externals: {
-	// 	'react': 'React',
-	// 	'react-dom': 'ReactDOM'
+		// 'classnames': 'classNames'
+		// 'react': 'React',
+		// 'react-dom': 'ReactDOM'
 	// }
 }
