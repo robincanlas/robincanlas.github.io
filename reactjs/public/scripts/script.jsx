@@ -56,10 +56,13 @@ class MainTemplate extends React.Component{
 
 	render(){
 		const title = this.state.menu.map((value, index) => {
-			let menuClassNames = classNames({
-				'header-btns left text-center c-pointer': true,
-				'color-white': value.state
-			})
+			// let menuClassNames = classNames({
+			// 	'header-btns left text-center c-pointer': true,
+			// 	'color-white': value.state
+			// })
+
+			let menuClassNames = 'header-btns left text-center c-pointer'
+			if(value.state) menuClassNames += ' color-white'
 
 			return <span onClick={() => this.goToPage(index)} key={index} className={menuClassNames}>{value.title}</span>
 
@@ -75,6 +78,30 @@ class MainTemplate extends React.Component{
 					<span className='header bin-relative-block-wh-100'>
 						<span className='header-nav'>
 							{title}
+						</span>
+						
+						<span className={"header-content home" + (this.state.menu[0].state ? ' active-content' : '')}>
+							<span className="robins-content">
+								<span className={"name-letters text-center" + (this.state.menu[0].state ? ' name-letters-active' : '' )}> KR </span>
+								<span className={"name-letters2 text-center" + (this.state.menu[0].state ? ' name-letters-active' : '' )}> Kristoffer Robin </span>
+								<span className={"name-letters2 text-center" + (this.state.menu[0].state ? ' name-letters-active' : '' )}> Canlas </span>
+								<span className="bin-relative-block-wh-100 header-desc-wrap">	
+									<p className={"header-desc text-center" + (this.state.menu[0].state ? ' name-letters-active' : '' )}> Hello!, I'm a Web Developer by day, Speedster and Photographer by night.</p>
+								</span>
+							</span>
+						</span>
+
+						<span className={"header-content information" + (this.state.menu[1].state ? ' active-content' : '')}>
+							<span className="robins-content">
+								<span className={"name-letters information-title text-center" + (this.state.menu[1].state ? ' name-letters-active' : '')}>Hero for hire.</span>	
+								<span className={"header-desc information-desc text-center"  + (this.state.menu[1].state ? ' name-letters-active' : '')}>Hello, my name is Kristoffer Robin Canlas, and I'm the fastest Web Developer alive! I started Web Development about 4 years ago and have enjoyed working in the internet industry. You can get in touch with me using my email address below. 
+
+								<br/>
+								<br/>
+								<br/>
+								kristofferrobincanlas@gmail.com
+								</span>
+							</span>
 						</span>
 					</span>
 				</span>

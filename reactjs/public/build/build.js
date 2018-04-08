@@ -212,10 +212,13 @@ var MainTemplate = function (_React$Component) {
 			var _this2 = this;
 
 			var title = this.state.menu.map(function (value, index) {
-				var menuClassNames = classnames__WEBPACK_IMPORTED_MODULE_0___default()({
-					'header-btns left text-center c-pointer': true,
-					'color-white': value.state
-				});
+				// let menuClassNames = classNames({
+				// 	'header-btns left text-center c-pointer': true,
+				// 	'color-white': value.state
+				// })
+
+				var menuClassNames = 'header-btns left text-center c-pointer';
+				if (value.state) menuClassNames += ' color-white';
 
 				return React.createElement(
 					'span',
@@ -244,6 +247,60 @@ var MainTemplate = function (_React$Component) {
 							'span',
 							{ className: 'header-nav' },
 							title
+						),
+						React.createElement(
+							'span',
+							{ className: "header-content home" + (this.state.menu[0].state ? ' active-content' : '') },
+							React.createElement(
+								'span',
+								{ className: 'robins-content' },
+								React.createElement(
+									'span',
+									{ className: "name-letters text-center" + (this.state.menu[0].state ? ' name-letters-active' : '') },
+									' KR '
+								),
+								React.createElement(
+									'span',
+									{ className: "name-letters2 text-center" + (this.state.menu[0].state ? ' name-letters-active' : '') },
+									' Kristoffer Robin '
+								),
+								React.createElement(
+									'span',
+									{ className: "name-letters2 text-center" + (this.state.menu[0].state ? ' name-letters-active' : '') },
+									' Canlas '
+								),
+								React.createElement(
+									'span',
+									{ className: 'bin-relative-block-wh-100 header-desc-wrap' },
+									React.createElement(
+										'p',
+										{ className: "header-desc text-center" + (this.state.menu[0].state ? ' name-letters-active' : '') },
+										' Hello!, I\'m a Web Developer by day, Speedster and Photographer by night.'
+									)
+								)
+							)
+						),
+						React.createElement(
+							'span',
+							{ className: "header-content information" + (this.state.menu[1].state ? ' active-content' : '') },
+							React.createElement(
+								'span',
+								{ className: 'robins-content' },
+								React.createElement(
+									'span',
+									{ className: "name-letters information-title text-center" + (this.state.menu[1].state ? ' name-letters-active' : '') },
+									'Hero for hire.'
+								),
+								React.createElement(
+									'span',
+									{ className: "header-desc information-desc text-center" + (this.state.menu[1].state ? ' name-letters-active' : '') },
+									'Hello, my name is Kristoffer Robin Canlas, and I\'m the fastest Web Developer alive! I started Web Development about 4 years ago and have enjoyed working in the internet industry. You can get in touch with me using my email address below.',
+									React.createElement('br', null),
+									React.createElement('br', null),
+									React.createElement('br', null),
+									'kristofferrobincanlas@gmail.com'
+								)
+							)
 						)
 					)
 				)
