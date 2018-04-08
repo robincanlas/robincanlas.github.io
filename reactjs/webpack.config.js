@@ -11,6 +11,7 @@ console.log(
 	##      ###### ##      ##  #####   ##   ##
 	`
 );
+let plugins = [];
 
 module.exports = {
 	mode: process.env.NODE_ENV, //development or production mode, set in package.json
@@ -28,12 +29,17 @@ module.exports = {
 		rules: [
 			{
 				test: /\.(js|jsx)$/,
-				loader: 'babel-loader',
 				exclude: /node_modules/,
+				loader: 'babel-loader',
 				query: {
-					presets: [['env', {'modules': false}]]
+					presets: [['env', {'modules': false}], 'react']
 				}
 			}
 		]
-	}
+	},
+	plugins: plugins,
+	// externals: {
+	// 	'react': 'React',
+	// 	'react-dom': 'ReactDOM'
+	// }
 }
