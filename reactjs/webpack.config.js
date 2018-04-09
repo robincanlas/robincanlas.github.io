@@ -16,8 +16,8 @@ console.log(
 
 let plugins = [];
 
-// if(process.env.NODE_ENV === 'production'){
-if(process.env.NODE_ENV === 'development'){
+if(process.env.NODE_ENV === 'production'){
+// if(process.env.NODE_ENV === 'development'){
 	plugins.push(
 		new UglifyJsPlugin({
 			cache: true,

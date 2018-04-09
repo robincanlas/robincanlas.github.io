@@ -17,7 +17,8 @@ class MainTemplate extends React.Component{
 		}
 	}
 
-	componentDidMount(){
+	createCube(){
+		// CUBE [S]
 		let scene = new THREE.Scene();
 		let camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
 		let renderer = new THREE.WebGLRenderer({canvas: document.getElementById('canvas')});
@@ -42,6 +43,14 @@ class MainTemplate extends React.Component{
 		};
 
 		animate();
+	}
+
+	componentDidMount(){
+		// RESIZE [S]
+		this.createCube();
+		window.onresize = () => {
+			this.createCube();
+		}
 	}
 
 	goToPage(index){
