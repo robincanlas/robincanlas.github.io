@@ -76,7 +76,7 @@ class MainTemplate extends React.Component{
 				</span>
 				<span className='main-wrapper'>
 					<span className='header bin-relative-block-wh-100'>
-						<span className='header-nav'>
+						<span className='header-nav c-pointer'>
 							{title}
 						</span>
 						
@@ -103,6 +103,8 @@ class MainTemplate extends React.Component{
 								</span>
 							</span>
 						</span>
+
+
 					</span>
 				</span>
 			</span>
