@@ -185,7 +185,7 @@ h1, h2, h3, h4, h5, h6, p, strong{
     top: 20%;
     position: relative;
     display: block;
-    color: #fff;
+    color: #ffffffdb;
     font-size: 145px;
     /* right: 50%; */
     /* -webkit-transform: translate(50%,-10%); */
@@ -378,6 +378,18 @@ h1, h2, h3, h4, h5, h6, p, strong{
 .double-bounce2 {
   -webkit-animation-delay: -1.0s;
   animation-delay: -1.0s;
+}
+
+.work-container {
+    position: relative;
+    display: block;
+    float: left;
+    width: 400px;
+    height: 200px;
+    border: 1px solid white;
+    margin-left: 30px;
+    margin-bottom: 30px;
+    cursor: pointer;    
 }
 
 @-webkit-keyframes sk-bounce {

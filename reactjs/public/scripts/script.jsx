@@ -7,12 +7,21 @@ class MainTemplate extends React.Component{
 	constructor(props){
 		super(props);
 		this.goToPage = this.goToPage.bind(this);
+		this.goToSite = this.goToSite.bind(this);
+
 		this.state = {
 			menu : [
 				{title: 'HOME',link:'',state: true},
 				{title: 'INFORMATION',link:'',state: false},
 				{title: 'WORK',link:'',state: false},
 				{title: 'PHOTOGRAPHY',link:'',state: false},
+			],
+			work : [
+				{title: 'PamanGoken', url: 'https://www.pamangoken.com'},
+				{title: 'GelandangBola', url: 'https://www.gelandangbola.com'},
+				{title: 'Poker', url: ''},
+				{title: 'Bandar', url: ''},
+				{title: 'Ceme', url: ''},
 			]
 		}
 	}
@@ -22,11 +31,12 @@ class MainTemplate extends React.Component{
 		let scene = new THREE.Scene();
 		let camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
 		let renderer = new THREE.WebGLRenderer({canvas: document.getElementById('canvas')});
+		scene.background = new THREE.Color('rgb(116,119,124)');
 
 		renderer.setSize( window.innerWidth, window.innerHeight );
 		document.body.appendChild( renderer.domElement );
 
-		let geometry = new THREE.BoxGeometry( 1.8, 1.8, 1.8 );
+		let geometry = new THREE.BoxGeometry( 3, 3, 3 );
 		let material = new THREE.MeshNormalMaterial();
 		let cube = new THREE.Mesh( geometry, material );
 		scene.add( cube );
@@ -35,7 +45,6 @@ class MainTemplate extends React.Component{
 
 		let animate = function () {
 			requestAnimationFrame( animate );
-
 			cube.rotation.x += 0.01;
 			cube.rotation.y += 0.01;
 
@@ -63,6 +72,10 @@ class MainTemplate extends React.Component{
 		this.setState({menu: menu})
 	}
 
+	goToSite(url){
+		console.log('%c FLASH ', 'background: #800000; color: yellow; font-size: 12pt; font-family: "Comic Sans MS", cursive, sans-serif', url);
+	}
+
 	render(){
 		const title = this.state.menu.map((value, index) => {
 			// let menuClassNames = classNames({
@@ -77,8 +90,12 @@ class MainTemplate extends React.Component{
 
 		});
 
+		const work = this.state.work.map((value, index) => {
+			return <span onClick={() => this.goToSite(value.url)} className='color-white work-container' key={index}>{value.title}</span>
+		});
+
 		return(
-			<span>
+			<React.Fragment>
 				<span className='main-bg'>
 					<canvas id='canvas' width='500' height='400'></canvas>	
 					
@@ -113,10 +130,13 @@ class MainTemplate extends React.Component{
 							</span>
 						</span>
 
+						<span className={"header-content work" + (this.state.menu[2].state ? ' active-content' : '')}>
+							{work}						
+						</span>
 
 					</span>
 				</span>
-			</span>
+			</React.Fragment>
 		)
 	}
 

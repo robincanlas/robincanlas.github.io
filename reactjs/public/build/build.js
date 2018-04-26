@@ -161,8 +161,11 @@ var MainTemplate = function (_React$Component) {
 		var _this = _possibleConstructorReturn(this, (MainTemplate.__proto__ || Object.getPrototypeOf(MainTemplate)).call(this, props));
 
 		_this.goToPage = _this.goToPage.bind(_this);
+		_this.goToSite = _this.goToSite.bind(_this);
+
 		_this.state = {
-			menu: [{ title: 'HOME', link: '', state: true }, { title: 'INFORMATION', link: '', state: false }, { title: 'WORK', link: '', state: false }, { title: 'PHOTOGRAPHY', link: '', state: false }]
+			menu: [{ title: 'HOME', link: '', state: true }, { title: 'INFORMATION', link: '', state: false }, { title: 'WORK', link: '', state: false }, { title: 'PHOTOGRAPHY', link: '', state: false }],
+			work: [{ title: 'PamanGoken', url: 'https://www.pamangoken.com' }, { title: 'GelandangBola', url: 'https://www.gelandangbola.com' }, { title: 'Poker', url: '' }, { title: 'Bandar', url: '' }, { title: 'Ceme', url: '' }]
 		};
 		return _this;
 	}
@@ -174,11 +177,12 @@ var MainTemplate = function (_React$Component) {
 			var scene = new THREE.Scene();
 			var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 			var renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas') });
+			scene.background = new THREE.Color('rgb(116,119,124)');
 
 			renderer.setSize(window.innerWidth, window.innerHeight);
 			document.body.appendChild(renderer.domElement);
 
-			var geometry = new THREE.BoxGeometry(1.8, 1.8, 1.8);
+			var geometry = new THREE.BoxGeometry(3, 3, 3);
 			var material = new THREE.MeshNormalMaterial();
 			var cube = new THREE.Mesh(geometry, material);
 			scene.add(cube);
@@ -187,7 +191,6 @@ var MainTemplate = function (_React$Component) {
 
 			var animate = function animate() {
 				requestAnimationFrame(animate);
-
 				cube.rotation.x += 0.01;
 				cube.rotation.y += 0.01;
 
@@ -219,6 +222,11 @@ var MainTemplate = function (_React$Component) {
 			this.setState({ menu: menu });
 		}
 	}, {
+		key: 'goToSite',
+		value: function goToSite(url) {
+			console.log('%c FLASH ', 'background: #800000; color: yellow; font-size: 12pt; font-family: "Comic Sans MS", cursive, sans-serif', url);
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			var _this3 = this;
@@ -241,8 +249,18 @@ var MainTemplate = function (_React$Component) {
 				);
 			});
 
+			var work = this.state.work.map(function (value, index) {
+				return React.createElement(
+					'span',
+					{ onClick: function onClick() {
+							return _this3.goToSite(value.url);
+						}, className: 'color-white work-container', key: index },
+					value.title
+				);
+			});
+
 			return React.createElement(
-				'span',
+				React.Fragment,
 				null,
 				React.createElement(
 					'span',
@@ -313,6 +331,11 @@ var MainTemplate = function (_React$Component) {
 									'kristofferrobincanlas@gmail.com'
 								)
 							)
+						),
+						React.createElement(
+							'span',
+							{ className: "header-content work" + (this.state.menu[2].state ? ' active-content' : '') },
+							work
 						)
 					)
 				)
