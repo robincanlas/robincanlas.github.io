@@ -1,0 +1,407 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+body {
+    position: relative;
+}
+.main-container {
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+.row{
+    float: left;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+body{
+/*    background-image: url(../images/loadingbg.jpg);
+    background-size: 100% 100vmin;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;*/
+}
+#loginAudio{
+	display: none;
+}
+.cursor-pointer{
+	cursor: pointer;	
+}
+.btn-msg{
+	cursor: pointer;
+}
+.activeType{
+	background: gray;
+}
+.chatbox, .usersbox{
+    height: 200px;
+    width: 85vmin;
+    border: 1px solid black;
+    display: block;
+    position: relative;
+    overflow-x: hidden;
+    float: left;
+}
+.usersbox{
+    width: 100px;
+}
+.chat{
+    word-break: break-all;
+    position: relative;
+    display: block;
+    height: 5vmin;
+    width: 100%;
+	padding-top: 3vmin;
+}
+.chatwrapper{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: block;
+}
+.messageList{
+    width: 100%;
+    height: 30vmin;
+    position: relative;
+    display: block;
+}
+.color-green{
+	color: green;
+}
+.groupchat{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 33vmin;
+    float: left;
+}
+
+.groupName{
+    color: red;
+    position: absolute;
+    position: relative;
+    height: auto;
+    display: inline-block;
+    width: calc(100% - 7vmin);
+    top: 1vmin;
+    float: left;
+    padding-left: 2vmin;
+}
+
+.groupPmsg{
+    display: inline-block;
+    position: absolute;
+    color: black;
+    width: calc(100% - 15vmin);
+    top: -3vmin;
+    left: 15vmin;
+	padding-top: .5vmin;
+}
+.avatarCont{
+    width: 5vmin;
+    height: 5vmin;
+    position: relative;
+    display: inline-block;
+    border-radius: 50%;
+    overflow: hidden;
+    float: left;
+}
+.avatar{
+    background-image: url(../images/avatar.png);
+    background-repeat: no-repeat;
+    background-size: 5vmin;
+    background-position: 0vmin 0vmin;
+    width: 5vmin;
+    height: 5vmin;
+    position: relative;
+    display: block;
+}
+
+.emojicont{
+    width: 5vmin;
+    height: 5vmin;
+    position: relative;
+    display: block;
+    cursor: pointer;
+}
+
+.emojicon, .smile, .angry, .heartbroken, .xsmile, .winktongue,
+.blush, .scared, .heart, .smileblush, .wink, .kissheart, .sick,
+.sad, .surprised, .bigsmile, .smirk, .cry, .tease{
+    background-image: url(../images/emoji.png);
+    background-repeat: no-repeat;
+    background-size: 25vmin;
+	background-position: 0vmin -15vmin;
+    width: 5vmin;
+    height: 5vmin;
+    position: relative;
+    float: left;
+}
+
+.emojiList{
+    width: 20vmin;
+    height: 20vmin;
+    position: absolute;
+    display: block;
+    border: .1vmin solid black;
+    background: gray;
+    z-index: 9;
+    border-radius: .5vmin;
+    left: 4vmin;
+    top: 8vmin;
+}
+
+.canvasWrapper{
+    position: absolute;
+    display: block;
+    width: 100vmin;
+    height: 50vmin;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%) translateZ(1vmin);
+    -moz-transform: translate(-50%, -50%) translateZ(1vmin);
+    -o-transform: translate(-50%, -50%) translateZ(1vmin);
+    transform: translate(-50%, -50%) translateZ(1vmin);
+}
+
+#canvas{
+    position: relative;
+    display: block;
+    border: .1vmin solid black;
+	background: #105d92;
+}
+
+.loginWrapper{
+    position: absolute;
+    display: block;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%) translateZ(1vmin);
+    -moz-transform: translate(-50%, -50%) translateZ(1vmin);
+    -o-transform: translate(-50%, -50%) translateZ(1vmin);
+    transform: translate(-50%, -50%) translateZ(1vmin);
+    border: .1vmin solid black;
+    width: 54vmin;
+    height: 25vmin;
+    border-radius: 1.5vmin;
+    border-bottom: .1vmin solid black;
+    background: white;
+}
+
+.loginheader{
+	width: 100%;
+    height: 3vmin;
+    position: relative;
+    display: block;
+    background: linear-gradient(to bottom, rgb(156,181,231), rgb(222,247,255));
+    border-top-left-radius: 1.5vmin;
+    border-top-right-radius: 1.5vmin;
+    border-bottom: .1vmin solid black;
+}
+.loginHcircle{
+    border-radius: 50%;
+    width: 1.5vmin;
+    height: 1.5vmin;
+    position: absolute;
+    display: block;
+    background: linear-gradient(to bottom, white, rgb(154, 178, 245),rgb(118, 140, 202),rgb(197, 204, 224));
+    top: .5vmin;
+    left: .5vmin;
+    border: .1vmin solid black;
+}
+.loginHtext{
+	position: absolute;
+    display: block;
+    font-weight: lighter;
+    left: 3vmin;
+    font-size: 2.5vmin;
+}
+.loginbody{
+    width: 100%;
+    height: 16vmin;
+    position: relative;
+    display: block;
+}
+.loginIDtxt{
+    font-weight: bolder;
+    color: rgb(63, 83, 138);
+    position: absolute;
+    top: 3vmin;
+    left: 13vmin;
+    font-size: 3vmin;
+}
+.loginIDinput{
+    position: absolute;
+    left: 18vmin;
+    top: 3vmin;
+    width: 25vmin;
+}
+.loginPasstxt{
+    font-weight: bolder;
+    color: rgb(63, 83, 138);
+    position: absolute;
+    top: 10vmin;
+    left: 4vmin;
+    font-size: 3vmin;
+}
+.loginPassinput{
+    position: absolute;
+    left: 18vmin;
+    top: 10vmin;
+    width: 25vmin;
+}
+.loginfooter{
+	width: 100%;
+    height: 6vmin;
+    position: relative;
+    display: block;
+    border-top: .1vmin solid gray;
+    background: linear-gradient(to bottom, white, rgba(128, 128, 128, 0.26), white, rgba(128, 128, 128, 0.26), white, rgba(128, 128, 128, 0.26), white, rgba(128, 128, 128, 0.26), white, rgba(128, 128, 128, 0.26), white, rgba(128, 128, 128, 0.26), white, rgba(128, 128, 128, 0.26));
+    border-bottom-left-radius: 1.5vmin;
+    border-bottom-right-radius: 1.5vmin;
+}
+.loginButton{
+    border-radius: 1vmin;
+    height: 5vmin;
+    box-shadow: inset 0.5vmin 0.2vmin 0.3vmin rgba(0, 0, 0, 0.33);
+    right: 8vmin;
+    position: absolute;
+    background: linear-gradient(to bottom, white,rgba(128, 128, 128, 0.18),white);
+	width: 8vmin;
+}
+.exitButton{
+	right: 1vmin;
+    width: 7vmin;
+}
+.serverWrapper{
+    height: 45vmin;
+}
+.serverBody{
+    height: 36vmin;
+}
+.serverButtonExit{
+    width: 9vmin;
+    right: 1vmin;
+}
+.serverButtonOk{
+    width: 9vmin;
+    right: 11vmin;
+}
+.serverInnerBody{
+    position: relative;
+    display: block;
+    width: calc(100% - 5vmin);
+    height: calc(100% - 3vmin);
+    background: rgba(128, 128, 128, 0.12);
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%) translateZ(1vmin);
+    -moz-transform: translate(-50%, -50%) translateZ(1vmin);
+    -o-transform: translate(-50%, -50%) translateZ(1vmin);
+    transform: translate(-50%, -50%) translateZ(1vmin);
+}
+.server{
+	width: calc(100% - 1vmin);
+    position: relative;
+    display: block;
+    height: auto;
+    padding-left: 1vmin;
+}
+.roomActive{
+    background: rgb(206,223,255);
+}
+
+.btnDefault{
+    width: 15vmin;
+    height: 5vmin;
+    position: relative;
+    display: block;
+    background: linear-gradient(gray,#4b4b4b,#7b7b7b);
+    color: white;
+    text-align: center;
+    line-height: 5vmin;
+    border-radius: .5vmin;
+    margin-top: 1vmin;
+    left: 1vmin;
+}
+
+.login-wrapper{
+    width: 83vmin;
+    height: 79vmin;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*KIMOJI*/
+.smile{
+	background-position:-10vmin 0vmin;
+}
+.angry{
+	background-position: 0vmin 0vmin;
+}
+.heartbroken{
+	background-position: -5vmin 0vmin;
+}
+.xsmile{
+	background-position: -15vmin 0vmin;
+}
+.blush{
+	background-position: 0vmin -5vmin;
+}
+.scared{
+	background-position: -15vmin -10vmin;
+}
+.heart{
+	background-position: -10vmin -5vmin;
+}
+.smileblush{
+	background-position: -15vmin -5vmin;
+}
+.wink{
+	background-position: -20vmin -5vmin;
+}
+.kisswink{
+	background-position: 0vmin -10vmin;
+}
+.sick{
+	background-position: -5vmin -10vmin;
+}
+.sad{
+	background-position: -10vmin -10vmin;
+}
+.surprised{
+	background-position: -5vmin -5vmin;
+}
+.bigsmile{
+	background-position: 0vmin -15vmin;
+}
+.smirk{
+	background-position: -5vmin -15vmin;
+}
+.cry{
+	background-position: -10vmin -15vmin;
+}
+
+
