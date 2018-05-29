@@ -1,0 +1,19 @@
+/**
+ * 
+ * @Author: Kristoffer Robin Canlas (aka: Wally West)
+ * @Company: Leekie Enterprises
+ * @2018
+ * @FilePath: main.css
+ * @Version: 1.0
+ * @Created: May 24, 2018
+ * @Changes: May 24, 2018
+ * @Desc: main css file for JANKENPON
+ * 
+ */
+
+/*
+* IMPORT ALL OF CSS FILES HERE, THEN IMPORT THIS FILE TO YOUR main.js
+* MiniCssExtractPlugin.loader, "css-loader" will do the rest
+*/
+@import url('e.reset.css');
+@import url('lobby.css');
