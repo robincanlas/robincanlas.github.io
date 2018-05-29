@@ -71,60 +71,43 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./node_modules/classnames/index.js":
-/*!******************************************!*\
-  !*** ./node_modules/classnames/index.js ***!
-  \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./public/scripts/classes.jsx":
+/*!************************************!*\
+  !*** ./public/scripts/classes.jsx ***!
+  \************************************/
+/*! exports provided: Main */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-  Copyright (c) 2016 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
-*/
-/* global define */
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Main", function() { return Main; });
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-(function () {
-	'use strict';
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var hasOwn = {}.hasOwnProperty;
+var Main = function () {
+	function Main(num1, num2) {
+		_classCallCheck(this, Main);
 
-	function classNames () {
-		var classes = [];
-
-		for (var i = 0; i < arguments.length; i++) {
-			var arg = arguments[i];
-			if (!arg) continue;
-
-			var argType = typeof arg;
-
-			if (argType === 'string' || argType === 'number') {
-				classes.push(arg);
-			} else if (Array.isArray(arg)) {
-				classes.push(classNames.apply(null, arg));
-			} else if (argType === 'object') {
-				for (var key in arg) {
-					if (hasOwn.call(arg, key) && arg[key]) {
-						classes.push(key);
-					}
-				}
-			}
-		}
-
-		return classes.join(' ');
+		this.num1 = num1;
+		this.num2 = num2;
 	}
 
-	if (typeof module !== 'undefined' && module.exports) {
-		module.exports = classNames;
-	} else if (true) {
-		// register as 'classnames', consistent with npm package name
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
-			return classNames;
-		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {}
-}());
+	_createClass(Main, [{
+		key: "add",
+		value: function add() {
+			return this.num1 + this.num2;
+		}
+	}, {
+		key: "multiply",
+		value: function multiply() {
+			return this.num1 * this.num2;
+		}
+	}]);
+
+	return Main;
+}();
+
 
 
 /***/ }),
@@ -138,8 +121,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _classes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./classes */ "./public/scripts/classes.jsx");
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -150,6 +132,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 // import React from 'react';
 // import ReactDOM from 'react-dom';
+// import classNames from 'classnames';
 
 
 var MainTemplate = function (_React$Component) {
@@ -164,7 +147,7 @@ var MainTemplate = function (_React$Component) {
 		_this.goToSite = _this.goToSite.bind(_this);
 
 		_this.state = {
-			menu: [{ title: 'HOME', link: '', state: true }, { title: 'INFORMATION', link: '', state: false }, { title: 'WORK', link: '', state: false }, { title: 'PHOTOGRAPHY', link: '', state: false }],
+			menu: [{ title: 'HOME', link: '', state: false }, { title: 'INFORMATION', link: '', state: false }, { title: 'WORK', link: '', state: true }, { title: 'PHOTOGRAPHY', link: '', state: false }],
 			work: [{ title: 'PamanGoken', url: 'https://www.pamangoken.com' }, { title: 'GelandangBola', url: 'https://www.gelandangbola.com' }, { title: 'Poker', url: '' }, { title: 'Bandar', url: '' }, { title: 'Ceme', url: '' }]
 		};
 		return _this;
@@ -231,12 +214,13 @@ var MainTemplate = function (_React$Component) {
 		value: function render() {
 			var _this3 = this;
 
-			var title = this.state.menu.map(function (value, index) {
-				// let menuClassNames = classNames({
-				// 	'header-btns left text-center c-pointer': true,
-				// 	'color-white': value.state
-				// })
+			var homePage = this.state.menu[0].state;
+			var informationPage = this.state.menu[1].state;
+			var workPage = this.state.menu[2].state;
+			var photographyPage = this.state.menu[3].state;
+			var work = this.state.work;
 
+			var title = this.state.menu.map(function (value, index) {
 				var menuClassNames = 'header-btns left text-center c-pointer';
 				if (value.state) menuClassNames += ' color-white';
 
@@ -245,16 +229,6 @@ var MainTemplate = function (_React$Component) {
 					{ onClick: function onClick() {
 							return _this3.goToPage(index);
 						}, key: index, className: menuClassNames },
-					value.title
-				);
-			});
-
-			var work = this.state.work.map(function (value, index) {
-				return React.createElement(
-					'span',
-					{ onClick: function onClick() {
-							return _this3.goToSite(value.url);
-						}, className: 'color-white work-container', key: index },
 					value.title
 				);
 			});
@@ -280,23 +254,23 @@ var MainTemplate = function (_React$Component) {
 						),
 						React.createElement(
 							'span',
-							{ className: "header-content home" + (this.state.menu[0].state ? ' active-content' : '') },
+							{ className: "header-content home" + (homePage ? ' active-content' : '') },
 							React.createElement(
 								'span',
 								{ className: 'robins-content' },
 								React.createElement(
 									'span',
-									{ className: "name-letters text-center" + (this.state.menu[0].state ? ' name-letters-active' : '') },
+									{ className: "name-letters text-center" + (homePage ? ' name-letters-active' : '') },
 									' KR '
 								),
 								React.createElement(
 									'span',
-									{ className: "name-letters2 text-center" + (this.state.menu[0].state ? ' name-letters-active' : '') },
+									{ className: "name-letters2 text-center" + (homePage ? ' name-letters-active' : '') },
 									' Kristoffer Robin '
 								),
 								React.createElement(
 									'span',
-									{ className: "name-letters2 text-center" + (this.state.menu[0].state ? ' name-letters-active' : '') },
+									{ className: "name-letters2 text-center" + (homePage ? ' name-letters-active' : '') },
 									' Canlas '
 								),
 								React.createElement(
@@ -304,7 +278,7 @@ var MainTemplate = function (_React$Component) {
 									{ className: 'bin-relative-block-wh-100 header-desc-wrap' },
 									React.createElement(
 										'p',
-										{ className: "header-desc text-center" + (this.state.menu[0].state ? ' name-letters-active' : '') },
+										{ className: "header-desc text-center" + (homePage ? ' name-letters-active' : '') },
 										' Hello!, I\'m a Web Developer by day, Speedster and Photographer by night.'
 									)
 								)
@@ -312,18 +286,18 @@ var MainTemplate = function (_React$Component) {
 						),
 						React.createElement(
 							'span',
-							{ className: "header-content information" + (this.state.menu[1].state ? ' active-content' : '') },
+							{ className: "header-content information" + (informationPage ? ' active-content' : '') },
 							React.createElement(
 								'span',
 								{ className: 'robins-content' },
 								React.createElement(
 									'span',
-									{ className: "name-letters information-title text-center" + (this.state.menu[1].state ? ' name-letters-active' : '') },
+									{ className: "name-letters information-title text-center" + (informationPage ? ' name-letters-active' : '') },
 									'Hero for hire.'
 								),
 								React.createElement(
 									'span',
-									{ className: "header-desc information-desc text-center" + (this.state.menu[1].state ? ' name-letters-active' : '') },
+									{ className: "header-desc information-desc text-center" + (informationPage ? ' name-letters-active' : '') },
 									'Hello, my name is Kristoffer Robin Canlas, and I\'m the fastest Web Developer alive! I started Web Development about 4 years ago and have enjoyed working in the internet industry. You can get in touch with me using my email address below.',
 									React.createElement('br', null),
 									React.createElement('br', null),
@@ -332,11 +306,7 @@ var MainTemplate = function (_React$Component) {
 								)
 							)
 						),
-						React.createElement(
-							'span',
-							{ className: "header-content work" + (this.state.menu[2].state ? ' active-content' : '') },
-							work
-						)
+						React.createElement(WorkTemplate, { work: work, workPage: workPage, goToSite: this.goToSite })
 					)
 				)
 			);
@@ -344,6 +314,47 @@ var MainTemplate = function (_React$Component) {
 	}]);
 
 	return MainTemplate;
+}(React.Component);
+
+var WorkTemplate = function (_React$Component2) {
+	_inherits(WorkTemplate, _React$Component2);
+
+	function WorkTemplate(props) {
+		_classCallCheck(this, WorkTemplate);
+
+		return _possibleConstructorReturn(this, (WorkTemplate.__proto__ || Object.getPrototypeOf(WorkTemplate)).call(this, props));
+	}
+
+	_createClass(WorkTemplate, [{
+		key: 'render',
+		value: function render() {
+			var _this5 = this;
+
+			var workPage = this.props.workPage;
+
+			var work = this.props.work.map(function (value, index) {
+				return React.createElement(
+					'span',
+					{ onClick: function onClick() {
+							return _this5.props.goToSite(value.url);
+						}, className: 'color-white work-container', key: index },
+					value.title
+				);
+			});
+
+			return React.createElement(
+				React.Fragment,
+				null,
+				React.createElement(
+					'span',
+					{ className: "header-content work" + (workPage ? ' active-content' : '') },
+					work
+				)
+			);
+		}
+	}]);
+
+	return WorkTemplate;
 }(React.Component);
 
 ReactDOM.render(React.createElement(MainTemplate, null), document.getElementById("root"));

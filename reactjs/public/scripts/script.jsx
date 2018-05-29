@@ -1,6 +1,7 @@
 // import React from 'react';
 // import ReactDOM from 'react-dom';
-import classNames from 'classnames';
+// import classNames from 'classnames';
+import {Main} from './classes'
 
 
 class MainTemplate extends React.Component{
@@ -11,9 +12,9 @@ class MainTemplate extends React.Component{
 
 		this.state = {
 			menu : [
-				{title: 'HOME',link:'',state: true},
+				{title: 'HOME',link:'',state: false},
 				{title: 'INFORMATION',link:'',state: false},
-				{title: 'WORK',link:'',state: false},
+				{title: 'WORK',link:'',state: true},
 				{title: 'PHOTOGRAPHY',link:'',state: false},
 			],
 			work : [
@@ -77,12 +78,13 @@ class MainTemplate extends React.Component{
 	}
 
 	render(){
-		const title = this.state.menu.map((value, index) => {
-			// let menuClassNames = classNames({
-			// 	'header-btns left text-center c-pointer': true,
-			// 	'color-white': value.state
-			// })
+		let homePage = this.state.menu[0].state;
+		let informationPage = this.state.menu[1].state;
+		let workPage = this.state.menu[2].state;
+		let photographyPage = this.state.menu[3].state;
+		const work = this.state.work;
 
+		const title = this.state.menu.map((value, index) => {
 			let menuClassNames = 'header-btns left text-center c-pointer'
 			if(value.state) menuClassNames += ' color-white'
 
@@ -90,9 +92,7 @@ class MainTemplate extends React.Component{
 
 		});
 
-		const work = this.state.work.map((value, index) => {
-			return <span onClick={() => this.goToSite(value.url)} className='color-white work-container' key={index}>{value.title}</span>
-		});
+
 
 		return(
 			<React.Fragment>
@@ -106,21 +106,21 @@ class MainTemplate extends React.Component{
 							{title}
 						</span>
 						
-						<span className={"header-content home" + (this.state.menu[0].state ? ' active-content' : '')}>
+						<span className={"header-content home" + (homePage ? ' active-content' : '')}>
 							<span className="robins-content">
-								<span className={"name-letters text-center" + (this.state.menu[0].state ? ' name-letters-active' : '' )}> KR </span>
-								<span className={"name-letters2 text-center" + (this.state.menu[0].state ? ' name-letters-active' : '' )}> Kristoffer Robin </span>
-								<span className={"name-letters2 text-center" + (this.state.menu[0].state ? ' name-letters-active' : '' )}> Canlas </span>
+								<span className={"name-letters text-center" + (homePage ? ' name-letters-active' : '' )}> KR </span>
+								<span className={"name-letters2 text-center" + (homePage ? ' name-letters-active' : '' )}> Kristoffer Robin </span>
+								<span className={"name-letters2 text-center" + (homePage ? ' name-letters-active' : '' )}> Canlas </span>
 								<span className="bin-relative-block-wh-100 header-desc-wrap">	
-									<p className={"header-desc text-center" + (this.state.menu[0].state ? ' name-letters-active' : '' )}> Hello!, I'm a Web Developer by day, Speedster and Photographer by night.</p>
+									<p className={"header-desc text-center" + (homePage ? ' name-letters-active' : '' )}> Hello!, I'm a Web Developer by day, Speedster and Photographer by night.</p>
 								</span>
 							</span>
 						</span>
 
-						<span className={"header-content information" + (this.state.menu[1].state ? ' active-content' : '')}>
+						<span className={"header-content information" + (informationPage ? ' active-content' : '')}>
 							<span className="robins-content">
-								<span className={"name-letters information-title text-center" + (this.state.menu[1].state ? ' name-letters-active' : '')}>Hero for hire.</span>	
-								<span className={"header-desc information-desc text-center"  + (this.state.menu[1].state ? ' name-letters-active' : '')}>Hello, my name is Kristoffer Robin Canlas, and I'm the fastest Web Developer alive! I started Web Development about 4 years ago and have enjoyed working in the internet industry. You can get in touch with me using my email address below. 
+								<span className={"name-letters information-title text-center" + (informationPage ? ' name-letters-active' : '')}>Hero for hire.</span>	
+								<span className={"header-desc information-desc text-center"  + (informationPage ? ' name-letters-active' : '')}>Hello, my name is Kristoffer Robin Canlas, and I'm the fastest Web Developer alive! I started Web Development about 4 years ago and have enjoyed working in the internet industry. You can get in touch with me using my email address below. 
 
 								<br/>
 								<br/>
@@ -130,9 +130,7 @@ class MainTemplate extends React.Component{
 							</span>
 						</span>
 
-						<span className={"header-content work" + (this.state.menu[2].state ? ' active-content' : '')}>
-							{work}						
-						</span>
+						<WorkTemplate work={work} workPage={workPage} goToSite={this.goToSite}></WorkTemplate>
 
 					</span>
 				</span>
@@ -142,6 +140,28 @@ class MainTemplate extends React.Component{
 
 }
 
+
+class WorkTemplate extends React.Component{
+	constructor(props){
+		super(props);
+	}
+
+	render(){
+		let workPage = this.props.workPage;
+
+		const work = this.props.work.map((value, index) => {
+			return <span onClick={() => this.props.goToSite(value.url)} className='color-white work-container' key={index}>{value.title}</span>
+		});
+
+		return(
+			<React.Fragment>
+				<span className={"header-content work" + (workPage ? ' active-content' : '')}>
+					{work}						
+				</span>
+			</React.Fragment>
+		);
+	}
+}
 
 ReactDOM.render(
 	<MainTemplate/>,
