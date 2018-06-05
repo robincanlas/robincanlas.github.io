@@ -1,5 +1,10 @@
 
 
+/*
+* TO DO
+* CHECK THUMB HEIGHT WHEN DATA IS MANY
+*/ 
+
 import CanvasClass from '../classes/canvas-class';
 
  class RobinScrollbarComponent extends React.Component{
@@ -11,7 +16,6 @@ import CanvasClass from '../classes/canvas-class';
 		this.updateScrollBarCanvas = this.updateScrollBarCanvas.bind(this);
 		this.getThumbHeight = this.getThumbHeight.bind(this);
 		this.showHideScroll = this.showHideScroll.bind(this);
-		this.bodyScroll = React.createRef();
 		this.childrensHeight = 0;
 		this.childrensHeightRatio = 0;
 		this.parentHeight = 0;
@@ -87,8 +91,8 @@ import CanvasClass from '../classes/canvas-class';
 		}		
 	}
 	getThumbHeight(){
-		this.parentHeight = this.bodyScroll.current.clientHeight;
-		this.childrensHeight = this.bodyScroll.current.childNodes[0].clientHeight * this.props.itemList.length;
+		this.parentHeight = this.props.bodyScroll.current.clientHeight;
+		this.childrensHeight = this.props.bodyScroll.current.childNodes[0].clientHeight * this.props.itemList.length;
 		this.childrensHeightRatio = this.parentHeight / this.childrensHeight;
 
 		this.thumbHeight = this.parentHeight * this.childrensHeightRatio;
@@ -113,7 +117,7 @@ import CanvasClass from '../classes/canvas-class';
 		}
 
 		let percentage = ((yPos - 0) / (this.scrollBarCanvasElement.height - 0));	
-		this.bodyScroll.current.scrollTop = this.bodyScroll.current.scrollHeight * percentage
+		this.props.bodyScroll.current.scrollTop = this.props.bodyScroll.current.scrollHeight * percentage
 
 	} 
 	mouseScroll(event){
@@ -133,7 +137,7 @@ import CanvasClass from '../classes/canvas-class';
 		return(
 			<React.Fragment>
 				<span className={this.props.wrapperClassName}>
-					<content ref={this.bodyScroll} className={this.props.contentWrapperClassName} onScroll={(event) => this.mouseScroll(event)}>
+					<content ref={this.props.bodyScroll} className={this.props.contentWrapperClassName} onScroll={(event) => this.mouseScroll(event)}>
 						{this.props.itemList}
 					</content>
 				</span>

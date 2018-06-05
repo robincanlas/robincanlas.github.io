@@ -9,6 +9,7 @@ import RobinScrollbarComponent from './robin-scrollbar-component';
 
 		this.createHeaderTitle = this.createHeaderTitle.bind(this);
 		this.createPlayerList = this.createPlayerList.bind(this);
+		this.bodyScroll = React.createRef();		
 	}
 	componentDidMount(){
 
@@ -42,18 +43,18 @@ import RobinScrollbarComponent from './robin-scrollbar-component';
 	render(){
 		return(
 			<React.Fragment>
-				<span className='body text-center'>
-					<header className='player-table-header'>
-						{this.createHeaderTitle()}
-					</header>
-					<RobinScrollbarComponent 
-						canvasWidth='100' 
-						canvasHeight='480' 
-						canvasId='playerlist-scrollbar-canvas' 
-						wrapperClassName='player-table-list-wrapper'
-						contentWrapperClassName='player-table-list'
-						itemList={this.createPlayerList()}/>
-				</span>
+				<header className='player-table-header'>
+					{this.createHeaderTitle()}
+				</header>
+				<RobinScrollbarComponent 
+					canvasWidth='100' 
+					canvasHeight='480' 
+					canvasId='playerlist-scrollbar-canvas' 
+					wrapperClassName='player-table-list-wrapper'
+					contentWrapperClassName='player-table-list'
+					bodyScroll={this.bodyScroll}
+					itemList={this.createPlayerList()}
+				/>
 			</React.Fragment>
 		);
 	}
