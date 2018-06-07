@@ -1,8 +1,8 @@
 (function(){
-	var mainController = function(mainFactory){
+	var mainController = function(mainFactory, $location){
 		var self = this;
 		self.mainFactory = mainFactory;
-
+		console.log($location)
 	}	
 
 	var mainFactory = function($q){

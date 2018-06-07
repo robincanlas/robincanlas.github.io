@@ -1,8 +1,14 @@
-const express = require('express');
-const app = express();
-const path = require('path');
-const port = 9999;
-
+const express = require('express'),
+	app = express(),
+	path = require('path'),
+	http = require('http'),
+	https = require('https'),
+	socketIo = require('socket.io'),
+	fs = require('node-fs'),
+	server = http.createServer(app),
+	io = socketIo.listen(server),
+	ConfigsRoot = require('./configs/config-root'),
+	port = 9999;
 
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
@@ -15,3 +21,15 @@ app.get('/', (req,res) => {
 app.listen(port, () => {
 	console.log('server listening to port '+port);
 });
+
+server.listen(ConfigsRoot.appPort, ConfigsRoot.appIp, () => {	// let the server to listen
+	console.log("Express server listening on port " + ConfigsRoot.appPort);
+});
+
+var ImagesModel = require('./models/images-model').ImagesModel;
+
+ImagesModel.create({
+	src: 'test'
+}, (err, model) => {
+	console.log(model);
+})
