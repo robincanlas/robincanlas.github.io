@@ -1,7 +1,6 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import classNames from 'classnames';
+
 import {Main} from './classes'
+import styles from '../css/main.css'
 
 
 class MainTemplate extends React.Component{
@@ -9,12 +8,13 @@ class MainTemplate extends React.Component{
 		super(props);
 		this.goToPage = this.goToPage.bind(this);
 		this.goToSite = this.goToSite.bind(this);
+		this.getActiveTemplate = this.getActiveTemplate.bind(this);
 
 		this.state = {
 			menu : [
-				{title: 'HOME',link:'',state: false},
+				{title: 'HOME',link:'',state: true},
 				{title: 'INFORMATION',link:'',state: false},
-				{title: 'WORK',link:'',state: true},
+				{title: 'WORK',link:'',state: false},
 				{title: 'PHOTOGRAPHY',link:'',state: false},
 			],
 			work : [
@@ -37,7 +37,7 @@ class MainTemplate extends React.Component{
 		renderer.setSize( window.innerWidth, window.innerHeight );
 		document.body.appendChild( renderer.domElement );
 
-		let geometry = new THREE.BoxGeometry( 3, 3, 3 );
+		let geometry = new THREE.BoxGeometry( 2, 2, 2 );
 		let material = new THREE.MeshNormalMaterial();
 		let cube = new THREE.Mesh( geometry, material );
 		scene.add( cube );
@@ -77,18 +77,84 @@ class MainTemplate extends React.Component{
 		console.log('%c FLASH ', 'background: #800000; color: yellow; font-size: 12pt; font-family: "Comic Sans MS", cursive, sans-serif', url);
 	}
 
+	getActiveTemplate(){
+		let homePage = this.state.menu[0].state,
+			informationPage = this.state.menu[1].state,
+			workPage = this.state.menu[2].state,
+			photographyPage = this.state.menu[3].state,
+			template = void 0;
+
+		if(homePage){
+			template = (
+				<span className='main-body'>
+					<span className='main-logo'>KR</span>
+					<span className='main-name'>Hi!, I'm Kristoffer Robin Canlas</span>
+					<span className='main-intro'>Web Developer by day, Speedster and Photographer by night.</span>
+				</span>
+			);
+		}else if(informationPage){
+
+		}else if(workPage){
+
+		}else{
+			template = (
+				<React.Fragment>
+					<div className='photo-row'>
+						<div className='photo-column'>
+						    <img src="https://www.w3schools.com/w3images/wedding.jpg" style={{width: '100%'}} />
+						    <img src="https://www.w3schools.com/w3images/rocks.jpg" style={{width: '100%'}} />
+						    <img src="https://www.w3schools.com/w3images/falls2.jpg" style={{width: '100%'}} />
+						    <img src="https://www.w3schools.com/w3images/paris.jpg" style={{width: '100%'}} />
+						    <img src="https://www.w3schools.com/w3images/nature.jpg" style={{width: '100%'}} />
+						    <img src="https://www.w3schools.com/w3images/mist.jpg" style={{width: '100%'}} />
+						    <img src="https://www.w3schools.com/w3images/paris.jpg" style={{width: '100%'}} />
+						</div>
+						<div className="photo-column">
+							<img src="https://www.w3schools.com/w3images/underwater.jpg" style={{width: '100%'}} />
+							<img src="https://www.w3schools.com/w3images/ocean.jpg" style={{width: '100%'}} />
+							<img src="https://www.w3schools.com/w3images/wedding.jpg" style={{width: '100%'}} />
+							<img src="https://www.w3schools.com/w3images/mountainskies.jpg" style={{width: '100%'}} />
+							<img src="https://www.w3schools.com/w3images/rocks.jpg" style={{width: '100%'}} />
+							<img src="https://www.w3schools.com/w3images/underwater.jpg" style={{width: '100%'}} />
+						</div> 
+						<div className='photo-column'>
+						    <img src="https://www.w3schools.com/w3images/wedding.jpg" style={{width: '100%'}} />
+						    <img src="https://www.w3schools.com/w3images/rocks.jpg" style={{width: '100%'}} />
+						    <img src="https://www.w3schools.com/w3images/falls2.jpg" style={{width: '100%'}} />
+						    <img src="https://www.w3schools.com/w3images/paris.jpg" style={{width: '100%'}} />
+						    <img src="https://www.w3schools.com/w3images/nature.jpg" style={{width: '100%'}} />
+						    <img src="https://www.w3schools.com/w3images/mist.jpg" style={{width: '100%'}} />
+						    <img src="https://www.w3schools.com/w3images/paris.jpg" style={{width: '100%'}} />
+						</div>
+						<div className="photo-column">
+							<img src="https://www.w3schools.com/w3images/underwater.jpg" style={{width: '100%'}} />
+							<img src="https://www.w3schools.com/w3images/ocean.jpg" style={{width: '100%'}} />
+							<img src="https://www.w3schools.com/w3images/wedding.jpg" style={{width: '100%'}} />
+							<img src="https://www.w3schools.com/w3images/mountainskies.jpg" style={{width: '100%'}} />
+							<img src="https://www.w3schools.com/w3images/rocks.jpg" style={{width: '100%'}} />
+							<img src="https://www.w3schools.com/w3images/underwater.jpg" style={{width: '100%'}} />
+						</div> 
+					</div>
+				</React.Fragment>
+			)
+		}
+
+
+		return template;
+	}
+
 	render(){
-		let homePage = this.state.menu[0].state;
-		let informationPage = this.state.menu[1].state;
-		let workPage = this.state.menu[2].state;
-		let photographyPage = this.state.menu[3].state;
 		const work = this.state.work;
 
 		const title = this.state.menu.map((value, index) => {
 			let menuClassNames = 'header-btns left text-center c-pointer'
 			if(value.state) menuClassNames += ' color-white'
 
-			return <span onClick={() => this.goToPage(index)} key={index} className={menuClassNames}>{value.title}</span>
+			return(
+				<label key={index} htmlFor="nav-checkbox">
+					<span onClick={() => this.goToPage(index)} className={menuClassNames}>{value.title}</span>
+				</label>
+			);
 
 		});
 
@@ -101,38 +167,17 @@ class MainTemplate extends React.Component{
 					
 				</span>
 				<span className='main-wrapper'>
-					<span className='header bin-relative-block-wh-100'>
-						<span className='header-nav c-pointer'>
-							{title}
-						</span>
-						
-						<span className={"header-content home" + (homePage ? ' active-content' : '')}>
-							<span className="robins-content">
-								<span className={"name-letters text-center" + (homePage ? ' name-letters-active' : '' )}> KR </span>
-								<span className={"name-letters2 text-center" + (homePage ? ' name-letters-active' : '' )}> Kristoffer Robin </span>
-								<span className={"name-letters2 text-center" + (homePage ? ' name-letters-active' : '' )}> Canlas </span>
-								<span className="bin-relative-block-wh-100 header-desc-wrap">	
-									<p className={"header-desc text-center" + (homePage ? ' name-letters-active' : '' )}> Hello!, I'm a Web Developer by day, Speedster and Photographer by night.</p>
-								</span>
-							</span>
-						</span>
-
-						<span className={"header-content information" + (informationPage ? ' active-content' : '')}>
-							<span className="robins-content">
-								<span className={"name-letters information-title text-center" + (informationPage ? ' name-letters-active' : '')}>Hero for hire.</span>	
-								<span className={"header-desc information-desc text-center"  + (informationPage ? ' name-letters-active' : '')}>Hello, my name is Kristoffer Robin Canlas, and I'm the fastest Web Developer alive! I started Web Development about 4 years ago and have enjoyed working in the internet industry. You can get in touch with me using my email address below. 
-
-								<br/>
-								<br/>
-								<br/>
-								kristofferrobincanlas@gmail.com
-								</span>
-							</span>
-						</span>
-
-						<WorkTemplate work={work} workPage={workPage} goToSite={this.goToSite}></WorkTemplate>
-
+					<input type="checkbox" id='nav-checkbox' className='nav-checkbox'/>
+					<label className='nav-checkbox-label c-pointer' htmlFor="nav-checkbox">
+						<span className='nav-checkbox-icon'></span>
+					</label>
+					<span className='main-header'>
+						<span className='main-logo-desktop'>KR</span>
+						{title}
 					</span>
+						{
+							this.getActiveTemplate()
+						}
 				</span>
 			</React.Fragment>
 		)

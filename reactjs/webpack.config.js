@@ -1,72 +1,108 @@
 const path = require('path');
-const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+	webpack = require('webpack'),
+	UglifyJsPlugin = require('uglifyjs-webpack-plugin'),
+	MiniCssExtractPlugin = require("mini-css-extract-plugin"),
 
 
-console.log(
-	`
-	####### ##         ##       #####  ##   ##
-	##      ##        ####     ##      ##   ##
-	#####   ##       ##  ##     ####   ####### ` +process.env.NODE_ENV+ `
-	##      ##      ########       ##  ##   ##
-	##      ###### ##      ##  #####   ##   ##
-	`
-);
 
+module.exports = (env, option) => {
 
-let plugins = [];
+	let entryPath = '',
+		outputPath = '';
 
-if(process.env.NODE_ENV === 'production'){
-// if(process.env.NODE_ENV === 'development'){
-	plugins.push(
-		new UglifyJsPlugin({
-			cache: true,
-			parallel: true,
-			uglifyOptions: {
-				compress: {
-					warnings: false,
-					drop_console: true
-				},
-				ecma: 6,
-				mangle: true,
-				output: {
-					comments: false
-				}
-			},
-			sourceMap: true
+	console.log(
+		`
+		####### ##         ##       #####  ##   ##
+		##      ##        ####     ##      ##   ##
+		#####   ##       ##  ##     ####   ####### ` +option.mode+ `
+		##      ##      ########       ##  ##   ##
+		##      ###### ##      ##  #####   ##   ##
+		`
+	);
+
+	let plugins = [
+		new MiniCssExtractPlugin({
+			filename: "build/[name].css",
+			chunkFilename: "build/[id].css"
 		})
-	)
-}
+	];
 
+	if(option.mode === 'production'){
+		plugins.push(
+			new UglifyJsPlugin({
+				cache: true,
+				parallel: true,
+				uglifyOptions: {
+					compress: {
+						warnings: false,
+						drop_console: true
+					},
+					ecma: 6,
+					mangle: true,
+					output: {
+						comments: false
+					}
+				},
+				sourceMap: true
+			})
+		)
+	}
 
-module.exports = {
-	mode: process.env.NODE_ENV, //development or production mode, set in package.json
-	devtool: 'source-map',
-	entry: 'scripts/script.jsx',
-	output:{
-		path: path.join(__dirname, 'public'),
-		filename: 'build/build.js'
-	},
-	resolve: {
-		extensions: ['.js','.jsx', '.json', '.css'],
-		modules: [path.join(__dirname, 'public'), 'node_modules']
-	},
-	module: {
-		rules: [
-			{
-				test: /\.(js|jsx)$/,
-				exclude: /node_modules/,
-				loader: 'babel-loader',
-				query: {
-					presets: [['env', {'modules': false}], 'react']
+	return {
+		devtool: 'source-map',
+		entry: 'scripts/script.jsx',
+		output:{
+			path: path.join(__dirname, 'public'),
+			filename: 'build/build.js'
+		},
+		resolve: {
+			extensions: ['.js','.jsx', '.json', '.css'],
+			modules: [path.join(__dirname, 'public'), 'node_modules']
+		},
+		module: {
+			rules: [
+				{
+					test: /\.(js|jsx)$/,
+					exclude: /node_modules/,
+					loader: 'babel-loader',
+					query: {
+						presets: [['env', {'modules': false}], 'react']
+					}
+				},
+				{
+					test: /\.css$/,
+					use: [
+					  MiniCssExtractPlugin.loader,
+					  "css-loader"
+					]
+				},
+				{
+					test: /\.(ttf|woff)$/,
+					use: [
+						{
+							loader: 'file-loader',
+							options: {
+								name: '[name].[ext]',
+								outputPath: 'build/fonts/',
+								publicPath: 'fonts/'
+							}
+						}
+					]
+				},
+				{
+					test: /\.(png|svg|jpg|jpeg)$/,
+					use: [
+						{
+							loader: 'file-loader',
+							options: {
+								name: '[path][name].[ext]',
+								context: ''
+							}
+						}
+					]
 				}
-			}
-		]
-	},
-	plugins: plugins,
-	// externals: {
-		// 'classnames': 'classNames'
-		// 'react': 'React',
-		// 'react-dom': 'ReactDOM'
-	// }
+			]
+		},
+		plugins: plugins,
+	}
 }

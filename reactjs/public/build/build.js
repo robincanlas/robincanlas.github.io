@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -72,6 +71,17 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./public/css/main.css":
+/*!*****************************!*\
+  !*** ./public/css/main.css ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "./public/scripts/classes.jsx":
 /*!************************************!*\
   !*** ./public/scripts/classes.jsx ***!
@@ -123,6 +133,8 @@ var Main = function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _classes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./classes */ "./public/scripts/classes.jsx");
+/* harmony import */ var _css_main_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../css/main.css */ "./public/css/main.css");
+/* harmony import */ var _css_main_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_css_main_css__WEBPACK_IMPORTED_MODULE_1__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -131,9 +143,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import classNames from 'classnames';
+
 
 
 var MainTemplate = function (_React$Component) {
@@ -146,9 +156,10 @@ var MainTemplate = function (_React$Component) {
 
 		_this.goToPage = _this.goToPage.bind(_this);
 		_this.goToSite = _this.goToSite.bind(_this);
+		_this.getActiveTemplate = _this.getActiveTemplate.bind(_this);
 
 		_this.state = {
-			menu: [{ title: 'HOME', link: '', state: false }, { title: 'INFORMATION', link: '', state: false }, { title: 'WORK', link: '', state: true }, { title: 'PHOTOGRAPHY', link: '', state: false }],
+			menu: [{ title: 'HOME', link: '', state: true }, { title: 'INFORMATION', link: '', state: false }, { title: 'WORK', link: '', state: false }, { title: 'PHOTOGRAPHY', link: '', state: false }],
 			work: [{ title: 'PamanGoken', url: 'https://www.pamangoken.com' }, { title: 'GelandangBola', url: 'https://www.gelandangbola.com' }, { title: 'Poker', url: '' }, { title: 'Bandar', url: '' }, { title: 'Ceme', url: '' }]
 		};
 		return _this;
@@ -166,7 +177,7 @@ var MainTemplate = function (_React$Component) {
 			renderer.setSize(window.innerWidth, window.innerHeight);
 			document.body.appendChild(renderer.domElement);
 
-			var geometry = new THREE.BoxGeometry(3, 3, 3);
+			var geometry = new THREE.BoxGeometry(2, 2, 2);
 			var material = new THREE.MeshNormalMaterial();
 			var cube = new THREE.Mesh(geometry, material);
 			scene.add(cube);
@@ -211,14 +222,94 @@ var MainTemplate = function (_React$Component) {
 			console.log('%c FLASH ', 'background: #800000; color: yellow; font-size: 12pt; font-family: "Comic Sans MS", cursive, sans-serif', url);
 		}
 	}, {
+		key: 'getActiveTemplate',
+		value: function getActiveTemplate() {
+			var homePage = this.state.menu[0].state,
+			    informationPage = this.state.menu[1].state,
+			    workPage = this.state.menu[2].state,
+			    photographyPage = this.state.menu[3].state,
+			    template = void 0;
+
+			if (homePage) {
+				template = React.createElement(
+					'span',
+					{ className: 'main-body' },
+					React.createElement(
+						'span',
+						{ className: 'main-logo' },
+						'KR'
+					),
+					React.createElement(
+						'span',
+						{ className: 'main-name' },
+						'Hi!, I\'m Kristoffer Robin Canlas'
+					),
+					React.createElement(
+						'span',
+						{ className: 'main-intro' },
+						'Web Developer by day, Speedster and Photographer by night.'
+					)
+				);
+			} else if (informationPage) {} else if (workPage) {} else {
+				template = React.createElement(
+					React.Fragment,
+					null,
+					React.createElement(
+						'div',
+						{ className: 'photo-row' },
+						React.createElement(
+							'div',
+							{ className: 'photo-column' },
+							React.createElement('img', { src: 'https://www.w3schools.com/w3images/wedding.jpg', style: { width: '100%' } }),
+							React.createElement('img', { src: 'https://www.w3schools.com/w3images/rocks.jpg', style: { width: '100%' } }),
+							React.createElement('img', { src: 'https://www.w3schools.com/w3images/falls2.jpg', style: { width: '100%' } }),
+							React.createElement('img', { src: 'https://www.w3schools.com/w3images/paris.jpg', style: { width: '100%' } }),
+							React.createElement('img', { src: 'https://www.w3schools.com/w3images/nature.jpg', style: { width: '100%' } }),
+							React.createElement('img', { src: 'https://www.w3schools.com/w3images/mist.jpg', style: { width: '100%' } }),
+							React.createElement('img', { src: 'https://www.w3schools.com/w3images/paris.jpg', style: { width: '100%' } })
+						),
+						React.createElement(
+							'div',
+							{ className: 'photo-column' },
+							React.createElement('img', { src: 'https://www.w3schools.com/w3images/underwater.jpg', style: { width: '100%' } }),
+							React.createElement('img', { src: 'https://www.w3schools.com/w3images/ocean.jpg', style: { width: '100%' } }),
+							React.createElement('img', { src: 'https://www.w3schools.com/w3images/wedding.jpg', style: { width: '100%' } }),
+							React.createElement('img', { src: 'https://www.w3schools.com/w3images/mountainskies.jpg', style: { width: '100%' } }),
+							React.createElement('img', { src: 'https://www.w3schools.com/w3images/rocks.jpg', style: { width: '100%' } }),
+							React.createElement('img', { src: 'https://www.w3schools.com/w3images/underwater.jpg', style: { width: '100%' } })
+						),
+						React.createElement(
+							'div',
+							{ className: 'photo-column' },
+							React.createElement('img', { src: 'https://www.w3schools.com/w3images/wedding.jpg', style: { width: '100%' } }),
+							React.createElement('img', { src: 'https://www.w3schools.com/w3images/rocks.jpg', style: { width: '100%' } }),
+							React.createElement('img', { src: 'https://www.w3schools.com/w3images/falls2.jpg', style: { width: '100%' } }),
+							React.createElement('img', { src: 'https://www.w3schools.com/w3images/paris.jpg', style: { width: '100%' } }),
+							React.createElement('img', { src: 'https://www.w3schools.com/w3images/nature.jpg', style: { width: '100%' } }),
+							React.createElement('img', { src: 'https://www.w3schools.com/w3images/mist.jpg', style: { width: '100%' } }),
+							React.createElement('img', { src: 'https://www.w3schools.com/w3images/paris.jpg', style: { width: '100%' } })
+						),
+						React.createElement(
+							'div',
+							{ className: 'photo-column' },
+							React.createElement('img', { src: 'https://www.w3schools.com/w3images/underwater.jpg', style: { width: '100%' } }),
+							React.createElement('img', { src: 'https://www.w3schools.com/w3images/ocean.jpg', style: { width: '100%' } }),
+							React.createElement('img', { src: 'https://www.w3schools.com/w3images/wedding.jpg', style: { width: '100%' } }),
+							React.createElement('img', { src: 'https://www.w3schools.com/w3images/mountainskies.jpg', style: { width: '100%' } }),
+							React.createElement('img', { src: 'https://www.w3schools.com/w3images/rocks.jpg', style: { width: '100%' } }),
+							React.createElement('img', { src: 'https://www.w3schools.com/w3images/underwater.jpg', style: { width: '100%' } })
+						)
+					)
+				);
+			}
+
+			return template;
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			var _this3 = this;
 
-			var homePage = this.state.menu[0].state;
-			var informationPage = this.state.menu[1].state;
-			var workPage = this.state.menu[2].state;
-			var photographyPage = this.state.menu[3].state;
 			var work = this.state.work;
 
 			var title = this.state.menu.map(function (value, index) {
@@ -226,11 +317,15 @@ var MainTemplate = function (_React$Component) {
 				if (value.state) menuClassNames += ' color-white';
 
 				return React.createElement(
-					'span',
-					{ onClick: function onClick() {
-							return _this3.goToPage(index);
-						}, key: index, className: menuClassNames },
-					value.title
+					'label',
+					{ key: index, htmlFor: 'nav-checkbox' },
+					React.createElement(
+						'span',
+						{ onClick: function onClick() {
+								return _this3.goToPage(index);
+							}, className: menuClassNames },
+						value.title
+					)
 				);
 			});
 
@@ -245,70 +340,23 @@ var MainTemplate = function (_React$Component) {
 				React.createElement(
 					'span',
 					{ className: 'main-wrapper' },
+					React.createElement('input', { type: 'checkbox', id: 'nav-checkbox', className: 'nav-checkbox' }),
+					React.createElement(
+						'label',
+						{ className: 'nav-checkbox-label c-pointer', htmlFor: 'nav-checkbox' },
+						React.createElement('span', { className: 'nav-checkbox-icon' })
+					),
 					React.createElement(
 						'span',
-						{ className: 'header bin-relative-block-wh-100' },
+						{ className: 'main-header' },
 						React.createElement(
 							'span',
-							{ className: 'header-nav c-pointer' },
-							title
+							{ className: 'main-logo-desktop' },
+							'KR'
 						),
-						React.createElement(
-							'span',
-							{ className: "header-content home" + (homePage ? ' active-content' : '') },
-							React.createElement(
-								'span',
-								{ className: 'robins-content' },
-								React.createElement(
-									'span',
-									{ className: "name-letters text-center" + (homePage ? ' name-letters-active' : '') },
-									' KR '
-								),
-								React.createElement(
-									'span',
-									{ className: "name-letters2 text-center" + (homePage ? ' name-letters-active' : '') },
-									' Kristoffer Robin '
-								),
-								React.createElement(
-									'span',
-									{ className: "name-letters2 text-center" + (homePage ? ' name-letters-active' : '') },
-									' Canlas '
-								),
-								React.createElement(
-									'span',
-									{ className: 'bin-relative-block-wh-100 header-desc-wrap' },
-									React.createElement(
-										'p',
-										{ className: "header-desc text-center" + (homePage ? ' name-letters-active' : '') },
-										' Hello!, I\'m a Web Developer by day, Speedster and Photographer by night.'
-									)
-								)
-							)
-						),
-						React.createElement(
-							'span',
-							{ className: "header-content information" + (informationPage ? ' active-content' : '') },
-							React.createElement(
-								'span',
-								{ className: 'robins-content' },
-								React.createElement(
-									'span',
-									{ className: "name-letters information-title text-center" + (informationPage ? ' name-letters-active' : '') },
-									'Hero for hire.'
-								),
-								React.createElement(
-									'span',
-									{ className: "header-desc information-desc text-center" + (informationPage ? ' name-letters-active' : '') },
-									'Hello, my name is Kristoffer Robin Canlas, and I\'m the fastest Web Developer alive! I started Web Development about 4 years ago and have enjoyed working in the internet industry. You can get in touch with me using my email address below.',
-									React.createElement('br', null),
-									React.createElement('br', null),
-									React.createElement('br', null),
-									'kristofferrobincanlas@gmail.com'
-								)
-							)
-						),
-						React.createElement(WorkTemplate, { work: work, workPage: workPage, goToSite: this.goToSite })
-					)
+						title
+					),
+					this.getActiveTemplate()
 				)
 			);
 		}
@@ -363,7 +411,4 @@ ReactDOM.render(React.createElement(MainTemplate, null), document.getElementById
 /***/ })
 
 /******/ });
-=======
-!function(e){var t={};function n(a){if(t[a])return t[a].exports;var r=t[a]={i:a,l:!1,exports:{}};return e[a].call(r.exports,r,r.exports,n),r.l=!0,r.exports}n.m=e,n.c=t,n.d=function(e,t,a){n.o(e,t)||Object.defineProperty(e,t,{configurable:!1,enumerable:!0,get:a})},n.r=function(e){Object.defineProperty(e,"__esModule",{value:!0})},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s="./public/scripts/script.jsx")}({"./node_modules/classnames/index.js":function(e,t,n){var a;!function(){"use strict";var n={}.hasOwnProperty;function r(){for(var e=[],t=0;t<arguments.length;t++){var a=arguments[t];if(a){var o=typeof a;if("string"===o||"number"===o)e.push(a);else if(Array.isArray(a))e.push(r.apply(null,a));else if("object"===o)for(var s in a)n.call(a,s)&&a[s]&&e.push(s)}}return e.join(" ")}void 0!==e&&e.exports?e.exports=r:void 0===(a=function(){return r}.apply(t,[]))||(e.exports=a)}()},"./public/scripts/script.jsx":function(e,t,n){"use strict";n.r(t);n("./node_modules/classnames/index.js");var a=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}();var r=function(e){function t(e){!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t);var n=function(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e));return n.goToPage=n.goToPage.bind(n),n.goToSite=n.goToSite.bind(n),n.state={menu:[{title:"HOME",link:"",state:!0},{title:"INFORMATION",link:"",state:!1},{title:"WORK",link:"",state:!1},{title:"PHOTOGRAPHY",link:"",state:!1}],work:[{title:"PamanGoken",url:"https://www.pamangoken.com"},{title:"GelandangBola",url:"https://www.gelandangbola.com"},{title:"Poker",url:""},{title:"Bandar",url:""},{title:"Ceme",url:""}]},n}return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(t,React.Component),a(t,[{key:"createCube",value:function(){var e=new THREE.Scene,t=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,.1,1e3),n=new THREE.WebGLRenderer({canvas:document.getElementById("canvas")});e.background=new THREE.Color("rgb(116,119,124)"),n.setSize(window.innerWidth,window.innerHeight),document.body.appendChild(n.domElement);var a=new THREE.BoxGeometry(3,3,3),r=new THREE.MeshNormalMaterial,o=new THREE.Mesh(a,r);e.add(o),t.position.z=5;!function a(){requestAnimationFrame(a),o.rotation.x+=.01,o.rotation.y+=.01,n.render(e,t)}()}},{key:"componentDidMount",value:function(){var e=this;this.createCube(),window.onresize=function(){e.createCube()}}},{key:"goToPage",value:function(e){for(var t=this.state.menu,n=0;n<t.length;n++)t[n].state=!1,n===e&&(t[n].state=!0);this.setState({menu:t})}},{key:"goToSite",value:function(e){}},{key:"render",value:function(){var e=this,t=this.state.menu.map(function(t,n){var a="header-btns left text-center c-pointer";return t.state&&(a+=" color-white"),React.createElement("span",{onClick:function(){return e.goToPage(n)},key:n,className:a},t.title)}),n=this.state.work.map(function(t,n){return React.createElement("span",{onClick:function(){return e.goToSite(t.url)},className:"color-white work-container",key:n},t.title)});return React.createElement(React.Fragment,null,React.createElement("span",{className:"main-bg"},React.createElement("canvas",{id:"canvas",width:"500",height:"400"})),React.createElement("span",{className:"main-wrapper"},React.createElement("span",{className:"header bin-relative-block-wh-100"},React.createElement("span",{className:"header-nav c-pointer"},t),React.createElement("span",{className:"header-content home"+(this.state.menu[0].state?" active-content":"")},React.createElement("span",{className:"robins-content"},React.createElement("span",{className:"name-letters text-center"+(this.state.menu[0].state?" name-letters-active":"")}," KR "),React.createElement("span",{className:"name-letters2 text-center"+(this.state.menu[0].state?" name-letters-active":"")}," Kristoffer Robin "),React.createElement("span",{className:"name-letters2 text-center"+(this.state.menu[0].state?" name-letters-active":"")}," Canlas "),React.createElement("span",{className:"bin-relative-block-wh-100 header-desc-wrap"},React.createElement("p",{className:"header-desc text-center"+(this.state.menu[0].state?" name-letters-active":"")}," Hello!, I'm a Web Developer by day, Speedster and Photographer by night.")))),React.createElement("span",{className:"header-content information"+(this.state.menu[1].state?" active-content":"")},React.createElement("span",{className:"robins-content"},React.createElement("span",{className:"name-letters information-title text-center"+(this.state.menu[1].state?" name-letters-active":"")},"Hero for hire."),React.createElement("span",{className:"header-desc information-desc text-center"+(this.state.menu[1].state?" name-letters-active":"")},"Hello, my name is Kristoffer Robin Canlas, and I'm the fastest Web Developer alive! I started Web Development about 4 years ago and have enjoyed working in the internet industry. You can get in touch with me using my email address below.",React.createElement("br",null),React.createElement("br",null),React.createElement("br",null),"kristofferrobincanlas@gmail.com"))),React.createElement("span",{className:"header-content work"+(this.state.menu[2].state?" active-content":"")},n))))}}]),t}();ReactDOM.render(React.createElement(r,null),document.getElementById("root"))}});
->>>>>>> master
 //# sourceMappingURL=build.js.map
