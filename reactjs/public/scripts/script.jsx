@@ -53,6 +53,41 @@ class MainTemplate extends React.Component{
 		};
 
 		animate();
+
+		// LOGO CUBE
+
+		if(window.innerWidth > 799){
+			let scene = new THREE.Scene(),
+				camera = new THREE.PerspectiveCamera( 75, 100/100, 0.1, 1000 ),
+				renderer = new THREE.WebGLRenderer({canvas: document.getElementById('logo-canvas'), alpha: true});
+			
+			renderer.setSize( 100, 100 );
+			document.getElementById('main-logo-desktop').appendChild( renderer.domElement );
+
+			let geometry = new THREE.BoxGeometry( 2, 2, 2 );
+			for(let i = 0;i < geometry.faces.length;i++){
+				// geometry.faces[ 0 ].color.setHex( Math.random() * 0xffffff );
+				// geometry.faces[ 0 ].color.setRGB( 255, 0, 0 );
+				// geometry.faces[ 1 ].color.setRGB( 255, 0, 0 );
+			}
+			// let material = new THREE.MeshBasicMaterial( { color: 0xffffff, vertexColors: THREE.FaceColors } );;
+
+			let material = new THREE.MeshNormalMaterial();
+			let cube = new THREE.Mesh( geometry, material );
+			scene.add( cube );
+
+			camera.position.z = 4;
+
+			let animateLogo = function () {
+				requestAnimationFrame( animateLogo );
+				cube.rotation.x += 0.01;
+				cube.rotation.y += 0.01;
+
+				renderer.render(scene, camera);
+			};
+
+			animateLogo();
+		}
 	}
 
 	componentDidMount(){
@@ -171,8 +206,12 @@ class MainTemplate extends React.Component{
 					<label className='nav-checkbox-label c-pointer' htmlFor="nav-checkbox">
 						<span className='nav-checkbox-icon'></span>
 					</label>
-					<span className='main-header'>
-						<span className='main-logo-desktop'>KR</span>
+					<span className='main-header'>						
+						<span id='main-logo-desktop' className='main-logo-desktop'>
+							<span>KR</span>
+							<canvas id='logo-canvas' width='100' height='100'>
+							</canvas>
+						</span>
 						{title}
 					</span>
 						{

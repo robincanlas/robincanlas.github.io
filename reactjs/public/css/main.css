@@ -3,11 +3,11 @@
   display: none !important;
 }
 :root{
-	--default-gray: rgb(112,112,128);
-	--default-lightgray: rgb(171, 171, 171);
-	--default-black: rgb(36,36,36);
-	--default-white: #fff;
-	--default-gradientblack: #000000eb, #000000ad, #00000082;
+	--default-gray: hsl(240, 7%, 47%);
+    --default-lightgray: hsl(0, 0%, 67%);
+    --default-black: hsl(0, 0%, 14%);
+    --default-white: hsl(0, 0%, 100%);
+    --default-gradientblack: hsla(0, 0%, 0%, 0.9215686274509803), hsla(0, 0%, 0%, 0.6784313725490196), hsla(0, 0%, 0%, 0.5098039215686274);
 }
 
 @font-face {
@@ -42,7 +42,7 @@ h1, h2, h3, h4, h5, h6, p, strong{
 }
 
 .gray-bg{
-	background: rgb(112,112,128);
+	background: hsl(240, 7%, 47%);
 }
 .black-bg{
 	background: rgb(36,36,36);
@@ -237,6 +237,11 @@ h1, h2, h3, h4, h5, h6, p, strong{
 	.main-logo-desktop{
 	    display: grid;
 	    font-size: 30px;
+	    position: relative;
+	    color: hsla(0, 0%, 12%, 1);
+	}
+	.main-logo-desktop > span{
+		z-index: 2;
 	}
     .photo-column {
 		-ms-flex: 25%; /* IE10 */
@@ -244,5 +249,18 @@ h1, h2, h3, h4, h5, h6, p, strong{
 		max-width: 25%;
 		padding: 0 4px;        
     }
+	.nav-checkbox:checked ~ .main-header{
+		height: 100%;
+	} 
+	#logo-canvas{
+		position: absolute;
+		z-index: 1;
+		top: 50%;
+		left: 50%;
+		-webkit-transform: translate(-50%,-50%);
+		-ms-transform: translate(-50%,-50%);
+		-o-transform: translate(-50%,-50%);
+		transform: translate(-50%,-50%);
+	}
 }
 
