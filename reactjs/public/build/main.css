@@ -1,7 +1,4 @@
 /* CSS */
-[ng\:cloak], [ng-cloak], .ng-cloak {
-  display: none !important;
-}
 :root{
 	--default-gray: hsl(240, 7%, 47%);
     --default-lightgray: hsl(0, 0%, 67%);
@@ -22,10 +19,14 @@
 	font-family: 'roboto-regular';
 	src: local('roboto-regular'), url(fonts/Roboto-Regular.ttf) format('truetype');
 }
-
-html, body {
+html{
+	overflow-x: hidden;
+}
+html, 
+body {
 	height: 100%;
 	margin: 0;
+
 }
 body {
 	position: relative;
@@ -63,13 +64,14 @@ h1, h2, h3, h4, h5, h6, p, strong{
 
 .main-wrapper{
 	height: 100%;
+	width: 100vw;
 	display: grid;
 	grid-template-columns: 1fr;
 	grid-template-rows: 3rem auto 1fr;
 	position: relative;
-	width: 100%;
 	z-index: 99;
-	background: -webkit-linear-gradient(to bottom left, var(--default-gradientblack));
+    overflow: auto;
+	background: -moz-linear-gradient(to bottom left, var(--default-gradientblack));
 	background: -o-linear-gradient(to bottom left, var(--default-gradientblack));
 	background: linear-gradient(to bottom left, var(--default-gradientblack));
 }
@@ -196,30 +198,29 @@ h1, h2, h3, h4, h5, h6, p, strong{
 	display: none;
 }
 .photo-row{
-    display: -ms-flexbox; /* IE10 */
-    display: flex;
-    -ms-flex-wrap: wrap; /* IE10 */
-    flex-wrap: wrap;
     padding: 0 4px;
+	position: relative;
+	display: grid;
+	grid-template-rows: 1fr;
+	grid-template-columns: repeat(1, 1fr);
 }
 .photo-column{
-	-ms-flex: 100%;
-	flex: 100%;
 	max-width: 100%;
 }
 .photo-column img{
 	padding: 5px;
 }
 @media screen and (min-width: 600px) {
-	.photo-column {
-		-ms-flex: 50%;
-		flex: 50%;
-		max-width: 50%;
+	.photo-column{
+		display: grid;
+	}
+	.photo-row{
+		grid-template-columns: repeat(2, 1fr);
 	}
 }
 @media only screen and (min-width: 800px) {
 	.main-wrapper{
-		grid-template-rows: 60px auto;       
+		grid-template-rows: 60px auto;    
 	}
 	.main-header{
 		display: grid;
@@ -243,11 +244,15 @@ h1, h2, h3, h4, h5, h6, p, strong{
 	.main-logo-desktop > span{
 		z-index: 2;
 	}
+	.photo-row{	
+		grid-template-columns: repeat(4, 1fr);		
+	}
     .photo-column {
-		-ms-flex: 25%; /* IE10 */
-		flex: 25%;
-		max-width: 25%;
+    	display: block;
 		padding: 0 4px;        
+    }
+    .photo-column img{
+    	cursor: pointer;
     }
 	.nav-checkbox:checked ~ .main-header{
 		height: 100%;

@@ -9,7 +9,7 @@ class MainTemplate extends React.Component{
 		this.goToPage = this.goToPage.bind(this);
 		this.goToSite = this.goToSite.bind(this);
 		this.getActiveTemplate = this.getActiveTemplate.bind(this);
-
+		this.photographyPage = [];
 		this.state = {
 			menu : [
 				{title: 'HOME',link:'',state: true},
@@ -23,7 +23,8 @@ class MainTemplate extends React.Component{
 				{title: 'Poker', url: ''},
 				{title: 'Bandar', url: ''},
 				{title: 'Ceme', url: ''},
-			]
+			],
+			photos : []
 		}
 	}
 
@@ -59,7 +60,7 @@ class MainTemplate extends React.Component{
 		if(window.innerWidth > 799){
 			let scene = new THREE.Scene(),
 				camera = new THREE.PerspectiveCamera( 75, 100/100, 0.1, 1000 ),
-				renderer = new THREE.WebGLRenderer({canvas: document.getElementById('logo-canvas'), alpha: true});
+				renderer = new THREE.WebGLRenderer({'canvas': document.getElementById('logo-canvas'), 'alpha': true});
 			
 			renderer.setSize( 100, 100 );
 			document.getElementById('main-logo-desktop').appendChild( renderer.domElement );
@@ -91,13 +92,54 @@ class MainTemplate extends React.Component{
 	}
 
 	componentDidMount(){
+		fetch('https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=3e200ce8f71b3a3cb80fc8818b91590d&user_id=43569478%40N04&format=json&nojsoncallback=1&auth_token=72157669955105598-d7b163103b9cbd96&api_sig=35da0673a0cbe402a8b0c2e149c2014c')
+		.then(res => res.json())
+		.then((result) => {
+			if(result.stat === 'ok'){
+				let photos = result.photos.photo,
+					thisPhotos = [], 
+					photographyTemplate = [];
+				
+				for(let i = 0;i < photos.length;i++){
+					let obj = {};
+						obj.thumbnail = `https://farm${photos[i].farm}.staticflickr.com/${photos[i].server}/${photos[i].id}_${photos[i].secret}.jpg`;
+						obj.url = `https://farm${photos[i].farm}.staticflickr.com/${photos[i].server}/${photos[i].id}_${photos[i].secret}_b.jpg`;
+					thisPhotos.push(obj);
+				}
+
+				let photosPerColumn = thisPhotos.length/4;
+				for(let i = 1;i <= 4;i++){
+					let rows = [];
+					for(let o = Math.floor(photosPerColumn*(i-1));o < Math.floor(photosPerColumn*i);o++){
+						rows.push(
+							<img key={o} src={thisPhotos[o].thumbnail} style={{width: '100%'}} />
+						);
+					}	
+
+					let col = (
+						<div key={i} className='photo-column'>
+							{rows}
+						</div>
+					);
+					photographyTemplate.push(col);			
+				}
+
+				this.setState({photos: photographyTemplate});
+			}else{
+				console.log('API STATUS NOT OK');			
+			}
+		}, (error) => {
+			console.log('API ERROR', error)
+		});
 		// RESIZE [S]
 		this.createCube();
 		window.onresize = () => {
 			this.createCube();
 		}
 	}
-
+	componentDidUpdate(prevProps, prevState){
+		console.log('%c FLASH ', 'background: #800000; color: yellow; font-size: 12pt; font-family: "Comic Sans MS", cursive, sans-serif', prevState);
+	}
 	goToPage(index){
 		const menu = this.state.menu;
 		for(var i = 0;i < menu.length;i++){
@@ -128,47 +170,22 @@ class MainTemplate extends React.Component{
 				</span>
 			);
 		}else if(informationPage){
-
+			template = (
+				<span>
+					Hello, my name is Kristoffer Robin Canlas, and I'm the fastest Web Developer alive! I started Web Development about 4 years ago and have enjoyed working in the internet industry. You can get in touch with me using my email address below. 
+					<br/>
+					<br/>
+					<br/>
+					kristofferrobincanlas@gmail.com
+				</span>
+			);
 		}else if(workPage){
 
 		}else{
 			template = (
 				<React.Fragment>
 					<div className='photo-row'>
-						<div className='photo-column'>
-						    <img src="https://www.w3schools.com/w3images/wedding.jpg" style={{width: '100%'}} />
-						    <img src="https://www.w3schools.com/w3images/rocks.jpg" style={{width: '100%'}} />
-						    <img src="https://www.w3schools.com/w3images/falls2.jpg" style={{width: '100%'}} />
-						    <img src="https://www.w3schools.com/w3images/paris.jpg" style={{width: '100%'}} />
-						    <img src="https://www.w3schools.com/w3images/nature.jpg" style={{width: '100%'}} />
-						    <img src="https://www.w3schools.com/w3images/mist.jpg" style={{width: '100%'}} />
-						    <img src="https://www.w3schools.com/w3images/paris.jpg" style={{width: '100%'}} />
-						</div>
-						<div className="photo-column">
-							<img src="https://www.w3schools.com/w3images/underwater.jpg" style={{width: '100%'}} />
-							<img src="https://www.w3schools.com/w3images/ocean.jpg" style={{width: '100%'}} />
-							<img src="https://www.w3schools.com/w3images/wedding.jpg" style={{width: '100%'}} />
-							<img src="https://www.w3schools.com/w3images/mountainskies.jpg" style={{width: '100%'}} />
-							<img src="https://www.w3schools.com/w3images/rocks.jpg" style={{width: '100%'}} />
-							<img src="https://www.w3schools.com/w3images/underwater.jpg" style={{width: '100%'}} />
-						</div> 
-						<div className='photo-column'>
-						    <img src="https://www.w3schools.com/w3images/wedding.jpg" style={{width: '100%'}} />
-						    <img src="https://www.w3schools.com/w3images/rocks.jpg" style={{width: '100%'}} />
-						    <img src="https://www.w3schools.com/w3images/falls2.jpg" style={{width: '100%'}} />
-						    <img src="https://www.w3schools.com/w3images/paris.jpg" style={{width: '100%'}} />
-						    <img src="https://www.w3schools.com/w3images/nature.jpg" style={{width: '100%'}} />
-						    <img src="https://www.w3schools.com/w3images/mist.jpg" style={{width: '100%'}} />
-						    <img src="https://www.w3schools.com/w3images/paris.jpg" style={{width: '100%'}} />
-						</div>
-						<div className="photo-column">
-							<img src="https://www.w3schools.com/w3images/underwater.jpg" style={{width: '100%'}} />
-							<img src="https://www.w3schools.com/w3images/ocean.jpg" style={{width: '100%'}} />
-							<img src="https://www.w3schools.com/w3images/wedding.jpg" style={{width: '100%'}} />
-							<img src="https://www.w3schools.com/w3images/mountainskies.jpg" style={{width: '100%'}} />
-							<img src="https://www.w3schools.com/w3images/rocks.jpg" style={{width: '100%'}} />
-							<img src="https://www.w3schools.com/w3images/underwater.jpg" style={{width: '100%'}} />
-						</div> 
+						{this.state.photos}
 					</div>
 				</React.Fragment>
 			)
@@ -192,7 +209,6 @@ class MainTemplate extends React.Component{
 			);
 
 		});
-
 
 
 		return(
