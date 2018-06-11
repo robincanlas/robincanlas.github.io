@@ -106,6 +106,7 @@ h1, h2, h3, h4, h5, h6, p, strong{
     align-items: center;
     align-content: center;
     opacity: .6;
+    padding: 9px;
 }
 .main-body > span{
 	/*border: 1px solid red;*/
@@ -209,6 +210,31 @@ h1, h2, h3, h4, h5, h6, p, strong{
 }
 .photo-column img{
 	padding: 5px;
+}
+.information-wrapper{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 20em 3em;
+    grid-gap: 1em;
+    align-content: center;
+    justify-items: center;
+    opacity: .6;
+    line-height: 2.5em;
+}
+.information-intro,
+.information-email{
+	color: var(--default-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    width: 80%;
+    font-size: 1.4em;
+}
+.information-email{
+	font-size: 1em;	
+    font-family: roboto-light;
 }
 @media screen and (min-width: 600px) {
 	.photo-column{

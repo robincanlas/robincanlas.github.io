@@ -2,14 +2,14 @@
 import {Main} from './classes'
 import styles from '../css/main.css'
 
-
 class MainTemplate extends React.Component{
 	constructor(props){
 		super(props);
 		this.goToPage = this.goToPage.bind(this);
 		this.goToSite = this.goToSite.bind(this);
 		this.getActiveTemplate = this.getActiveTemplate.bind(this);
-		this.photographyPage = [];
+		this.fetchPhotos = this.fetchPhotos.bind(this);
+
 		this.state = {
 			menu : [
 				{title: 'HOME',link:'',state: true},
@@ -90,9 +90,8 @@ class MainTemplate extends React.Component{
 			animateLogo();
 		}
 	}
-
-	componentDidMount(){
-		fetch('https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=3e200ce8f71b3a3cb80fc8818b91590d&user_id=43569478%40N04&format=json&nojsoncallback=1&auth_token=72157669955105598-d7b163103b9cbd96&api_sig=35da0673a0cbe402a8b0c2e149c2014c')
+	fetchPhotos(){
+		fetch('https://api.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=1bebc2dcb88a22bf64c2e90eb20dd3e5&user_id=43569478%40N04&format=json&nojsoncallback=1')
 		.then(res => res.json())
 		.then((result) => {
 			if(result.stat === 'ok'){
@@ -131,8 +130,11 @@ class MainTemplate extends React.Component{
 		}, (error) => {
 			console.log('API ERROR', error)
 		});
-		// RESIZE [S]
+	}
+	componentDidMount(){
+		this.fetchPhotos();
 		this.createCube();
+		// RESIZE [S]
 		window.onresize = () => {
 			this.createCube();
 		}
@@ -171,12 +173,13 @@ class MainTemplate extends React.Component{
 			);
 		}else if(informationPage){
 			template = (
-				<span>
-					Hello, my name is Kristoffer Robin Canlas, and I'm the fastest Web Developer alive! I started Web Development about 4 years ago and have enjoyed working in the internet industry. You can get in touch with me using my email address below. 
-					<br/>
-					<br/>
-					<br/>
-					kristofferrobincanlas@gmail.com
+				<span className='information-wrapper'>
+					<span className='information-intro'>
+						Hello, my name is Kristoffer Robin Canlas, and I'm the fastest Web Developer alive! I started Web Development around 2014. You can contact me using my contact number and email address below.
+					</span>
+					<span className='information-email'>
+						+63906-4636-752 | kristofferrobincanlas@gmail.com
+					</span>
 				</span>
 			);
 		}else if(workPage){
