@@ -9,13 +9,16 @@ class MainTemplate extends React.Component{
 		this.goToSite = this.goToSite.bind(this);
 		this.getActiveTemplate = this.getActiveTemplate.bind(this);
 		this.fetchPhotos = this.fetchPhotos.bind(this);
+		this.openPhoto = this.openPhoto.bind(this);
+		this.loadq = new createjs.LoadQueue(true, null, true);
+		this.loadq.setMaxConnections(10);
 
 		this.state = {
 			menu : [
-				{title: 'HOME',link:'',state: true},
+				{title: 'HOME',link:'',state: false},
 				{title: 'INFORMATION',link:'',state: false},
 				{title: 'WORK',link:'',state: false},
-				{title: 'PHOTOGRAPHY',link:'',state: false},
+				{title: 'PHOTOGRAPHY',link:'',state: true},
 			],
 			work : [
 				{title: 'PamanGoken', url: 'https://www.pamangoken.com'},
@@ -24,7 +27,9 @@ class MainTemplate extends React.Component{
 				{title: 'Bandar', url: ''},
 				{title: 'Ceme', url: ''},
 			],
-			photos : []
+			originalPhotos : [],
+			photos : [],
+			photoLoading : true,
 		}
 	}
 
@@ -101,29 +106,42 @@ class MainTemplate extends React.Component{
 				
 				for(let i = 0;i < photos.length;i++){
 					let obj = {};
-						obj.thumbnail = `https://farm${photos[i].farm}.staticflickr.com/${photos[i].server}/${photos[i].id}_${photos[i].secret}.jpg`;
+						obj.index = i;
+						obj.thumbnail = `https://farm${photos[i].farm}.staticflickr.com/${photos[i].server}/${photos[i].id}_${photos[i].secret}_z.jpg`;
 						obj.url = `https://farm${photos[i].farm}.staticflickr.com/${photos[i].server}/${photos[i].id}_${photos[i].secret}_b.jpg`;
+						obj.src = `https://farm${photos[i].farm}.staticflickr.com/${photos[i].server}/${photos[i].id}_${photos[i].secret}_b.jpg`;
 					thisPhotos.push(obj);
 				}
 
-				let photosPerColumn = thisPhotos.length/4;
-				for(let i = 1;i <= 4;i++){
-					let rows = [];
-					for(let o = Math.floor(photosPerColumn*(i-1));o < Math.floor(photosPerColumn*i);o++){
-						rows.push(
-							<img key={o} src={thisPhotos[o].thumbnail} style={{width: '100%'}} />
+				this.loadq.loadManifest(thisPhotos);
+				this.loadq.addEventListener('complete', () => {
+					let photosPerColumn = thisPhotos.length/4;
+					for(let i = 1;i <= 4;i++){
+						let rows = [];
+						for(let o = Math.floor(photosPerColumn*(i-1));o < Math.floor(photosPerColumn*i);o++){
+							rows.push(
+								<img className='photo' key={o} src={thisPhotos[o].thumbnail} style={{width: '100%'}} onClick={() => this.openPhoto(thisPhotos[o].index)} />
+							);
+						}	
+
+						let col = (
+							<div key={i} className='photo-column'>
+								{rows}
+							</div>
 						);
-					}	
+						photographyTemplate.push(col);			
+					}
 
-					let col = (
-						<div key={i} className='photo-column'>
-							{rows}
-						</div>
-					);
-					photographyTemplate.push(col);			
-				}
+					this.setState({
+						originalPhotos: thisPhotos,
+						photos: photographyTemplate,
+						photoLoading: false
+					});
+				});
 
-				this.setState({photos: photographyTemplate});
+				this.loadq.addEventListener('error', () => {
+					console.log('%c FLASH ', 'background: #800000; color: yellow; font-size: 12pt; font-family: "Comic Sans MS", cursive, sans-serif', 'error');		
+				});
 			}else{
 				console.log('API STATUS NOT OK');			
 			}
@@ -133,14 +151,17 @@ class MainTemplate extends React.Component{
 	}
 	componentDidMount(){
 		this.fetchPhotos();
-		this.createCube();
+		// this.createCube();
 		// RESIZE [S]
 		window.onresize = () => {
 			this.createCube();
 		}
 	}
 	componentDidUpdate(prevProps, prevState){
-		console.log('%c FLASH ', 'background: #800000; color: yellow; font-size: 12pt; font-family: "Comic Sans MS", cursive, sans-serif', prevState);
+
+	}
+	openPhoto(index){
+		console.log('%c FLASH ', 'background: #800000; color: yellow; font-size: 12pt; font-family: "Comic Sans MS", cursive, sans-serif', this.state.originalPhotos[index]);		
 	}
 	goToPage(index){
 		const menu = this.state.menu;
@@ -187,9 +208,17 @@ class MainTemplate extends React.Component{
 		}else{
 			template = (
 				<React.Fragment>
+				{
+					this.state.photoLoading 
+					? 
+					<span className='hourglass-wrapper'>
+						<div className='hourglass'></div> 					
+					</span>
+					: 
 					<div className='photo-row'>
 						{this.state.photos}
 					</div>
+				}
 				</React.Fragment>
 			)
 		}
@@ -198,10 +227,8 @@ class MainTemplate extends React.Component{
 		return template;
 	}
 
-	render(){
-		const work = this.state.work;
-
-		const title = this.state.menu.map((value, index) => {
+	getTitle(){
+		return this.state.menu.map((value, index) => {
 			let menuClassNames = 'header-btns left text-center c-pointer'
 			if(value.state) menuClassNames += ' color-white'
 
@@ -211,7 +238,11 @@ class MainTemplate extends React.Component{
 				</label>
 			);
 
-		});
+		});		
+	}
+
+	render(){
+		const work = this.state.work;
 
 
 		return(
@@ -231,7 +262,7 @@ class MainTemplate extends React.Component{
 							<canvas id='logo-canvas' width='100' height='100'>
 							</canvas>
 						</span>
-						{title}
+						{this.getTitle()}
 					</span>
 						{
 							this.getActiveTemplate()
