@@ -1,5 +1,6 @@
 /* CSS */
 @import url("./default.css");
+@import url("./loading.css");
 @import url("./imageloader.css");
 
 #canvas{
@@ -8,7 +9,9 @@
 	z-index: 2;
 	top: 0;
 }
-
+label{
+	cursor: pointer;
+}
 .main-wrapper{
 	height: 100%;
 	width: 100vw;
@@ -54,9 +57,6 @@
     align-content: center;
     opacity: .6;
     padding: 9px;
-}
-.main-body > span{
-	/*border: 1px solid red;*/
 }
 .nav-checkbox{
 	display: none;

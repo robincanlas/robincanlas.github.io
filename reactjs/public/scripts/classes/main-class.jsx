@@ -1,5 +1,6 @@
 class Main{
 	constructor(){
+		this.loading = true;
 		this.menu = [
 			{title: 'HOME',link:'',state: true},
 			{title: 'INFORMATION',link:'',state: false},
@@ -9,6 +10,10 @@ class Main{
 		this.work = [
 
 		];
+	}
+	loadingFinish(callback){
+		this.loading = false;
+		callback();
 	}
 }
 

@@ -1,6 +1,7 @@
 
 // COMPONENTS
-import PhotographyComponent from './components/photography-component'
+import PhotographyComponent from './components/photography-component';
+import LoadingComponent from './components/loading-component';
 
 // CLASSES
 import PhotoClass from './classes/photo-class';
@@ -17,7 +18,10 @@ class MainTemplate extends React.Component{
 		this.openPhoto = this.openPhoto.bind(this);
 		this.PhotoClass = new PhotoClass();
 		this.MainClass = new MainClass();
-		this.loadq = new createjs.LoadQueue(false, null, true);
+		this.loadq = new createjs.LoadQueue(true, null, true); 
+		this.renderer = null;
+		this.camera = null;
+		// this.loadq = new createjs.LoadQueue(false, null, true); //change to this one if you will use the image src
 		this.loadq.setMaxConnections(10);
 
 		this.state = {
@@ -30,64 +34,71 @@ class MainTemplate extends React.Component{
 	createCube(){
 		// CUBE [S]
 		let scene = new THREE.Scene();
-		let camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
-		let renderer = new THREE.WebGLRenderer({canvas: document.getElementById('canvas')});
+		this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+		this.renderer = new THREE.WebGLRenderer({canvas: document.getElementById('canvas')});
 		scene.background = new THREE.Color('rgb(116,119,124)');
 
-		renderer.setSize( window.innerWidth, window.innerHeight );
-		document.body.appendChild( renderer.domElement );
+		this.renderer.setSize( window.innerWidth, window.innerHeight );
+		document.body.appendChild( this.renderer.domElement );
 
 		let geometry = new THREE.BoxGeometry( 2, 2, 2 );
 		let material = new THREE.MeshNormalMaterial();
 		let cube = new THREE.Mesh( geometry, material );
 		scene.add( cube );
 
-		camera.position.z = 5;
+		this.camera.position.z = 5;
 
-		let animate = function () {
+		let animate = () => {
 			requestAnimationFrame( animate );
+			cube.rotation.x += 0.01;
+			cube.rotation.y += 0.01;
+
+			this.renderer.render(scene, this.camera);
+		};
+
+		animate();
+
+		// LOGO CUBE
+		if(window.innerWidth > 799){
+			this.createLogoCube();
+		}
+	}
+	createLogoCube(){
+		let scene = new THREE.Scene(),
+			camera = new THREE.PerspectiveCamera( 75, 100/100, 0.1, 1000 ),
+			renderer = new THREE.WebGLRenderer({'canvas': document.getElementById('logo-canvas'), 'alpha': true});
+		
+		renderer.setSize( 100, 100 );
+		document.getElementById('main-logo-desktop').appendChild( renderer.domElement );
+
+		let geometry = new THREE.BoxGeometry( 2, 2, 2 );
+		for(let i = 0;i < geometry.faces.length;i++){
+			// geometry.faces[ 0 ].color.setHex( Math.random() * 0xffffff );
+			// geometry.faces[ 0 ].color.setRGB( 255, 0, 0 );
+			// geometry.faces[ 1 ].color.setRGB( 255, 0, 0 );
+		}
+		// let material = new THREE.MeshBasicMaterial( { color: 0xffffff, vertexColors: THREE.FaceColors } );;
+
+		let material = new THREE.MeshNormalMaterial();
+		let cube = new THREE.Mesh( geometry, material );
+		scene.add( cube );
+
+		camera.position.z = 4;
+
+		let animateLogo = () => {
+			requestAnimationFrame( animateLogo );
 			cube.rotation.x += 0.01;
 			cube.rotation.y += 0.01;
 
 			renderer.render(scene, camera);
 		};
 
-		animate();
-
-		// LOGO CUBE
-
-		if(window.innerWidth > 799){
-			let scene = new THREE.Scene(),
-				camera = new THREE.PerspectiveCamera( 75, 100/100, 0.1, 1000 ),
-				renderer = new THREE.WebGLRenderer({'canvas': document.getElementById('logo-canvas'), 'alpha': true});
-			
-			renderer.setSize( 100, 100 );
-			document.getElementById('main-logo-desktop').appendChild( renderer.domElement );
-
-			let geometry = new THREE.BoxGeometry( 2, 2, 2 );
-			for(let i = 0;i < geometry.faces.length;i++){
-				// geometry.faces[ 0 ].color.setHex( Math.random() * 0xffffff );
-				// geometry.faces[ 0 ].color.setRGB( 255, 0, 0 );
-				// geometry.faces[ 1 ].color.setRGB( 255, 0, 0 );
-			}
-			// let material = new THREE.MeshBasicMaterial( { color: 0xffffff, vertexColors: THREE.FaceColors } );;
-
-			let material = new THREE.MeshNormalMaterial();
-			let cube = new THREE.Mesh( geometry, material );
-			scene.add( cube );
-
-			camera.position.z = 4;
-
-			let animateLogo = function () {
-				requestAnimationFrame( animateLogo );
-				cube.rotation.x += 0.01;
-				cube.rotation.y += 0.01;
-
-				renderer.render(scene, camera);
-			};
-
-			animateLogo();
-		}
+		animateLogo();
+	}
+	resizeCube(){
+		this.camera.aspect = window.innerWidth / window.innerHeight;
+		this.camera.updateProjectionMatrix();
+		this.renderer.setSize( window.innerWidth, window.innerHeight );
 	}
 	fetchPhotos(){
 		fetch('https://api.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=1bebc2dcb88a22bf64c2e90eb20dd3e5&user_id=43569478%40N04&format=json&nojsoncallback=1')
@@ -101,6 +112,7 @@ class MainTemplate extends React.Component{
 				
 				for(let i = 0;i < photos.length;i++){
 					let obj = {};
+						obj.id = i;
 						obj.index = i;
 						obj.thumbnail = `https://farm${photos[i].farm}.staticflickr.com/${photos[i].server}/${photos[i].id}_${photos[i].secret}_z.jpg`;
 						obj.url = `https://farm${photos[i].farm}.staticflickr.com/${photos[i].server}/${photos[i].id}_${photos[i].secret}_b.jpg`;
@@ -130,9 +142,17 @@ class MainTemplate extends React.Component{
 					this.PhotoClass.updatePhotos(photographyTemplate, () => {
 						this.PhotoClass.updateOriginalPhotos(thisPhotos, () => {
 							this.PhotoClass.updatePhotoLoading(false, () => {
-								this.setState({
-									updatePhotoLoading: this.state.updatePhotos+=1,
-									updatePhotos: this.state.updatePhotos+=1
+								this.MainClass.loadingFinish(() => {
+									this.setState({
+										updatePhotoLoading: this.state.updatePhotos+=1,
+										updatePhotos: this.state.updatePhotos+=1
+									}, () => {
+										this.createCube();
+										// RESIZE [S]
+										window.onresize = () => {
+											this.resizeCube();
+										}
+									});
 								});
 							});
 							
@@ -153,11 +173,6 @@ class MainTemplate extends React.Component{
 	}
 	componentDidMount(){
 		this.fetchPhotos();
-		this.createCube();
-		// RESIZE [S]
-		window.onresize = () => {
-			this.createCube();
-		}
 	}
 	componentDidUpdate(prevProps, prevState){
 
@@ -237,25 +252,31 @@ class MainTemplate extends React.Component{
 			<React.Fragment>
 				<span className='main-bg'>
 					<canvas id='canvas' width='500' height='400'></canvas>	
-					
 				</span>
-				<span className='main-wrapper'>
-					<input type="checkbox" id='nav-checkbox' className='nav-checkbox'/>
-					<label className='nav-checkbox-label c-pointer' htmlFor="nav-checkbox">
-						<span className='nav-checkbox-icon'></span>
-					</label>
-					<span className='main-header'>						
-						<span id='main-logo-desktop' className='main-logo-desktop'>
-							<span>KR</span>
-							<canvas id='logo-canvas' width='100' height='100'>
-							</canvas>
+				{
+					this.MainClass.loading
+					?
+					<LoadingComponent />
+					:
+					<span className='main-wrapper'>
+						<input type="checkbox" id='nav-checkbox' className='nav-checkbox'/>
+						<label className='nav-checkbox-label c-pointer' htmlFor="nav-checkbox">
+							<span className='nav-checkbox-icon'></span>
+						</label>
+						<span className='main-header'>						
+							<span id='main-logo-desktop' className='main-logo-desktop'>
+								<span>KR</span>
+								<canvas id='logo-canvas' width='100' height='100'>
+								</canvas>
+							</span>
+							{this.getTitle()}
 						</span>
-						{this.getTitle()}
+							{
+								this.getActiveTemplate()
+							}
 					</span>
-						{
-							this.getActiveTemplate()
-						}
-				</span>
+					
+				}
 			</React.Fragment>
 		)
 	}

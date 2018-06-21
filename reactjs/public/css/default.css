@@ -4,6 +4,7 @@
     --default-black: hsl(0, 0%, 14%);
     --default-white: hsl(0, 0%, 100%);
     --default-gradientblack: hsla(0, 0%, 0%, 0.9215686274509803), hsla(0, 0%, 0%, 0.6784313725490196), hsla(0, 0%, 0%, 0.5098039215686274);
+    --default-radialgradientblack: hsl(0, 0%, 25%),hsl(0, 0%, 19%),hsl(0, 0%, 12%);
 }
 
 @font-face {
