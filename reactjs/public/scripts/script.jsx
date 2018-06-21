@@ -1,35 +1,29 @@
 
-import {Main} from './classes'
-import styles from '../css/main.css'
+// COMPONENTS
+import PhotographyComponent from './components/photography-component'
+
+// CLASSES
+import PhotoClass from './classes/photo-class';
+import MainClass from './classes/main-class';
+// STYLES
+import styles from '../css/main.css';
 
 class MainTemplate extends React.Component{
 	constructor(props){
 		super(props);
 		this.goToPage = this.goToPage.bind(this);
-		this.goToSite = this.goToSite.bind(this);
 		this.getActiveTemplate = this.getActiveTemplate.bind(this);
 		this.fetchPhotos = this.fetchPhotos.bind(this);
 		this.openPhoto = this.openPhoto.bind(this);
-		this.loadq = new createjs.LoadQueue(true, null, true);
+		this.PhotoClass = new PhotoClass();
+		this.MainClass = new MainClass();
+		this.loadq = new createjs.LoadQueue(false, null, true);
 		this.loadq.setMaxConnections(10);
 
 		this.state = {
-			menu : [
-				{title: 'HOME',link:'',state: false},
-				{title: 'INFORMATION',link:'',state: false},
-				{title: 'WORK',link:'',state: false},
-				{title: 'PHOTOGRAPHY',link:'',state: true},
-			],
-			work : [
-				{title: 'PamanGoken', url: 'https://www.pamangoken.com'},
-				{title: 'GelandangBola', url: 'https://www.gelandangbola.com'},
-				{title: 'Poker', url: ''},
-				{title: 'Bandar', url: ''},
-				{title: 'Ceme', url: ''},
-			],
-			originalPhotos : [],
-			photos : [],
-			photoLoading : true,
+			updatePhotos: 0,
+			updateMenu: 0,
+			updatePhotoLoading: 0
 		}
 	}
 
@@ -100,6 +94,7 @@ class MainTemplate extends React.Component{
 		.then(res => res.json())
 		.then((result) => {
 			if(result.stat === 'ok'){
+
 				let photos = result.photos.photo,
 					thisPhotos = [], 
 					photographyTemplate = [];
@@ -132,11 +127,18 @@ class MainTemplate extends React.Component{
 						photographyTemplate.push(col);			
 					}
 
-					this.setState({
-						originalPhotos: thisPhotos,
-						photos: photographyTemplate,
-						photoLoading: false
+					this.PhotoClass.updatePhotos(photographyTemplate, () => {
+						this.PhotoClass.updateOriginalPhotos(thisPhotos, () => {
+							this.PhotoClass.updatePhotoLoading(false, () => {
+								this.setState({
+									updatePhotoLoading: this.state.updatePhotos+=1,
+									updatePhotos: this.state.updatePhotos+=1
+								});
+							});
+							
+						})
 					});
+
 				});
 
 				this.loadq.addEventListener('error', () => {
@@ -151,7 +153,7 @@ class MainTemplate extends React.Component{
 	}
 	componentDidMount(){
 		this.fetchPhotos();
-		// this.createCube();
+		this.createCube();
 		// RESIZE [S]
 		window.onresize = () => {
 			this.createCube();
@@ -161,27 +163,39 @@ class MainTemplate extends React.Component{
 
 	}
 	openPhoto(index){
-		console.log('%c FLASH ', 'background: #800000; color: yellow; font-size: 12pt; font-family: "Comic Sans MS", cursive, sans-serif', this.state.originalPhotos[index]);		
+		this.PhotoClass.openThisPhoto(index, (thisPhoto) => {
+			console.log('%c FLASH ', 'background: #800000; color: yellow; font-size: 12pt; font-family: "Comic Sans MS", cursive, sans-serif', thisPhoto);		
+		});	
 	}
 	goToPage(index){
-		const menu = this.state.menu;
+		const menu = this.MainClass.menu;
 		for(var i = 0;i < menu.length;i++){
 			menu[i].state = false;
 			if(i === index) menu[i].state = true;
 		}
 
-		this.setState({menu: menu})
+		this.setState({updateMenu: this.state.updateMenu += 1});
 	}
 
-	goToSite(url){
-		console.log('%c FLASH ', 'background: #800000; color: yellow; font-size: 12pt; font-family: "Comic Sans MS", cursive, sans-serif', url);
+	getTitle(){
+		return this.MainClass.menu.map((value, index) => {
+			let menuClassNames = 'header-btns left text-center c-pointer'
+			if(value.state) menuClassNames += ' color-white'
+
+			return(
+				<label key={index} htmlFor="nav-checkbox">
+					<span onClick={() => this.goToPage(index)} className={menuClassNames}>{value.title}</span>
+				</label>
+			);
+
+		});		
 	}
 
 	getActiveTemplate(){
-		let homePage = this.state.menu[0].state,
-			informationPage = this.state.menu[1].state,
-			workPage = this.state.menu[2].state,
-			photographyPage = this.state.menu[3].state,
+		let homePage = this.MainClass.menu[0].state,
+			informationPage = this.MainClass.menu[1].state,
+			workPage = this.MainClass.menu[2].state,
+			photographyPage = this.MainClass.menu[3].state,
 			template = void 0;
 
 		if(homePage){
@@ -207,38 +221,12 @@ class MainTemplate extends React.Component{
 
 		}else{
 			template = (
-				<React.Fragment>
-				{
-					this.state.photoLoading 
-					? 
-					<span className='hourglass-wrapper'>
-						<div className='hourglass'></div> 					
-					</span>
-					: 
-					<div className='photo-row'>
-						{this.state.photos}
-					</div>
-				}
-				</React.Fragment>
+				<PhotographyComponent photoLoading={this.PhotoClass.photoLoading} photos={this.PhotoClass.photos}/>
 			)
 		}
 
 
 		return template;
-	}
-
-	getTitle(){
-		return this.state.menu.map((value, index) => {
-			let menuClassNames = 'header-btns left text-center c-pointer'
-			if(value.state) menuClassNames += ' color-white'
-
-			return(
-				<label key={index} htmlFor="nav-checkbox">
-					<span onClick={() => this.goToPage(index)} className={menuClassNames}>{value.title}</span>
-				</label>
-			);
-
-		});		
 	}
 
 	render(){
@@ -274,28 +262,6 @@ class MainTemplate extends React.Component{
 
 }
 
-
-class WorkTemplate extends React.Component{
-	constructor(props){
-		super(props);
-	}
-
-	render(){
-		let workPage = this.props.workPage;
-
-		const work = this.props.work.map((value, index) => {
-			return <span onClick={() => this.props.goToSite(value.url)} className='color-white work-container' key={index}>{value.title}</span>
-		});
-
-		return(
-			<React.Fragment>
-				<span className={"header-content work" + (workPage ? ' active-content' : '')}>
-					{work}						
-				</span>
-			</React.Fragment>
-		);
-	}
-}
 
 ReactDOM.render(
 	<MainTemplate/>,
