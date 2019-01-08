@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[
-console.log('%c FLASH ', 'background: #800000; color: yellow; font-size: 12pt; font-family: "Comic Sans MS", cursive, sans-serif', ${1:kimochi!!});		
+console.log('%c ⚡ FLASH ', 'background: #800000; color: yellow; font-size: 12pt; font-family: "Comic Sans MS", cursive, sans-serif', ${1:kimochi!!});		
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>cl;</tabTrigger>
