@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 
 import { store } from './helpers'
-import { App } from './App/App'
+import { App } from './containers/App'
 
 import { configureFakeBackend } from './helpers'
 
