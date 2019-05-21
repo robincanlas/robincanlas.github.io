@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import { userActions } from '../../actions'
 
@@ -41,6 +42,17 @@ class HomePage extends React.Component {
             </div>
         )
     }
+}
+
+HomePage.propTypes = {
+    user: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        username: PropTypes.string.isRequired,
+        firstName: PropTypes.string.isRequired,
+        lastName: PropTypes.string.isRequired,
+        token: PropTypes.string.isRequired
+    }).isRequired,
+    users: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => {

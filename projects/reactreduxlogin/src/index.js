@@ -6,7 +6,6 @@ import { store } from './helpers'
 import { App } from './containers/App'
 
 import { configureFakeBackend } from './helpers'
-
 configureFakeBackend()
 
 render(

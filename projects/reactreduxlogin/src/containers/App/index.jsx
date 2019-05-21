@@ -1,6 +1,7 @@
 import React from 'react'
 import { Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import { history } from '../../helpers'
 import { alertActions } from '../../actions'
@@ -40,6 +41,13 @@ class App extends React.Component {
             </div>
         )
     }
+}
+
+App.propTypes = {
+    alert: PropTypes.shape({
+        message: PropTypes.string,
+        type: PropTypes.string
+    })
 }
 
 const mapStateToProps = (state) => {
