@@ -73,7 +73,6 @@ const getAll = () =>{
 const _delete = (id) => {
     return dispatch => {
         dispatch(request(id))
-
         userService.delete(id)
             .then(
                 user => dispatch(success(id)),
@@ -82,7 +81,7 @@ const _delete = (id) => {
     }
 
     function request(id) { return { type: userConstants.DELETE_REQUEST, id } }
-    function success(id) { return { type: userConstants.DELETE_REQUEST, id } }
+    function success(id) { return { type: userConstants.DELETE_SUCCESS, id } }
     function failure(id, error) { return { type: userConstants.DELETE_FAILURE, id, error}}
 }
 

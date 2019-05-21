@@ -45,7 +45,7 @@ const getById = (id) => {
 const register = (user) => {
     const requestOptions = {
         method: 'POST',
-        header: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user)
     }
 
@@ -56,7 +56,7 @@ const register = (user) => {
 const update = (user) => {
     const requestOptions = {
         method: 'PUT',
-        header: { ...authHeader(), 'Content-Type': 'application/json' },
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
         body: JSON.stringify(user)
     }
 
@@ -66,7 +66,7 @@ const update = (user) => {
 const _delete = (id) => {
     const requestOptions = {
         method: 'DELETE',
-        header: authHeader()
+        headers: authHeader()
     }
 
     return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse)
