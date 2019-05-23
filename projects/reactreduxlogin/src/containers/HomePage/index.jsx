@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { HeaderPage } from '../HeaderPage';
 import { userActions } from '../../actions';
 
 class HomePage extends React.Component {
@@ -18,8 +17,7 @@ class HomePage extends React.Component {
     render() {
         const { users } = this.props
         return (
-            <React.Fragment>       
-                <HeaderPage />
+            <React.Fragment>
                 <div className="col-md-6 col-md-offset-3">
                     <p>You're logged in with React!!</p>
                     <h3>All registered users:</h3>
@@ -49,13 +47,6 @@ class HomePage extends React.Component {
 }
 
 HomePage.propTypes = {
-    user: PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        username: PropTypes.string.isRequired,
-        firstName: PropTypes.string.isRequired,
-        lastName: PropTypes.string.isRequired,
-        token: PropTypes.string.isRequired
-    }).isRequired,
     users: PropTypes.object.isRequired
 }
 

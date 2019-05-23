@@ -1,14 +1,15 @@
-import React from 'react'
-import { Router, Route } from 'react-router-dom'
-import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
+import React from 'react';
+import { Router, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import { history } from '../../helpers'
-import { alertActions } from '../../actions'
-import { PrivateRoute } from '../../components/PrivateRoute'
-import { HomePage} from '../HomePage'
-import { LoginPage } from '../LoginPage'
-import { RegisterPage } from '../RegisterPage'
+import { history } from '../../helpers';
+import { alertActions } from '../../actions';
+import { PrivateRoute } from '../../components/PrivateRoute';
+import { HomePage} from '../HomePage';
+import { LoginPage } from '../LoginPage';
+import { RegisterPage } from '../RegisterPage';
+import { ComicPage } from '../ComicPage';
 
 class App extends React.Component {
     constructor(props) {
@@ -32,6 +33,7 @@ class App extends React.Component {
                         <Router history={history}>
                             <div>
                                 <PrivateRoute exact path="/" component={HomePage} />
+                                <PrivateRoute path="/comics" component={ComicPage} />
                                 <Route path="/login" component={LoginPage} />
                                 <Route path="/register" component={RegisterPage} />
                             </div>

@@ -1,12 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 
 class HeaderPage extends React.Component {
     render() {
         const { user } = this.props;
+        console.log(this.props);
         return (
             <React.Fragment>
-                <span></span>
+                <Link to="/">Home</Link>
+                <Link to="/comics">Comics</Link>
                 <h1>HELLO {user.firstName}!</h1>
             </React.Fragment>
         );

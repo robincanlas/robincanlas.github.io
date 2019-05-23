@@ -1,0 +1,7 @@
+[
+    {"id": 1, "title": "Flashpoint Paradox", "price": 500.01, "inventory": 2},
+    {"id": 2, "title": "Justice", "price": 10.99, "inventory": 10},
+    {"id": 3, "title": "Marvels", "price": 19.99, "inventory": 5},
+    {"id": 4, "title": "The Killing Joke", "price": 11.99, "inventory": 3}
+]
+  

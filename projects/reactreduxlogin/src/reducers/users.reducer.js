@@ -26,7 +26,7 @@ export const users = (state ={}, action) => {
             }
         case userConstants.DELETE_SUCCESS:
             return {
-                // ...state,
+                ...state,
                 items: state.items.filter(user => user.id !== action.id)
             }
         case userConstants.DELETE_FAILURE:
