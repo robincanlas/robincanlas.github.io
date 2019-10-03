@@ -1,11 +1,11 @@
-class Main{
+export class MainClass {
 	constructor(){
 		this.loading = true;
 		this.menu = [
-			{title: 'HOME',link:'',state: true},
-			{title: 'INFORMATION',link:'',state: false},
-			{title: 'WORK',link:'',state: false},
-			{title: 'PHOTOGRAPHY',link:'',state: false},
+			{title: 'HOME',link:''},
+			{title: 'INFORMATION',link:''},
+			{title: 'WORK',link:''},
+			{title: 'PHOTOGRAPHY',link:''},
 		];
 		this.work = [
 
@@ -16,5 +16,3 @@ class Main{
 		callback();
 	}
 }
-
-export default Main;

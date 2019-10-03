@@ -1,4 +1,4 @@
-export default class HomeComponent extends React.Component{
+export class HomeComponent extends React.Component{
 	constructor(props){
 		super(props);
 

@@ -1,4 +1,4 @@
-export default class InformationComponent extends React.Component{
+export class InformationComponent extends React.Component{
 	constructor(props){
 		super(props);
 

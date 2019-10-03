@@ -1,4 +1,4 @@
-export default class PhotographyComponent extends React.Component{
+export class PhotographyComponent extends React.Component{
 	constructor(props){
 		super(props);
 

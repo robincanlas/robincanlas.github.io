@@ -1,15 +1,23 @@
-// COMPONENTS
-import HomeComponent from './components/home-component';
-import InformationComponent from './components/information-component';
-import WorkComponent from './components/work-component';
-import PhotographyComponent from './components/photography-component';
-import LoadingComponent from './components/loading-component';
-
+import { 
+  LoadingComponent,
+  HomeComponent,
+  InformationComponent,
+  WorkComponent,
+  PhotographyComponent
+} from './components';
 // CLASSES
-import PhotoClass from './classes/photo-class';
-import MainClass from './classes/main-class';
+import { MainClass, PhotoClass } from './classes';
 // STYLES
 import styles from '../css/main.css';
+// API
+import { Photos } from './api';
+
+const Page = {
+  'Home': 0,
+  'Information': 1,
+  'Work': 2,
+  'Photo': 3
+}
 
 class MainTemplate extends React.Component{
 	constructor(props){
@@ -29,7 +37,8 @@ class MainTemplate extends React.Component{
 		this.state = {
 			updatePhotos: 0,
 			updateMenu: 0,
-			updatePhotoLoading: 0
+      updatePhotoLoading: 0,
+      page: Page.Home
 		}
 	}
 
@@ -102,79 +111,69 @@ class MainTemplate extends React.Component{
 		this.camera.updateProjectionMatrix();
 		this.renderer.setSize( window.innerWidth, window.innerHeight );
 	}
-	fetchPhotos(){
-		fetch('https://api.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=1bebc2dcb88a22bf64c2e90eb20dd3e5&user_id=43569478%40N04&format=json&nojsoncallback=1')
-		.then(res => res.json())
-		.then((result) => {
-			if(result.stat === 'ok'){
+	fetchPhotos() {
+    Photos.get((photos) => {
+      let thisPhotos = [], 
+      photographyTemplate = [];
 
-				let photos = result.photos.photo,
-					thisPhotos = [], 
-					photographyTemplate = [];
-				
-				for(let i = 0;i < photos.length;i++){
-					let obj = {};
-						obj.id = i;
-						obj.index = i;
-						obj.thumbnail = `https://farm${photos[i].farm}.staticflickr.com/${photos[i].server}/${photos[i].id}_${photos[i].secret}_z.jpg`;
-						obj.url = `https://farm${photos[i].farm}.staticflickr.com/${photos[i].server}/${photos[i].id}_${photos[i].secret}_b.jpg`;
-						obj.src = `https://farm${photos[i].farm}.staticflickr.com/${photos[i].server}/${photos[i].id}_${photos[i].secret}_b.jpg`;
-					thisPhotos.push(obj);
-				}
+      for (let i = 0;i < photos.length;i++) {
+        let obj = {};
+          obj.id = i;
+          obj.index = i;
+          obj.thumbnail = `https://farm${photos[i].farm}.staticflickr.com/${photos[i].server}/${photos[i].id}_${photos[i].secret}_z.jpg`;
+          obj.url = `https://farm${photos[i].farm}.staticflickr.com/${photos[i].server}/${photos[i].id}_${photos[i].secret}_b.jpg`;
+          obj.src = `https://farm${photos[i].farm}.staticflickr.com/${photos[i].server}/${photos[i].id}_${photos[i].secret}_b.jpg`;
+        thisPhotos.push(obj);
+      }
 
-				this.loadq.loadManifest(thisPhotos);
-				this.loadq.addEventListener('complete', () => {
-					let photosPerColumn = thisPhotos.length/4;
-					for(let i = 1;i <= 4;i++){
-						let rows = [];
-						for(let o = Math.floor(photosPerColumn*(i-1));o < Math.floor(photosPerColumn*i);o++){
-							rows.push(
-								<img className='photo' key={o} src={thisPhotos[o].thumbnail} style={{width: '100%'}} onClick={() => this.openPhoto(thisPhotos[o].index)} />
-							);
-						}	
+      this.loadq.loadManifest(thisPhotos);
+      this.loadq.addEventListener('complete', () => {
+        let photosPerColumn = thisPhotos.length/4;
+        for (let i = 1;i <= 4;i++) {
+          let rows = [];
+          for (let o = Math.floor(photosPerColumn*(i-1));o < Math.floor(photosPerColumn*i);o++) {
+            rows.push(
+              <img className='photo' key={o} src={thisPhotos[o].thumbnail} style={{width: '100%'}} onClick={() => this.openPhoto(thisPhotos[o].index)} />
+            );
+          }	
 
-						let col = (
-							<div key={i} className='photo-column'>
-								{rows}
-							</div>
-						);
-						photographyTemplate.push(col);			
-					}
+          const col = (
+            <div key={i} className='photo-column'>
+              {rows}
+            </div>
+          );
+          photographyTemplate.push(col);			
+        }
 
-					this.PhotoClass.updatePhotos(photographyTemplate, () => {
-						this.PhotoClass.updateOriginalPhotos(thisPhotos, () => {
-							this.PhotoClass.updatePhotoLoading(false, () => {
-								this.MainClass.loadingFinish(() => {
-									this.setState({
-										updatePhotoLoading: this.state.updatePhotos+=1,
-										updatePhotos: this.state.updatePhotos+=1
-									}, () => {
-										this.createCube();
-										// RESIZE [S]
-										window.onresize = () => {
-											this.resizeCube();
-										}
-									});
-								});
-							});
-							
-						})
-					});
+        this.PhotoClass.updatePhotos(photographyTemplate, () => {
+          this.PhotoClass.updateOriginalPhotos(thisPhotos, () => {
+            this.PhotoClass.updatePhotoLoading(false, () => {
+              this.MainClass.loadingFinish(() => {
+                this.setState({
+                  updatePhotoLoading: this.state.updatePhotos+=1,
+                  updatePhotos: this.state.updatePhotos+=1
+                }, () => {
+                  this.createCube();
+                  // RESIZE [S]
+                  window.onresize = () => {
+                    this.resizeCube();
+                  }
+                });
+              });
+            });
+            
+          })
+        });
 
-				});
+      });
 
-				this.loadq.addEventListener('error', () => {
-					console.log('%c FLASH ', 'background: #800000; color: yellow; font-size: 12pt; font-family: "Comic Sans MS", cursive, sans-serif', 'error');		
-				});
-			}else{
-				console.log('API STATUS NOT OK');			
-			}
-		}, (error) => {
-			console.log('API ERROR', error)
-		});
+      this.loadq.addEventListener('error', () => {
+        console.log('%c FLASH ', 'background: #800000; color: yellow; font-size: 12pt; font-family: "Comic Sans MS", cursive, sans-serif', 'error');		
+      });
+    });
 	}
 	componentDidMount(){
-		this.fetchPhotos();
+    this.fetchPhotos();
 	}
 	componentDidUpdate(prevProps, prevState){
 
@@ -185,23 +184,16 @@ class MainTemplate extends React.Component{
 		});	
 	}
 	goToPage(index){
-		const menu = this.MainClass.menu;
-		for (var i = 0;i < menu.length;i++) {
-			menu[i].state = false;
-			if (i === index) {
-        menu[i].state = true;
-      } 
-		}
-
-		this.setState({updateMenu: this.state.updateMenu += 1});
+		this.setState({ page: index });
 	}
 
 	getTitle(){
 		return this.MainClass.menu.map((value, index) => {
-			let menuClassNames = 'header-btns left text-center c-pointer'
-			if (value.state) {
+      let menuClassNames = 'header-btns left text-center c-pointer'
+			if (index === this.state.page) {
         menuClassNames += ' color-white'
       }
+
 			return(
 				<label key={index} htmlFor="nav-checkbox">
 					<span onClick={() => this.goToPage(index)} className={menuClassNames}>{value.title}</span>
@@ -211,31 +203,15 @@ class MainTemplate extends React.Component{
 	}
 
 	getActiveTemplate(){
-		let homePage = this.MainClass.menu[0].state,
-			informationPage = this.MainClass.menu[1].state,
-			workPage = this.MainClass.menu[2].state,
-			// photographyPage = this.MainClass.menu[3].state,
-			template = void 0;
-    
-		if (homePage) {
-			template = (
-        <HomeComponent />
-			);
-		} else if (informationPage) {
-			template = (
-        <InformationComponent />
-			);
-		} else if (workPage) {
-      template = (
-        <WorkComponent />
-      );
+		if (this.state.page === Page.Home) {
+			return <HomeComponent />
+		} else if (this.state.page === Page.Information) {
+			return <InformationComponent />
+		} else if (this.state.page === Page.Work) {
+      return <WorkComponent />
 		} else {
-			template = (
-				<PhotographyComponent photoLoading={this.PhotoClass.photoLoading} photos={this.PhotoClass.photos}/>
-			)
+			return <PhotographyComponent photoLoading={this.PhotoClass.photoLoading} photos={this.PhotoClass.photos}/>
 		}
-
-		return template;
 	}
 
 	render(){
@@ -264,16 +240,12 @@ class MainTemplate extends React.Component{
 							</span>
 							{this.getTitle()}
 						</span>
-							{
-								this.getActiveTemplate()
-							}
+							{this.getActiveTemplate()}
 					</span>
-					
 				}
 			</React.Fragment>
 		)
 	}
-
 }
 
 ReactDOM.render(

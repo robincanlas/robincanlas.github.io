@@ -1,4 +1,4 @@
-class LoadingComponent extends React.Component{
+export class LoadingComponent extends React.Component{
 	constructor(props){
 		super(props);
 	}
@@ -21,5 +21,3 @@ class LoadingComponent extends React.Component{
 		);
 	}
 }
-
-export default LoadingComponent;

@@ -1,6 +1,4 @@
-
-
-class Photo{
+export class PhotoClass {
 	constructor(data){
 		this.photos = [];
 		this.originalPhotos = [];
@@ -24,7 +22,4 @@ class Photo{
 		this.photoLoading = boolean;
 		callback();
 	}
-
 }
-
-export default Photo

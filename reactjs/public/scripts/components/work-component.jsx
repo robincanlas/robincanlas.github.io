@@ -1,4 +1,4 @@
-export default class WorkComponent extends React.Component{
+export class WorkComponent extends React.Component{
 	constructor(props){
 		super(props);
 
