@@ -1,5 +1,4 @@
-
-class PhotographyComponent extends React.Component{
+export default class PhotographyComponent extends React.Component{
 	constructor(props){
 		super(props);
 
@@ -22,5 +21,3 @@ class PhotographyComponent extends React.Component{
 		);
 	}
 }
-
-export default PhotographyComponent;

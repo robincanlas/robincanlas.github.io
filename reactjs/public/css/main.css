@@ -209,6 +209,11 @@ label {
     font-family: roboto-light;
 }
 
+.information-email a {
+    text-decoration: none;
+    color: white;
+}
+
 .photo {
     pointer-events: none;
 }

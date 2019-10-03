@@ -1,5 +1,7 @@
-
 // COMPONENTS
+import HomeComponent from './components/home-component';
+import InformationComponent from './components/information-component';
+import WorkComponent from './components/work-component';
 import PhotographyComponent from './components/photography-component';
 import LoadingComponent from './components/loading-component';
 
@@ -59,7 +61,7 @@ class MainTemplate extends React.Component{
 		animate();
 
 		// LOGO CUBE
-		if(window.innerWidth > 799){
+		if (window.innerWidth > 799) {
 			this.createLogoCube();
 		}
 	}
@@ -71,7 +73,7 @@ class MainTemplate extends React.Component{
 		renderer.setSize( 100, 100 );
 		document.getElementById('main-logo-desktop').appendChild( renderer.domElement );
 
-		let geometry = new THREE.BoxGeometry( 2, 2, 2 );
+		const geometry = new THREE.BoxGeometry( 2, 2, 2 );
 		for(let i = 0;i < geometry.faces.length;i++){
 			// geometry.faces[ 0 ].color.setHex( Math.random() * 0xffffff );
 			// geometry.faces[ 0 ].color.setRGB( 255, 0, 0 );
@@ -84,8 +86,8 @@ class MainTemplate extends React.Component{
 		scene.add( cube );
 
 		camera.position.z = 4;
-
-		let animateLogo = () => {
+   
+		const animateLogo = () => {
 			requestAnimationFrame( animateLogo );
 			cube.rotation.x += 0.01;
 			cube.rotation.y += 0.01;
@@ -184,9 +186,11 @@ class MainTemplate extends React.Component{
 	}
 	goToPage(index){
 		const menu = this.MainClass.menu;
-		for(var i = 0;i < menu.length;i++){
+		for (var i = 0;i < menu.length;i++) {
 			menu[i].state = false;
-			if(i === index) menu[i].state = true;
+			if (i === index) {
+        menu[i].state = true;
+      } 
 		}
 
 		this.setState({updateMenu: this.state.updateMenu += 1});
@@ -195,14 +199,14 @@ class MainTemplate extends React.Component{
 	getTitle(){
 		return this.MainClass.menu.map((value, index) => {
 			let menuClassNames = 'header-btns left text-center c-pointer'
-			if(value.state) menuClassNames += ' color-white'
-
+			if (value.state) {
+        menuClassNames += ' color-white'
+      }
 			return(
 				<label key={index} htmlFor="nav-checkbox">
 					<span onClick={() => this.goToPage(index)} className={menuClassNames}>{value.title}</span>
 				</label>
 			);
-
 		});		
 	}
 
@@ -210,43 +214,32 @@ class MainTemplate extends React.Component{
 		let homePage = this.MainClass.menu[0].state,
 			informationPage = this.MainClass.menu[1].state,
 			workPage = this.MainClass.menu[2].state,
-			photographyPage = this.MainClass.menu[3].state,
+			// photographyPage = this.MainClass.menu[3].state,
 			template = void 0;
-
-		if(homePage){
+    
+		if (homePage) {
 			template = (
-				<span className='main-body'>
-					<span className='main-logo'>KR</span>
-					<span className='main-name'>Hi!, I'm Kristoffer Robin Canlas</span>
-					<span className='main-intro'>Web Developer by day, Speedster and Photographer by night.</span>
-				</span>
+        <HomeComponent />
 			);
-		}else if(informationPage){
+		} else if (informationPage) {
 			template = (
-				<span className='information-wrapper'>
-					<span className='information-intro'>
-						Hello, my name is Kristoffer Robin Canlas, and I'm the fastest Web Developer alive! I started Web Development around 2014. You can contact me using my contact number and email address below.
-					</span>
-					<span className='information-email'>
-						+63906-4636-752 | kristofferrobincanlas@gmail.com
-					</span>
-				</span>
+        <WorkComponent />
 			);
-		}else if(workPage){
-
-		}else{
+		} else if (workPage) {
+      template = (
+        <InformationComponent />
+      );
+		} else {
 			template = (
 				<PhotographyComponent photoLoading={this.PhotoClass.photoLoading} photos={this.PhotoClass.photos}/>
 			)
 		}
-
 
 		return template;
 	}
 
 	render(){
 		const work = this.state.work;
-
 
 		return(
 			<React.Fragment>
@@ -282,7 +275,6 @@ class MainTemplate extends React.Component{
 	}
 
 }
-
 
 ReactDOM.render(
 	<MainTemplate/>,
