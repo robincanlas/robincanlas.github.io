@@ -1,46 +1,47 @@
 {
-  "name": "robin_canlas_reactjs",
-  "version": "1.0.0",
-  "description": "portfolio reactjs mode",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "mac-dev-mode": "export NODE_ENV=development&&webpack --watch --mode development",
-    "mac-prod-mode": "rimraf public/build&&export NODE_ENV=production&&webpack --mode production",
-    "windows-dev": "SET NODE=development&&webpack"
-  },
-  "keywords": [
-    "portfolio",
-    "javascript",
-    "reactjs"
-  ],
-  "author": "Kristoffer Robin Canlas",
-  "license": "ISC",
-  "dependencies": {
-    "classnames": "^2.2.5",
-    "ejs": "^2.5.8",
-    "express": "^4.16.3",
-    "mongoose": "^5.1.0",
-    "node-fs": "^0.1.7",
-    "nodemon": "^1.17.4",
-    "pug": "^2.0.3",
-    "react": "^16.3.1",
-    "react-dom": "^16.3.1",
-    "redux": "^4.0.0",
-    "socket.io": "^2.1.0"
-  },
-  "devDependencies": {
-    "babel-loader": "^7.1.4",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "css-loader": "^0.28.11",
-    "file-loader": "^1.1.11",
-    "mini-css-extract-plugin": "^0.4.0",
-    "optimize-css-assets-webpack-plugin": "^4.0.2",
-    "rimraf": "^2.6.2",
-    "uglifyjs-webpack-plugin": "^1.2.4",
-    "url-loader": "^1.0.1",
-    "webpack": "^4.5.0",
-    "webpack-cli": "^2.0.14"
-  }
+    "name": "robin_canlas_reactjs",
+    "version": "1.0.0",
+    "description": "portfolio reactjs mode",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "mac-dev-mode": "export NODE_ENV=development&&webpack --watch --mode development",
+        "mac-prod-mode": "rimraf public/build&&export NODE_ENV=production&&webpack --mode production",
+        "windows-dev-mode": "SET NODE_ENV=development&&webpack --watch --mode development",
+        "windows-prod-mode": "rimraf public/build&& SET NODE_ENV=production&&webpack --mode production"
+    },
+    "keywords": [
+        "portfolio",
+        "javascript",
+        "reactjs"
+    ],
+    "author": "Kristoffer Robin Canlas",
+    "license": "ISC",
+    "dependencies": {
+        "classnames": "^2.2.5",
+        "ejs": "^2.5.8",
+        "express": "^4.16.3",
+        "mongoose": "^5.1.0",
+        "node-fs": "^0.1.7",
+        "nodemon": "^1.17.4",
+        "pug": "^2.0.3",
+        "react": "^16.3.1",
+        "react-dom": "^16.3.1",
+        "redux": "^4.0.0",
+        "socket.io": "^2.1.0"
+    },
+    "devDependencies": {
+        "babel-loader": "^7.1.4",
+        "babel-preset-env": "^1.6.1",
+        "babel-preset-react": "^6.24.1",
+        "css-loader": "^0.28.11",
+        "file-loader": "^1.1.11",
+        "mini-css-extract-plugin": "^0.4.0",
+        "optimize-css-assets-webpack-plugin": "^4.0.2",
+        "rimraf": "^2.6.2",
+        "uglifyjs-webpack-plugin": "^1.2.4",
+        "url-loader": "^1.0.1",
+        "webpack": "^4.5.0",
+        "webpack-cli": "^2.0.14"
+    }
 }
