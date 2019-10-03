@@ -223,11 +223,11 @@ class MainTemplate extends React.Component{
 			);
 		} else if (informationPage) {
 			template = (
-        <WorkComponent />
+        <InformationComponent />
 			);
 		} else if (workPage) {
       template = (
-        <InformationComponent />
+        <WorkComponent />
       );
 		} else {
 			template = (
