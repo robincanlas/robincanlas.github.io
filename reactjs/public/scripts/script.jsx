@@ -189,14 +189,12 @@ class MainTemplate extends React.Component{
 
 	getTitle(){
 		return this.MainClass.menu.map((value, index) => {
-      let menuClassNames = 'header-btns left text-center c-pointer'
-			if (index === this.state.page) {
-        menuClassNames += ' color-white'
-      }
+      const menuClassNames = 'header-btns left text-center c-pointer';
+      const selectedNav = index === this.state.page ? 'color-white' : '';
 
 			return(
 				<label key={index} htmlFor="nav-checkbox">
-					<span onClick={() => this.goToPage(index)} className={menuClassNames}>{value.title}</span>
+					<span onClick={() => this.goToPage(index)} className={`${menuClassNames} ${selectedNav}`}>{value.title}</span>
 				</label>
 			);
 		});		
