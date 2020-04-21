@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+
+/* DEFAULTS [S] */
+
+:root {
+  --cd-bg-color: rgb(53, 57, 64);
+  --cd-bg-color-2: rgb(62, 146, 163);
+  --cd-font-color: rgb(223, 224, 212);
+  --cd-font-color2: rgb(62, 146, 163);
+  --cd-gradient-color: linear-gradient(to bottom, rgb(243, 112, 92), rgb(238, 92, 75), rgb(232, 68, 54));
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: var(--cd-bg-color);
+  color: var(--cd-font-color);
+}
+
+/* DEFAULTS [E] */

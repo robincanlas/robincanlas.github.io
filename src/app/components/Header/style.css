@@ -1,0 +1,29 @@
+#nav {
+  margin: 0 auto;
+  padding: 20px 10px 0px;
+}
+
+#nav>.menu {
+  display: none;
+}
+
+#nav>h1, #nav>.menu>a{
+  color: var(--cd-font-color);
+}
+
+#nav>.burger>div>div {
+  width: 35px;
+  height: 5px;
+  margin: 6px 0;
+  background-color: var(--cd-font-color);
+}
+
+/* to desktop */
+@media (min-width: 768px) { 
+  #nav>.menu {
+    display: inherit;
+  }
+  #nav>.burger {
+    display: none;
+  }
+}
