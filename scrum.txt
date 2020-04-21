@@ -1,8 +1,0 @@
-TASK
--loading page
--home page
--information page
--work page
--photography page
-	-add lazy loading - done
-	-create pagination for photos

@@ -6,10 +6,6 @@ const path = require('path');
 
 
 module.exports = (env, option) => {
-
-	let entryPath = '',
-		outputPath = '';
-
 	console.log(
 		`
 		####### ##         ##       #####  ##   ##
