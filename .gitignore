@@ -1,2 +1,3 @@
 projects/reactredux/package-lock.json
 node_modules
+/build
