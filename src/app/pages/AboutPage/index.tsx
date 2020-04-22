@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as style from './style.css';
 import { Container, Segment, Image, Header, Message } from 'semantic-ui-react';
 import { skills, assetsPath } from 'app/contants';
+import '../../../assets/css.svg';
 
 export namespace AboutPage {
 	export interface Props {
@@ -21,7 +22,7 @@ export const AboutPage: React.FC<AboutPage.Props> = (props: AboutPage.Props) => 
 				<Header as='h1'>Skills</Header>
 				<span>
 						{skills.map((skill) => (
-							<Image key={skill.title} title={skill.title} src={`${assetsPath}${skill.image}`} />
+							<Image key={skill.title} title={skill.title} src={`${assetsPath}/${skill.image}`} />
 						))}
 				</span>
 			</Segment>

@@ -9,4 +9,4 @@ export const skills: Models.Skills[] = [
 	{ image: 'redux.svg', title: 'Redux' },
 	{ image: 'createjs.svg', title: 'CreateJS' }
 ];
-export const assetsPath: string =  '../../assets/';
+export const assetsPath: string =  '../../assets';
