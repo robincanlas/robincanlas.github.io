@@ -8,15 +8,22 @@ export namespace Header {
 }
 
 export const Header: React.FC<Header.Props> = (props: Header.Props) => { 
-	const navs: any[] = [
+	const navs: {name: string}[] = [
 		{name: 'about'},
 		{name: 'work'},
 		{name: 'photography'},
 		{name: 'contact'}
 	];
+	const openTag: string = '<';
+	const closeTag: string = '/>';
+	const name: string = ' robin ';
 	return (
 		<Menu id={style.nav} className={style.nav} text>
-			<Menu.Item onClick={() => history.push('/')} header as='h1'>KRISTOFFER ROBIN</Menu.Item>
+			<Menu.Item className={style.name} onClick={() => history.push('/')} header>
+				<span className={style.tag}>{openTag}</span>
+				<span>{name}</span>
+				<span className={style.tag}>{closeTag}</span>
+			</Menu.Item>
 			<Menu.Menu className={style.menu} position='right'>
 				{navs.map((nav) => (
 					<Menu.Item

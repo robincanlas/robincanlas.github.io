@@ -13,6 +13,11 @@
   margin-bottom: 10px;
 }
 
+#footer > .hosting > a {
+  text-decoration: none;
+  color: var(--cd-font-color);
+}
+
 #footer > p {
   text-align: center;
 }

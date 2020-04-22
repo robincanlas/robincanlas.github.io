@@ -1,0 +1,54 @@
+#container {
+  display: grid;
+  align-items: center;
+}
+
+#container > .message {
+  background: transparent;
+}
+
+#container > .message > span > h2 {
+  font-size: 4rem;
+}
+
+#container > .message > p {
+  font-size: 1.5rem;
+}
+
+#container > .message, 
+#container > .message > span > h2, 
+#container > .segment > h1  {
+  color: var(--cd-font-color);
+}
+
+#container > .segment {
+  background: var(--cd-bg-color-2);
+  width: 80%;
+  margin: 0 auto;
+}
+
+#container > .segment > h1 {
+  text-align: center;
+}
+
+#container > .segment > span {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
+  grid-template-rows: auto;
+  justify-items: center;
+  align-items: center;
+}
+
+#container > .segment > span > img {
+  height: 100px;
+  width: 100px;
+  opacity: .8;
+  transform: scale(.7);
+  transform-origin: center;
+  transition: all 300ms ease-in-out;
+}
+
+#container > .segment > span > img:hover {
+  transform: scale(.8);
+  opacity: 1;
+}

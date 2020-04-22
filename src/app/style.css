@@ -1,5 +1,6 @@
 .body {
   padding: 15px 0;
-  display: flex;
+  /* display: flex; */
+  display: grid;
   min-height: calc(100vh - 179px);
 }

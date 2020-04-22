@@ -7,7 +7,7 @@
   --cd-bg-color-2: rgb(62, 146, 163);
   --cd-font-color: rgb(223, 224, 212);
   --cd-font-color2: rgb(62, 146, 163);
-  --cd-gradient-color: linear-gradient(to bottom, rgb(243, 112, 92), rgb(238, 92, 75), rgb(232, 68, 54));
+  --cd-bg-color-3: rgb(250, 110, 112);
 }
 
 html, body {

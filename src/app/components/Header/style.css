@@ -3,12 +3,23 @@
   padding: 20px 10px 0px;
 }
 
+#nav>.name {
+  padding: 0;
+  font-size: 1.5em;
+}
+
 #nav>.menu {
   display: none;
 }
 
-#nav>h1, #nav>.menu>a{
+#nav>.name, #nav>.menu>a{
   color: var(--cd-font-color);
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+#nav>.name>.tag{
+  color: var(--cd-bg-color-3);
 }
 
 #nav>.burger>div>div {

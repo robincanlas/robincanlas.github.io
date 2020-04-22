@@ -1,7 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500);
 .wSCck {
   padding: 15px 0;
-  display: flex;
+  /* display: flex; */
+  display: grid;
   min-height: calc(100vh - 179px);
 }
 #_32VlY {
@@ -9,12 +10,23 @@
   padding: 20px 10px 0px;
 }
 
+#_32VlY>._2Vz0L {
+  padding: 0;
+  font-size: 1.5em;
+}
+
 #_32VlY>.Tdn75 {
   display: none;
 }
 
-#_32VlY>h1, #_32VlY>.Tdn75>a{
+#_32VlY>._2Vz0L, #_32VlY>.Tdn75>a{
   color: var(--cd-font-color);
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+#_32VlY>._2Vz0L>._1-xcM{
+  color: var(--cd-bg-color-3);
 }
 
 #_32VlY>.afHNY>div>div {
@@ -50,11 +62,18 @@
   margin-bottom: 10px;
 }
 
+#_1Qs6e > ._36JZ2 > a {
+  text-decoration: none;
+  color: var(--cd-font-color);
+}
+
 #_1Qs6e > p {
   text-align: center;
 }
+
 #qobCh {
   display: flex;
+  flex: 1;
 }
 
 ._1dusO {
@@ -100,6 +119,60 @@
   font-size: 2.5em;
 } 
 
+#_2YZJT {
+  display: grid;
+  align-items: center;
+}
+
+#_2YZJT > ._2fnJs {
+  background: transparent;
+}
+
+#_2YZJT > ._2fnJs > span > h2 {
+  font-size: 4rem;
+}
+
+#_2YZJT > ._2fnJs > p {
+  font-size: 1.5rem;
+}
+
+#_2YZJT > ._2fnJs, 
+#_2YZJT > ._2fnJs > span > h2, 
+#_2YZJT > ._1bIDH > h1  {
+  color: var(--cd-font-color);
+}
+
+#_2YZJT > ._1bIDH {
+  background: var(--cd-bg-color-2);
+  width: 80%;
+  margin: 0 auto;
+}
+
+#_2YZJT > ._1bIDH > h1 {
+  text-align: center;
+}
+
+#_2YZJT > ._1bIDH > span {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
+  grid-template-rows: auto;
+  justify-items: center;
+  align-items: center;
+}
+
+#_2YZJT > ._1bIDH > span > img {
+  height: 100px;
+  width: 100px;
+  opacity: .8;
+  transform: scale(.7);
+  transform-origin: center;
+  transition: all 300ms ease-in-out;
+}
+
+#_2YZJT > ._1bIDH > span > img:hover {
+  transform: scale(.8);
+  opacity: 1;
+}
 /* DEFAULTS [S] */
 
 :root {
@@ -107,7 +180,7 @@
   --cd-bg-color-2: rgb(62, 146, 163);
   --cd-font-color: rgb(223, 224, 212);
   --cd-font-color2: rgb(62, 146, 163);
-  --cd-gradient-color: linear-gradient(to bottom, rgb(243, 112, 92), rgb(238, 92, 75), rgb(232, 68, 54));
+  --cd-bg-color-3: rgb(250, 110, 112);
 }
 
 html, body {

@@ -12,7 +12,7 @@ export const HomePage: React.FC<HomePage.Props> = (props: HomePage.Props) => {
 		<Container id={style.container}>
 			<span className={style.intro}>
 				<span className={style.text}>
-					<p>Kristoffer Robin</p>
+					<p>Kristoffer Robin Canlas</p>
 					<p>JavaScript Developer</p>
 				</span>
 				<span className={style.picture}>
