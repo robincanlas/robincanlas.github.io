@@ -1,12 +1,12 @@
 import { Models } from 'app/models';
 
 export const skills: Models.Skills[] = [
-	{ image: 'javascript.svg', title: 'Javascript' },
-	{ image: 'typescript.svg', title: 'Typescript' },
-	{ image: 'css.svg', title: 'CSS3' },
-	{ image: 'html5.svg', title: 'HTML5' },
-	{ image: 'react.svg', title: 'ReactJS' },
-	{ image: 'redux.svg', title: 'Redux' },
-	{ image: 'createjs.svg', title: 'CreateJS' }
+	{ name: 'javascript', title: 'Javascript' },
+	{ name: 'typescript', title: 'Typescript' },
+	{ name: 'css', title: 'CSS3' },
+	{ name: 'html5', title: 'HTML5' },
+	{ name: 'reactjs', title: 'ReactJS' },
+	{ name: 'redux', title: 'Redux' },
+	{ name: 'createjs', title: 'CreateJS' }
 ];
 export const assetsPath: string =  '../../assets';

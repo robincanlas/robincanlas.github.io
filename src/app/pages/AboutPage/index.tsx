@@ -1,13 +1,27 @@
 import * as React from 'react';
 import * as style from './style.css';
-import { Container, Segment, Image, Header, Message } from 'semantic-ui-react';
-import { skills, assetsPath } from 'app/contants';
-import '../../../assets/css.svg';
+import { Container, Segment, Header, Message } from 'semantic-ui-react';
+import { skills } from 'app/contants';
+import { CreateJS, CSS, HTML5, Javascript, ReactJS, Redux, Typescript } from 'app/components';
+
+
 
 export namespace AboutPage {
 	export interface Props {
 	}
+	
+	export interface Icon { [key: string]: JSX.Element; }
 }
+
+export const svgIcons: AboutPage.Icon  = {
+	'createjs': <CreateJS />,
+	'css': <CSS />,
+	'html5': <HTML5 />,
+	'javascript': <Javascript />,
+	'reactjs': <ReactJS />,
+	'redux': <Redux />,
+	'typescript': <Typescript />
+};
 
 export const AboutPage: React.FC<AboutPage.Props> = (props: AboutPage.Props) => {
 	return (
@@ -21,9 +35,12 @@ export const AboutPage: React.FC<AboutPage.Props> = (props: AboutPage.Props) => 
 			<Segment className={style.segment}>
 				<Header as='h1'>Skills</Header>
 				<span>
-						{skills.map((skill) => (
-							<Image key={skill.title} title={skill.title} src={`${assetsPath}/${skill.image}`} />
-						))}
+					{skills.map((skill) => (
+						<span key={skill.name}>
+							{svgIcons[skill.name]}
+						</span>
+						// <Image key={skill.title} title={skill.title} src={''} />
+					))}
 				</span>
 			</Segment>
 		</Container>

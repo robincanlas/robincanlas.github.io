@@ -1,6 +1,6 @@
 export namespace Models {
 	export interface Skills {
-		image: string;
+		name: string;
 		title: string;
 	}
 }
