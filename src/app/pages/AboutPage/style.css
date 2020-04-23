@@ -19,11 +19,11 @@
 #container > .message, 
 #container > .message > span > h2, 
 #container > .segment > h1  {
-  color: var(--cd-font-color);
+  color: var(--font-color);
 }
 
 #container > .segment {
-  background: var(--cd-bg-color-2);
+  background: var(--bg-color-2);
   width: 80%;
   margin: 0 auto;
 }

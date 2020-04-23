@@ -1,5 +1,12 @@
 import { Models } from 'app/models';
 
+export const navs: Models.Navs[] = [
+	{name: 'about'},
+	{name: 'work'},
+	{name: 'photography'},
+	{name: 'contact'}
+];
+
 export const skills: Models.Skills[] = [
 	{ name: 'javascript', title: 'Javascript' },
 	{ name: 'typescript', title: 'Typescript' },
@@ -9,4 +16,5 @@ export const skills: Models.Skills[] = [
 	{ name: 'redux', title: 'Redux' },
 	{ name: 'createjs', title: 'CreateJS' }
 ];
+
 export const assetsPath: string =  '../../assets';

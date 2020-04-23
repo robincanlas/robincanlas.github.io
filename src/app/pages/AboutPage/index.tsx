@@ -1,10 +1,8 @@
 import * as React from 'react';
 import * as style from './style.css';
 import { Container, Segment, Header, Message } from 'semantic-ui-react';
-import { skills } from 'app/contants';
+import { skills } from 'app/constants';
 import { CreateJS, CSS, HTML5, Javascript, ReactJS, Redux, Typescript } from 'app/components';
-
-
 
 export namespace AboutPage {
 	export interface Props {

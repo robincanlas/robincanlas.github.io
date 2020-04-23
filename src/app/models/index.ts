@@ -3,4 +3,8 @@ export namespace Models {
 		name: string;
 		title: string;
 	}
+
+	export interface Navs {
+		name: string;
+	}
 }

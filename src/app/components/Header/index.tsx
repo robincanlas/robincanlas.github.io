@@ -2,21 +2,19 @@ import * as React from 'react';
 import * as style from './style.css';
 import { Menu } from 'semantic-ui-react';
 import { history } from 'app/utils';
+import { navs } from 'app/constants';
 
 export namespace Header {
-	export interface Props {}
+	export interface Props {
+		toggleOverLay: () => void;
+	}
 }
 
 export const Header: React.FC<Header.Props> = (props: Header.Props) => { 
-	const navs: {name: string}[] = [
-		{name: 'about'},
-		{name: 'work'},
-		{name: 'photography'},
-		{name: 'contact'}
-	];
 	const openTag: string = '<';
 	const closeTag: string = '/>';
 	const name: string = ' robin ';
+
 	return (
 		<Menu id={style.nav} className={style.nav} text>
 			<Menu.Item className={style.name} onClick={() => history.push('/')} header>
@@ -34,7 +32,7 @@ export const Header: React.FC<Header.Props> = (props: Header.Props) => {
 				))}
 			</Menu.Menu>
 			<Menu.Item className={style.burger} position='right'>
-				<div>
+				<div onClick={props.toggleOverLay}>
 					<div></div>
 					<div></div>
 					<div></div>
@@ -42,4 +40,4 @@ export const Header: React.FC<Header.Props> = (props: Header.Props) => {
 			</Menu.Item>
 		</Menu>
 	);
-}
+};

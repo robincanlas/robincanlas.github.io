@@ -3,8 +3,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--cd-bg-color-2);
+  background-color: var(--bg-color-2);
   padding: 25px 10px;
+  height: 130px;
 }
 
 #footer > .hosting {
@@ -15,7 +16,7 @@
 
 #footer > .hosting > a {
   text-decoration: none;
-  color: var(--cd-font-color);
+  color: var(--font-color);
 }
 
 #footer > p {

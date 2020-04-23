@@ -1,6 +1,7 @@
 #nav {
   margin: 0 auto;
   padding: 20px 10px 0px;
+  height: 50px;
 }
 
 #nav>.name {
@@ -13,20 +14,24 @@
 }
 
 #nav>.name, #nav>.menu>a{
-  color: var(--cd-font-color);
+  color: var(--font-color);
   cursor: pointer;
   text-transform: uppercase;
 }
 
 #nav>.name>.tag{
-  color: var(--cd-bg-color-3);
+  color: var(--bg-color-3);
 }
 
 #nav>.burger>div>div {
   width: 35px;
-  height: 5px;
-  margin: 6px 0;
-  background-color: var(--cd-font-color);
+  height: 3px;
+  margin: 8px 0;
+  background-color: var(--font-color);
+}
+
+#nav>.burger>div:active {
+  background-color: var(--bg-color-2);
 }
 
 /* to desktop */
