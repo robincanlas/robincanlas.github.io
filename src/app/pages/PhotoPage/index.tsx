@@ -28,13 +28,15 @@ const PhotoPage: React.FC<Photo.Props> = (props: Photo.Props) => {
 			<Dimmer active={props.photography.isLoading}>
 				<Loader />
 			</Dimmer>
-			<span className={style['gallery-list']}>
-				{props.photography.photos.map(element => (
-					<span key={element.id}>
-						<Image src={element.src} />
-					</span>
-				))}
-			</span>
+			{!props.photography.isLoading &&
+				<span className={style['gallery-list']}>
+					{props.photography.photos.map(element => (
+						<span key={element.id}>
+							<Image src={element.src} />
+						</span>
+					))}
+				</span>
+			}
 		</Container>
 	);
 };

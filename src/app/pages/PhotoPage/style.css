@@ -9,20 +9,6 @@
   object-fit: cover;
 }
 
-/* .gallery-list > span {
-  transition: 500ms all ease-in-out;
-}
-
-.gallery-list > span:hover {
-  transform: scale(1.2);
-  z-index: 9;
-  position: relative;
-} */
-
-/* .gallery-list > span:hover > img {
-  object-fit: contain;
-} */
-
 /* * to tablet */
 @media (min-width: 550px) { 
   .gallery-list {
