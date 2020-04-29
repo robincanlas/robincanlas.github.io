@@ -1,1 +1,0 @@
- - check thumb height if its fit the container
