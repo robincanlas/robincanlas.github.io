@@ -7,4 +7,12 @@ export namespace Models {
 	export interface Navs {
 		name: string;
 	}
+
+	export interface Photos {
+		id: number;
+		index: number;
+		thumbnail: string;
+		url: string;
+		src: string;
+	}
 }

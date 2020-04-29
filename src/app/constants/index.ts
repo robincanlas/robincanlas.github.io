@@ -18,3 +18,9 @@ export const skills: Models.Skills[] = [
 ];
 
 export const assetsPath: string =  '../../assets';
+
+export const ActionTypes = {
+	GET_PHOTOS_REQUEST: 'GET_PHOTOS_REQUEST',
+	GET_PHOTOS_SUCCESS: 'GET_PHOTOS_SUCCESS',
+	GET_PHOTOS_FAILED: 'GET_PHOTOS_FAILED'
+};
