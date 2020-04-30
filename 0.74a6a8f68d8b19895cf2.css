@@ -62,6 +62,11 @@
   #_32VlY>.Tdn75 {
     display: inherit;
   }
+
+  #_32VlY>.Tdn75>._2WfGy {
+    color: var(--bg-color-3);
+  }
+  
   #_32VlY>.afHNY {
     display: none;
   }
