@@ -349,6 +349,10 @@
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
+#_2FJb_ > ._1SoSr > ._1T349 > span > i {
+  margin: 5px 0;
+}
+
 #_2FJb_ > ._1SoSr > ._1T349 > span > ._2hXFo {
   font-size: 1.3em;
   padding: 8px;
