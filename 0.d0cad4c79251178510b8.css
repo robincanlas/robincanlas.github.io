@@ -324,12 +324,14 @@
 #_2FJb_ {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 #_2FJb_ > ._1SoSr {
   display: grid;
   justify-content: center;
   text-align: center;
+  grid-gap: 5px;
 }
 
 #_2FJb_ > ._1SoSr > h1 {
