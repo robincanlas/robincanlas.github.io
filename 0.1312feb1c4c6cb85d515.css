@@ -1,8 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500);
 .wSCck {
-  padding: 15px 0;
+  padding: 105px 0 15px;
   display: grid;
-  min-height: calc(100vh - 220px);
+  min-height: calc(100vh - 130px);
 }
 
 ._1s4h3 {
@@ -20,28 +20,51 @@
   display: block;
   position: relative;
 }
-/* .pattern {
-  background: var(--bg-color);
-  position: absolute;
-  width: 100%;
-  height: 90px;
-  top: 0px;
-  left: 0px;
-  opacity: .97;
-} */
-
 #_32VlY {
   margin: 0 auto;
   padding: 20px 10px;
   height: 90px;
+  position: fixed;
+  width: 100%;
+  z-index: 3;
+  transition: all 400ms ease-in-out;
 }
 
-/* #nav.sticky {
+#_32VlY._3yNJi {
+  transform: translateY(-90px);
+}
+
+#_32VlY > ._25sBN {
+  background: var(--bg-color);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  box-shadow: 0 5px 30px rgba(0,0,0,.2);
+}
+
+#_32VlY > ._2jUsi {
   background: var(--bg-pattern);
   background-color: var(--bg-pattern-color);
   background-size: 64px 128px;
-  box-shadow: 0 5px 30px rgba(0,0,0,.2);
-} */
+  background: var(--bg-pattern);
+  background-color: var(--bg-pattern-color);
+  background-size: 64px 128px;
+}
+
+#_32VlY > ._25sBN , #_32VlY > ._2jUsi {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+#_32VlY > ._25sBN._1Re5h , #_32VlY > ._2jUsi._1Re5h {
+  opacity: .97;
+}
 
 #_32VlY>._2Vz0L {
   padding: 0;
