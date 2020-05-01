@@ -181,8 +181,8 @@
 }
 
 .ABIYn {
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   position: relative;
   display: block;
   overflow: hidden;
@@ -190,13 +190,17 @@
 }
 
 .ABIYn > span {
-  background-image: url(./68e1797ff6ff66e157b37954d88c00e3.jpg);
-  background-repeat: no-repeat;
-  background-size: 111%;
   height: 100%;
   width: 100%;
   display: block;
   position: relative;
+}
+
+.ABIYn > span > svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(.8);
 }
 
 ._5pvf9 > .L2Nc5 > p:nth-child(1) {
