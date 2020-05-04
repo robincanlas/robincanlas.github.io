@@ -185,6 +185,10 @@
   text-transform: uppercase;
 }
 
+#_1CdMz > ._1hT2t > span:nth-child(2) > h1._1cqpM {
+  color: var(--bg-color-3);
+}
+
 #_1CdMz > ._1hT2t > span > ._2n5OM > div {
   height: 5px;
   width: 50px;
@@ -221,12 +225,11 @@
 }
 
 .ABIYn {
-  width: 200px;
-  height: 200px;
+  width: 240px;
+  height: 264px;
   position: relative;
   display: block;
   overflow: hidden;
-  border-radius: 50%;
 }
 
 .ABIYn > span {
@@ -234,14 +237,6 @@
   width: 100%;
   display: block;
   position: relative;
-}
-
-.ABIYn > span > svg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(2);
-  transform-origin: center;
 }
 
 ._5pvf9 > .L2Nc5 > p:nth-child(1) {
@@ -253,7 +248,13 @@
 
 ._5pvf9 > .L2Nc5 > p:nth-child(2) {
   font-size: 2.5em;
-} 
+}
+
+/* to desktop */
+
+@media (min-width: 768px) { 
+ 
+}
 ._7KMUa {
   display: grid;
   grid-gap: 1rem;
@@ -337,16 +338,27 @@
   background: var(--bg-color-2);
   width: 100%;
   margin: 0 auto;
+  position: relative;
+  display: block;
+  border-radius: .2rem;
+  padding: 1em;
 }
 
 #_2YZJT > ._1bIDH > h1 {
   text-align: center;
+  position: relative;
+  display: block;
 }
 
 #_2YZJT > ._1bIDH > span {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  position: relative;
+}
+
+#_2YZJT > ._1bIDH > span > span {
+  width: 110px;
 }
 
 #_2YZJT > ._1bIDH > span > span > svg {
