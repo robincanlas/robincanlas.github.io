@@ -240,7 +240,8 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(.8);
+  transform: translate(-50%, -50%) scale(2);
+  transform-origin: center;
 }
 
 ._5pvf9 > .L2Nc5 > p:nth-child(1) {
