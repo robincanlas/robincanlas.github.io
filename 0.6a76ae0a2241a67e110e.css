@@ -436,13 +436,55 @@
   opacity: .8;
   position: absolute;
   display: block;
-  z-index: 1;
   transform: scale(2) translateX(-75%) translateY(-75%) rotate(-28deg);
   transition: transform 2s cubic-bezier(.2,1,.3,1);
 }
 
 #_1b1nY > .Eqetp > span:hover::after {
   transform: scale(2) translateX(0) translateY(0) rotate(-28deg);
+}
+
+#_1b1nY > .Eqetp > span > ._2CCJ3 {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 1em;
+  text-align: center;
+  transform: translateY(-15%);
+  opacity: 0;
+  z-index: 1;
+  transition: opacity .5s cubic-bezier(.2,1,.3,1),transform .5s cubic-bezier(.2,1,.3,1);
+}
+
+#_1b1nY > .Eqetp > span:hover > ._2CCJ3 { 
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#_1b1nY > .Eqetp > span > ._2CCJ3 > span {
+  font-size: 1.5em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#_1b1nY > .Eqetp > span > ._2CCJ3 > span > p {
+  background: var(--bg-color-2);
+  padding: 10px;
+  position: relative;
+  display: block;
+  border-radius: 5px;
+  text-transform: uppercase;
 }
 
 /* to desktop */
