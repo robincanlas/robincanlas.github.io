@@ -407,11 +407,9 @@
 }
 
 #_1b1nY > .Eqetp > span {
-  width: 300px;
-  height: 180px;
   position: relative;
   display: block;
-  margin: 1em;
+  margin: 0 0 3.5em;
   cursor: pointer;
   overflow: hidden;
 }
@@ -447,10 +445,7 @@
 /* to desktop */
 
 @media (min-width: 768px) { 
-  #_1b1nY > .Eqetp > span {
-    width: 600px;
-    height: 400px;
-  }
+
 }
 #_2FJb_ {
   display: flex;
