@@ -71,17 +71,37 @@
   font-size: 2em;
 }
 
-#_32VlY>.Tdn75 {
+#_32VlY > .Tdn75 {
   display: none;
 }
 
-#_32VlY>._2Vz0L, #_32VlY>.Tdn75>a{
+#_32VlY > ._2Vz0L, #_32VlY > .Tdn75 > a {
   color: var(--font-color);
   cursor: pointer;
   text-transform: uppercase;
+  transition: all 300ms ease-in-out;
 }
 
-#_32VlY>._2Vz0L>._1-xcM{
+#_32VlY > .Tdn75 > a::after {
+  content: "";
+  background: var(--bg-color-3);
+  width: 15px;
+  height: 2px;
+  position: absolute;
+  transform: translateY(-10px) scale(0);
+  transform-origin: center left;
+  transition: transform 500ms ease-in-out;
+}
+
+#_32VlY > .Tdn75 > a:hover {
+  color: var(--bg-color-3);
+}
+
+#_32VlY > .Tdn75 > a:hover::after {
+  transform: translateY(-10px) scale(1);
+}
+
+#_32VlY > ._2Vz0L > ._1-xcM{
   color: var(--bg-color-3);
 }
 
@@ -241,7 +261,7 @@
 
 ._5pvf9 > .L2Nc5 > p:nth-child(1) {
   font-size: 4.5em;
-  color: var(--font-color2);
+  color: var(--font-color-2);
   font-weight: bold;
   margin: 0;
 }
@@ -386,7 +406,7 @@
 #_1b1nY > ._1EtkM {
   text-align: center;
   font-size: 4rem;
-  color: var(--font-color2);
+  color: var(--font-color-2);
 }
 
 #_1b1nY > .QhtrA {
@@ -487,6 +507,28 @@
   text-transform: uppercase;
 }
 
+#_1b1nY > .Eqetp > ._2wV_3 {
+  display: grid;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  width: 100%;
+  height: calc(100% - 3.5em);
+  justify-content: center;
+  align-items: center;
+}
+
+#_1b1nY > .Eqetp > ._2wV_3 > span {
+  color: var(--font-color);
+  line-height: 1.1em;
+  cursor: pointer;
+}
+
+#_1b1nY > .Eqetp > ._2wV_3 > span > i {
+  color: var(--bg-color-3)
+}
+
 /* to desktop */
 
 @media (min-width: 768px) { 
@@ -511,7 +553,7 @@
 #_2FJb_ > ._1SoSr > div {
   font-size: 4rem;
   font-weight: 900;
-  color: var(--font-color2);
+  color: var(--font-color-2);
 }
 
 #_2FJb_ > ._1SoSr > p {
@@ -531,13 +573,18 @@
   font-size: 1.3em;
   padding: 8px;
 }
+._1ISaH {
+  text-align: center;
+  font-size: 3em;
+  color: var(--font-color-2);
+}
 /* DEFAULTS [S] */
 
 :root {
   --bg-color: rgb(53, 57, 64);
   --bg-color-2: rgb(62, 146, 163);
   --font-color: rgb(223, 224, 212);
-  --font-color2: rgb(62, 146, 163);
+  --font-color-2: rgb(62, 146, 163);
   --bg-color-3: rgb(250, 110, 112);
   --bg-pattern:   linear-gradient(135deg, #708090 21px, #d9ecff 22px, #d9ecff 24px, transparent 24px, transparent 67px, #d9ecff 67px, #d9ecff 69px, transparent 69px),
     linear-gradient(225deg, #708090 21px, #d9ecff 22px, #d9ecff 24px, transparent 24px, transparent 67px, #d9ecff 67px, #d9ecff 69px, transparent 69px)0 64px;
