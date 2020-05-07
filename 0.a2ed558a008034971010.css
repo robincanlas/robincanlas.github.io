@@ -87,9 +87,10 @@
   background: var(--bg-color-3);
   width: 15px;
   height: 2px;
+  right: calc(0% + 7px);
   position: absolute;
   transform: translateY(-10px) scale(0);
-  transform-origin: center left;
+  transform-origin: center right;
   transition: transform 500ms ease-in-out;
 }
 
