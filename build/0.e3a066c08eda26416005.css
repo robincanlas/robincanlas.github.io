@@ -14,6 +14,11 @@
   width: 100vw;
   z-index: 1;
   opacity: .8;
+  transition: opacity 500ms ease-in-out 1200ms;
+}
+
+._2JsjU {
+  opacity: 1;
 }
 
 .L-pvs {
@@ -65,6 +70,10 @@
 
 #_32VlY > ._25sBN._1Re5h , #_32VlY > ._2jUsi._1Re5h {
   opacity: .8;
+}
+
+#_32VlY > ._25sBN._1Re5h._2hdHv {
+  opacity: 1;
 }
 
 #_32VlY>._2Vz0L {
@@ -1035,7 +1044,7 @@ h3 {
 }
 
 article > ._1gu_9, article > ._1ISaH {
-  margin-bottom: 5em;
+  margin-bottom: 3em;
 }
 
 article > ._1gu_9 > picture > img {
