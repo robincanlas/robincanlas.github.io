@@ -683,7 +683,7 @@ h3 {
 } 
 ._7KMUa {
   display: grid;
-  grid-gap: 1rem;
+  grid-gap: .25rem;
 }
 
 ._7KMUa > span > img {
