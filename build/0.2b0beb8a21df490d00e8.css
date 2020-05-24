@@ -89,7 +89,8 @@
   color: var(--font-color);
   cursor: pointer;
   text-transform: uppercase;
-  transition: all 300ms ease-in-out;
+  text-shadow: 1px 5px 8px black;
+  transition: color 450ms ease;
 }
 
 #_32VlY > .Tdn75 > a::after {
@@ -215,6 +216,7 @@
 #_1CdMz > ._1hT2t > span:nth-child(2) > h1 {
   color: var(--font-color);
   text-transform: uppercase;
+  text-shadow: 1px 1px 10px black;
 }
 
 #_1CdMz > ._1hT2t > span:nth-child(2) > h1._1cqpM {
@@ -716,6 +718,7 @@ h3 {
   color: var(--font-color-2);
   font-weight: bold;
   margin: 0;
+  text-shadow: 1px 1px 10px black;
 }
 
 ._5pvf9 > .L2Nc5 > p:nth-child(2) {
