@@ -638,6 +638,44 @@ h3 {
   }
 }
 
+._3UqiP {
+  position: absolute !important;
+  -webkit-filter: blur(5px);
+          filter: blur(5px);
+  top: 0px;
+  left: 0px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transition: opacity 200ms ease-out 500ms;
+}
+
+._3UqiP._1cR7K {
+  opacity: 0;
+}
+
+._19Y9B {
+  top: 0px;
+  left: 0px;
+  opacity: 0;
+  transition: opacity 700ms ease 0ms;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: block;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
+}
+
+._19Y9B._3-saP {
+  opacity: 1;
+}
 #qobCh {
   display: flex;
   flex: 1;
@@ -851,11 +889,8 @@ h3 {
 }
 
 #_1b1nY > .Eqetp {
-  /* display: flex;
-  flex-wrap: wrap;
-  justify-content: center; */
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: 1fr;
   grid-gap: 2em;
   position: relative;
 }
@@ -866,20 +901,15 @@ h3 {
   margin: 0 0 3.5em;
   cursor: pointer;
   overflow: hidden;
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,.3);
 }
 
-#_1b1nY > .Eqetp > span > picture > img {
+#_1b1nY ._31q7j{
   transform: translateZ(0);
-  width: 100%;
-  height: 100%;
-  position: relative;
-  display: block;
-  -o-object-fit: cover;
-     object-fit: cover;
   transition: transform .75s cubic-bezier(.2,1,.3,1)
 }
 
-#_1b1nY > .Eqetp > span:hover > picture > img {
+#_1b1nY > .Eqetp > span:hover > ._31q7j {
   transform: scale(1.3);
 }
 
@@ -965,11 +995,19 @@ h3 {
   color: var(--bg-color-3)
 }
 
-/* to desktop */
-
 @media (min-width: 768px) { 
   #_1b1nY > .Eqetp {
-    width: 70%;
+    margin: 0 5em;
+  }
+}
+
+/* to desktop */
+
+@media (min-width: 1024px) { 
+  #_1b1nY > .Eqetp {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    width: 90%;
+    /* width: 70%; */
     margin: 0 auto;
   }
 }
@@ -1050,6 +1088,12 @@ h3 {
   align-items: center;
 }
 
+article > ._1gu_9 {
+  position: relative;
+  height: 450px;
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,.3);
+}
+
 article > ._1gu_9, article > ._1ISaH {
   margin-bottom: 3em;
 }
@@ -1061,7 +1105,7 @@ article > ._1gu_9 > picture > img {
   -o-object-position: center center;
      object-position: center center;
   width: 100%;
-  height: 450px;
+  height: 100%;
 }
 
 #_2t7TI > article > h1 {
