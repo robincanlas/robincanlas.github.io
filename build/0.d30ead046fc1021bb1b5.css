@@ -1183,6 +1183,20 @@ article > ._1ISaH {
   background: var(--bg-color-3);
   color: var(--bg-color-2);
 }
+#_3uQyj {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  min-width: 250px;
+  width: 50%;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+#_3uQyj ._1F4rE {
+  font-size: 2.5em;
+}
 /* DEFAULTS [S] */
 
 :root {
