@@ -1035,8 +1035,15 @@ h3 {
   color: var(--font-color-2);
 }
 
-#_2FJb_ > ._1SoSr > p {
+#_2FJb_ > ._1SoSr > p,
+#_2FJb_ > ._1SoSr > span > p {
   font-size: 1.5em;
+  display: inline;
+}
+
+#_2FJb_ > ._1SoSr > span > p._1sdtm {
+  text-decoration: line-through;
+  color: rgb(223 224 212 / 0.69);
 }
 
 #_2FJb_ > ._1SoSr > ._1T349 {
