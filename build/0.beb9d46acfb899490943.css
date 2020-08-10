@@ -91,6 +91,7 @@
   text-transform: uppercase;
   text-shadow: 1px 5px 8px black;
   transition: color 450ms ease;
+  outline-width: 0;
 }
 
 #_32VlY > .Tdn75 > a::after {
