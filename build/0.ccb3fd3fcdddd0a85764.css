@@ -681,6 +681,49 @@ h3 {
 ._19Y9B._3-saP {
   opacity: 1;
 }
+._2aFhM {
+  width: 25px;
+  height: 25px;
+  border: 1.5px solid rgba(255,255,255,0.78039);
+  border-radius: 50%;
+  z-index: 4;
+  pointer-events: none;
+  top: 0px;
+  left: 0px;
+  transition: all 200ms ease-out;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  display: none;
+}
+
+._2jQ_z {
+  background: rgba(255,255,255,0.78039);
+  height: 4px;
+  width: 4px;
+  border-radius: 50%;
+  z-index: 4;
+  top: 0px;
+  left: 0px;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  display: none;
+}
+
+/* to desktop */
+
+@media (min-width: 769px) { 
+  ._2aFhM, ._2jQ_z {
+    display: block;
+  }
+}
+._17Jtv {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
 #qobCh {
   display: flex;
   flex: 1;
@@ -732,6 +775,7 @@ h3 {
 
 ._7KMUa > span {
   position: relative;
+  cursor: pointer;
 }
 
 ._7KMUa > span > img {
@@ -1238,6 +1282,14 @@ body {
   background-image: var(--background-image) !important;
   color: rgb(223, 224, 212) !important;
   color: var(--font-color) !important;
+}
+
+/* to desktop */
+
+@media (min-width: 769px) { 
+  /* html, body {
+    cursor: none;
+  } */
 }
 
 /* DEFAULTS [E] */
