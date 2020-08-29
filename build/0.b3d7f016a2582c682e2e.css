@@ -723,6 +723,7 @@ h3 {
   justify-content: center;
   width: 100%;
   height: 100%;
+  cursor: zoom-out;
 }
 #qobCh {
   display: flex;
@@ -775,7 +776,7 @@ h3 {
 
 ._7KMUa > span {
   position: relative;
-  cursor: pointer;
+  cursor: zoom-in;
 }
 
 ._7KMUa > span > img {
