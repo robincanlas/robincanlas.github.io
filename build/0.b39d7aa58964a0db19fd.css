@@ -515,8 +515,7 @@ h3 {
 
 ._3UqiP {
   position: absolute !important;
-  -webkit-filter: blur(5px);
-          filter: blur(5px);
+  filter: blur(5px);
   top: 0px;
   left: 0px;
   -o-object-fit: cover;
@@ -660,8 +659,7 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
-  -webkit-filter: blur(5px);
-          filter: blur(5px);
+  filter: blur(5px);
 }
 
 ._1yG5Q img {
